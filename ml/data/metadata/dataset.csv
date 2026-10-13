@@ -1,0 +1,7 @@
+id,text,image_path,video_path,audio_path,label,manipulation_type,source,split
+sample_001,Authentic government press conference on renewable energy policy.,samples/real_press_conference.png,,,0,none,dev_sample,train
+sample_002,AI-generated speech showing prominent actor endorsing unverified token.,samples/fake_celebrity_speech.png,,,1,deepfake_faceswap,dev_sample,train
+sample_003,Verified NASA satellite imagery documenting glacial ice shelf variations.,samples/real_scientific_report.png,,,0,none,dev_sample,val
+sample_004,Manipulated broadcast banner claiming emergency evacuation in capital.,samples/fake_breaking_news.png,,,1,spliced_banner,dev_sample,val
+sample_005,Natural geographic photograph of migration patterns in national sanctuary.,samples/real_wildlife_photo.png,,,0,none,dev_sample,test
+sample_006,Diffusion model generated composite portrait with asymmetric ocular reflections.,samples/fake_synthetic_portrait.png,,,1,diffusion_synthesis,dev_sample,test

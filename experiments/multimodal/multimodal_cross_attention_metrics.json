@@ -1,0 +1,29 @@
+{
+  "fusion_type": "cross_attention",
+  "epochs": 3,
+  "final_train_acc": 0.5,
+  "final_val_acc": 0.5,
+  "history": [
+    {
+      "epoch": 1,
+      "train_loss": 0.7172,
+      "train_acc": 0.5,
+      "val_loss": 0.6852,
+      "val_acc": 0.5
+    },
+    {
+      "epoch": 2,
+      "train_loss": 0.7017,
+      "train_acc": 0.5,
+      "val_loss": 0.6861,
+      "val_acc": 0.5
+    },
+    {
+      "epoch": 3,
+      "train_loss": 0.6521,
+      "train_acc": 0.5,
+      "val_loss": 0.6888,
+      "val_acc": 0.5
+    }
+  ]
+}

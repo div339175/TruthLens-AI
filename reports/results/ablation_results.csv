@@ -1,0 +1,5 @@
+experiment,modalities,accuracy,precision,recall,f1
+Text_Only,text,0.5,0.0,0.0,0.0
+Vision_Only,visual,0.5,0.0,0.0,0.0
+Multimodal_Concat,text+visual,0.5,0.5,1.0,0.6667
+Multimodal_CrossAttn,text+visual,0.5,0.0,0.0,0.0
