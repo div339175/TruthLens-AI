@@ -1,6 +1,6 @@
-"""Multimodal Deepfake Verification Model combining Text and Vision backbones."""
+"""Multimodal Deepfake Verification Model combining Text, Vision, and Audio backbones."""
 
-from typing import Dict, Any, Optional
+from typing import Dict, Any, Optional, List
 import torch
 import torch.nn as nn
 
@@ -12,19 +12,22 @@ from ml.models.classifier import ClassificationHead
 
 
 class MultimodalVerificationModel(nn.Module):
-    """End-to-end multimodal architecture for deepfake detection.
+    """End-to-end multimodal architecture for deepfake and misinformation verification.
 
     Supports:
-    - Text + Image / Video input
-    - Text-only input
-    - Image-only input
-    - Concat or Cross-Attention fusion
+    - Text + Visual (Image/Video)
+    - Text + Audio
+    - Visual + Audio
+    - Tri-modal: Text + Visual + Audio
+    - Unimodal baselines (Text-only, Visual-only, Audio-only)
+    - Feature Concat & Bidirectional Cross-Attention fusion
     """
 
     def __init__(
         self,
         text_model_name: str = "distilbert-base-uncased",
         vision_model_name: str = "resnet18",
+        audio_feature_dim: int = 128,
         projection_dim: int = 256,
         fusion_type: str = "cross_attention",
         pretrained_vision: bool = True,
@@ -46,6 +49,14 @@ class MultimodalVerificationModel(nn.Module):
             projection_dim=projection_dim,
             dropout_p=dropout_p,
         )
+        # Audio Projection Layer
+        self.audio_projection = nn.Sequential(
+            nn.Linear(audio_feature_dim, projection_dim),
+            nn.LayerNorm(projection_dim),
+            nn.ReLU(),
+            nn.Dropout(dropout_p),
+            nn.Linear(projection_dim, projection_dim),
+        )
 
         # Fusion Layers
         if fusion_type == "concat":
@@ -63,55 +74,85 @@ class MultimodalVerificationModel(nn.Module):
         else:
             raise ValueError(f"Unsupported fusion_type '{fusion_type}'. Choose 'concat' or 'cross_attention'.")
 
+        # Tri-modal aggregation layer
+        self.trimodal_fusion = nn.Sequential(
+            nn.Linear(projection_dim * 3, projection_dim),
+            nn.LayerNorm(projection_dim),
+            nn.ReLU(),
+            nn.Dropout(dropout_p),
+            nn.Linear(projection_dim, projection_dim),
+        )
+
         # Classification Heads
         # Main multimodal head
         self.classifier = ClassificationHead(in_features=projection_dim, num_classes=2, dropout_p=dropout_p)
 
-        # Unimodal heads (for baseline evaluation and unimodal fallbacks)
+        # Unimodal & specialized heads
         self.text_classifier = ClassificationHead(in_features=projection_dim, num_classes=2, dropout_p=dropout_p)
         self.vision_classifier = ClassificationHead(in_features=projection_dim, num_classes=2, dropout_p=dropout_p)
+        self.audio_classifier = ClassificationHead(in_features=projection_dim, num_classes=2, dropout_p=dropout_p)
 
     def forward(
         self,
         input_ids: Optional[torch.Tensor] = None,
         attention_mask: Optional[torch.Tensor] = None,
         images: Optional[torch.Tensor] = None,
+        audio_features: Optional[torch.Tensor] = None,
     ) -> Dict[str, Any]:
-        """Forward pass accommodating multimodal or unimodal inputs.
-
-        Args:
-            input_ids: [B, seq_len]
-            attention_mask: [B, seq_len]
-            images: [B, 3, H, W]
-
-        Returns:
-            Dict with 'logits', 'fused_features', 'text_features', 'vision_features', 'cross_attn'
-        """
+        """Forward pass accommodating multimodal (bi-modal, tri-modal) or unimodal inputs."""
         has_text = input_ids is not None
         has_vision = images is not None
+        has_audio = audio_features is not None
 
-        if not has_text and not has_vision:
-            raise ValueError("At least one modality (text or images) must be provided.")
+        if not has_text and not has_vision and not has_audio:
+            raise ValueError("At least one modality (text, images, or audio) must be provided.")
 
         text_out = None
         vision_out = None
+        audio_out = None
         cross_attn_details = None
+        modalities_used: List[str] = []
 
         if has_text:
             text_out = self.text_encoder(input_ids=input_ids, attention_mask=attention_mask)
+            modalities_used.append("text")
 
         if has_vision:
             vision_out = self.vision_encoder(images=images)
+            modalities_used.append("visual")
 
-        # Case 1: Both modalities present -> Full Multimodal Fusion
-        if has_text and has_vision:
+        if has_audio:
+            if audio_features.dim() == 1:
+                audio_features = audio_features.unsqueeze(0)
+            audio_out = self.audio_projection(audio_features)
+            modalities_used.append("audio")
+
+        # Case 1: Tri-modal (Text + Vision + Audio)
+        if has_text and has_vision and has_audio:
+            t_feat = text_out["projected_pooled"]
+            v_feat = vision_out["projected_pooled"]
+            a_feat = audio_out
+            tri_combined = torch.cat([t_feat, v_feat, a_feat], dim=-1)
+            fused = self.trimodal_fusion(tri_combined)
+            logits = self.classifier(fused)
+            return {
+                "logits": logits,
+                "fused_features": fused,
+                "text_features": t_feat,
+                "vision_features": v_feat,
+                "audio_features": a_feat,
+                "cross_attention": None,
+                "modalities": modalities_used,
+            }
+
+        # Case 2: Text + Vision
+        elif has_text and has_vision:
             if self.fusion_type == "concat":
                 fused = self.fusion_module(
                     text_feature=text_out["projected_pooled"],
                     vision_feature=vision_out["projected_pooled"],
                 )
             else:  # cross_attention
-                # Invert mask: PyTorch MultiheadAttention key_padding_mask expects True where values should be ignored
                 pad_mask = (attention_mask == 0) if attention_mask is not None else None
                 ca_out = self.fusion_module(
                     text_seq=text_out["projected_sequence"],
@@ -130,11 +171,44 @@ class MultimodalVerificationModel(nn.Module):
                 "fused_features": fused,
                 "text_features": text_out["projected_pooled"],
                 "vision_features": vision_out["projected_pooled"],
+                "audio_features": None,
                 "cross_attention": cross_attn_details,
-                "modalities": ["text", "visual"],
+                "modalities": modalities_used,
             }
 
-        # Case 2: Text-only branch
+        # Case 3: Text + Audio
+        elif has_text and has_audio:
+            t_feat = text_out["projected_pooled"]
+            a_feat = audio_out
+            fused = self.fusion_module(t_feat, a_feat) if hasattr(self.fusion_module, "mlp") else self.trimodal_fusion(torch.cat([t_feat, a_feat, t_feat], dim=-1))
+            logits = self.classifier(fused)
+            return {
+                "logits": logits,
+                "fused_features": fused,
+                "text_features": t_feat,
+                "vision_features": None,
+                "audio_features": a_feat,
+                "cross_attention": None,
+                "modalities": modalities_used,
+            }
+
+        # Case 4: Vision + Audio
+        elif has_vision and has_audio:
+            v_feat = vision_out["projected_pooled"]
+            a_feat = audio_out
+            fused = self.fusion_module(v_feat, a_feat) if hasattr(self.fusion_module, "mlp") else self.trimodal_fusion(torch.cat([v_feat, a_feat, v_feat], dim=-1))
+            logits = self.classifier(fused)
+            return {
+                "logits": logits,
+                "fused_features": fused,
+                "text_features": None,
+                "vision_features": v_feat,
+                "audio_features": a_feat,
+                "cross_attention": None,
+                "modalities": modalities_used,
+            }
+
+        # Case 5: Text-only
         elif has_text:
             fused = text_out["projected_pooled"]
             logits = self.text_classifier(fused)
@@ -143,12 +217,13 @@ class MultimodalVerificationModel(nn.Module):
                 "fused_features": fused,
                 "text_features": fused,
                 "vision_features": None,
+                "audio_features": None,
                 "cross_attention": None,
                 "modalities": ["text"],
             }
 
-        # Case 3: Vision-only branch
-        else:
+        # Case 6: Vision-only
+        elif has_vision:
             fused = vision_out["projected_pooled"]
             logits = self.vision_classifier(fused)
             return {
@@ -156,6 +231,21 @@ class MultimodalVerificationModel(nn.Module):
                 "fused_features": fused,
                 "text_features": None,
                 "vision_features": fused,
+                "audio_features": None,
                 "cross_attention": None,
                 "modalities": ["visual"],
+            }
+
+        # Case 7: Audio-only
+        else:
+            fused = audio_out
+            logits = self.audio_classifier(fused)
+            return {
+                "logits": logits,
+                "fused_features": fused,
+                "text_features": None,
+                "vision_features": None,
+                "audio_features": fused,
+                "cross_attention": None,
+                "modalities": ["audio"],
             }

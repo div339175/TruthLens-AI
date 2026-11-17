@@ -1,0 +1,587 @@
+[
+  {
+    "case_id": "CASE_01",
+    "title": "Peaceful Festival Miscaptioned as Street Riot",
+    "category": "semantic_mismatch",
+    "claim_text": "Breaking news: violent riots and civil unrest break out in downtown capital, teargas deployed.",
+    "ground_truth": "FAKE",
+    "predicted_verdict": "REAL",
+    "confidence": 0.745,
+    "real_probability": 0.745,
+    "fake_probability": 0.255,
+    "is_uncertain": false,
+    "is_correct": false,
+    "manipulation_type": "No manipulation detected (Authentic)",
+    "difficulty_rationale": "The visual modality is authentic, but the textual claim describes violent conflict. Detectors relying only on visual artifacts would classify it as REAL.",
+    "explanation": "The content was verified as REAL with 74.5% model confidence. Analysis across text, visual demonstrates coherence with authentic reference distributions.",
+    "top_salient_tokens": [
+      {
+        "token": "tear",
+        "score": 1.0
+      },
+      {
+        "token": "##gas",
+        "score": 0.8697
+      },
+      {
+        "token": "deployed",
+        "score": 0.7905
+      },
+      {
+        "token": "capital",
+        "score": 0.7468
+      },
+      {
+        "token": "downtown",
+        "score": 0.6632
+      }
+    ],
+    "failure_analysis": "Single-modality bias dominated prediction."
+  },
+  {
+    "case_id": "CASE_02",
+    "title": "Historical Archival Space Launch Claimed as New Ballistic Test",
+    "category": "semantic_mismatch",
+    "claim_text": "Unverified surveillance footage captures secret intercontinental ballistic missile launch test today.",
+    "ground_truth": "FAKE",
+    "predicted_verdict": "REAL",
+    "confidence": 0.8408,
+    "real_probability": 0.8408,
+    "fake_probability": 0.1592,
+    "is_uncertain": false,
+    "is_correct": false,
+    "manipulation_type": "No manipulation detected (Authentic)",
+    "difficulty_rationale": "Archival footage is completely unmanipulated, but out-of-context caption fabricates modern active warfare.",
+    "explanation": "The content was verified as REAL with 84.1% model confidence. Analysis across text, visual demonstrates coherence with authentic reference distributions.",
+    "top_salient_tokens": [
+      {
+        "token": "footage",
+        "score": 1.0
+      },
+      {
+        "token": "surveillance",
+        "score": 0.7313
+      },
+      {
+        "token": "captures",
+        "score": 0.7313
+      },
+      {
+        "token": "today",
+        "score": 0.7195
+      },
+      {
+        "token": "secret",
+        "score": 0.5486
+      }
+    ],
+    "failure_analysis": "Single-modality bias dominated prediction."
+  },
+  {
+    "case_id": "CASE_03",
+    "title": "Natural Wildfire Drill Repurposed as Catastrophic Disaster",
+    "category": "semantic_mismatch",
+    "claim_text": "Emergency declared as uncontrolled chemical fire engulfs municipal residential sectors.",
+    "ground_truth": "FAKE",
+    "predicted_verdict": "REAL",
+    "confidence": 0.6755,
+    "real_probability": 0.6755,
+    "fake_probability": 0.3245,
+    "is_uncertain": false,
+    "is_correct": false,
+    "manipulation_type": "No manipulation detected (Authentic)",
+    "difficulty_rationale": "Standard training drill photos reused with catastrophic panic-inducing headlines.",
+    "explanation": "The content was verified as REAL with 67.5% model confidence. Analysis across text, visual demonstrates coherence with authentic reference distributions.",
+    "top_salient_tokens": [
+      {
+        "token": "emergency",
+        "score": 1.0
+      },
+      {
+        "token": "declared",
+        "score": 0.9732
+      },
+      {
+        "token": "municipal",
+        "score": 0.6157
+      },
+      {
+        "token": "sectors",
+        "score": 0.6091
+      },
+      {
+        "token": "as",
+        "score": 0.6087
+      }
+    ],
+    "failure_analysis": "Single-modality bias dominated prediction."
+  },
+  {
+    "case_id": "CASE_04",
+    "title": "Commercial Hospital Wing Opening Claimed as Secret Military Biolab",
+    "category": "semantic_mismatch",
+    "claim_text": "Leaked photograph exposes clandestine bioweapon research laboratory operating under commercial cover.",
+    "ground_truth": "FAKE",
+    "predicted_verdict": "REAL",
+    "confidence": 0.8764,
+    "real_probability": 0.8764,
+    "fake_probability": 0.1236,
+    "is_uncertain": false,
+    "is_correct": false,
+    "manipulation_type": "No manipulation detected (Authentic)",
+    "difficulty_rationale": "Authentic medical facility imagery coupled with fabricated biosecurity conspiracy claims.",
+    "explanation": "The content was verified as REAL with 87.6% model confidence. Analysis across text, visual demonstrates coherence with authentic reference distributions.",
+    "top_salient_tokens": [
+      {
+        "token": "photograph",
+        "score": 1.0
+      },
+      {
+        "token": "expose",
+        "score": 0.9813
+      },
+      {
+        "token": "leaked",
+        "score": 0.8665
+      },
+      {
+        "token": ".",
+        "score": 0.684
+      },
+      {
+        "token": "clandestine",
+        "score": 0.6257
+      }
+    ],
+    "failure_analysis": "Single-modality bias dominated prediction."
+  },
+  {
+    "case_id": "CASE_05",
+    "title": "Subtle Diplomatic Face-Swap with Blurred Boundary",
+    "category": "deepfake_faceswap",
+    "claim_text": "Manipulated facial reenactment video shows prominent diplomat uttering unverified threats.",
+    "ground_truth": "FAKE",
+    "predicted_verdict": "FAKE",
+    "confidence": 0.9335,
+    "real_probability": 0.0665,
+    "fake_probability": 0.9335,
+    "is_uncertain": false,
+    "is_correct": true,
+    "manipulation_type": "Potential visual / multimodal manipulation",
+    "difficulty_rationale": "Facial boundaries blended smoothly, requiring fine-grained spatial feature extraction to localize manipulation margins.",
+    "explanation": "The content was classified as FAKE with 93.3% model confidence. Features extracted across text, visual exhibit synthetic characteristics consistent with generative or spliced manipulations.",
+    "top_salient_tokens": [
+      {
+        "token": "diplomat",
+        "score": 1.0
+      },
+      {
+        "token": "video",
+        "score": 0.8754
+      },
+      {
+        "token": "manipulated",
+        "score": 0.7738
+      },
+      {
+        "token": "prominent",
+        "score": 0.6154
+      },
+      {
+        "token": "facial",
+        "score": 0.5863
+      }
+    ],
+    "failure_analysis": "Accurately resolved multimodal cues."
+  },
+  {
+    "case_id": "CASE_06",
+    "title": "Celebrity Deepfake Financial Endorsement",
+    "category": "deepfake_faceswap",
+    "claim_text": "Deepfake video swap depicts celebrity actor endorsing fraudulent cryptocurrency token scheme.",
+    "ground_truth": "FAKE",
+    "predicted_verdict": "FAKE",
+    "confidence": 0.9239,
+    "real_probability": 0.0761,
+    "fake_probability": 0.9239,
+    "is_uncertain": false,
+    "is_correct": true,
+    "manipulation_type": "Potential visual / multimodal manipulation",
+    "difficulty_rationale": "High-fidelity generative faceswap where lighting matches background context reasonably well.",
+    "explanation": "The content was classified as FAKE with 92.4% model confidence. Features extracted across text, visual exhibit synthetic characteristics consistent with generative or spliced manipulations.",
+    "top_salient_tokens": [
+      {
+        "token": "depicts",
+        "score": 1.0
+      },
+      {
+        "token": "video",
+        "score": 0.7808
+      },
+      {
+        "token": "swap",
+        "score": 0.6705
+      },
+      {
+        "token": ".",
+        "score": 0.5804
+      },
+      {
+        "token": "celebrity",
+        "score": 0.553
+      }
+    ],
+    "failure_analysis": "Accurately resolved multimodal cues."
+  },
+  {
+    "case_id": "CASE_07",
+    "title": "Synthesized Politician Debate Reenactment",
+    "category": "deepfake_faceswap",
+    "claim_text": "Synthesized face-swap interview shows opposition politician making fabricated confessions.",
+    "ground_truth": "FAKE",
+    "predicted_verdict": "FAKE",
+    "confidence": 0.925,
+    "real_probability": 0.075,
+    "fake_probability": 0.925,
+    "is_uncertain": false,
+    "is_correct": true,
+    "manipulation_type": "Potential visual / multimodal manipulation",
+    "difficulty_rationale": "Subtle expression manipulation where audio and video must be evaluated jointly for semantic coherence.",
+    "explanation": "The content was classified as FAKE with 92.5% model confidence. Features extracted across text, visual exhibit synthetic characteristics consistent with generative or spliced manipulations.",
+    "top_salient_tokens": [
+      {
+        "token": "interview",
+        "score": 1.0
+      },
+      {
+        "token": "opposition",
+        "score": 0.972
+      },
+      {
+        "token": "synthesized",
+        "score": 0.8767
+      },
+      {
+        "token": "politician",
+        "score": 0.8352
+      },
+      {
+        "token": "swap",
+        "score": 0.7253
+      }
+    ],
+    "failure_analysis": "Accurately resolved multimodal cues."
+  },
+  {
+    "case_id": "CASE_08",
+    "title": "Photorealistic AI Portrait with Asymmetric Ocular Reflections",
+    "category": "diffusion_synthesis",
+    "claim_text": "Diffusion-generated portrait exhibiting telltale asymmetric iris reflections and blurred hair boundaries.",
+    "ground_truth": "FAKE",
+    "predicted_verdict": "FAKE",
+    "confidence": 0.8885,
+    "real_probability": 0.1115,
+    "fake_probability": 0.8885,
+    "is_uncertain": false,
+    "is_correct": true,
+    "manipulation_type": "Potential visual / multimodal manipulation",
+    "difficulty_rationale": "State-of-the-art diffusion models produce convincing skin textures, leaving only subtle corneal reflection asymmetries.",
+    "explanation": "The content was classified as FAKE with 88.8% model confidence. Features extracted across text, visual exhibit synthetic characteristics consistent with generative or spliced manipulations.",
+    "top_salient_tokens": [
+      {
+        "token": "portrait",
+        "score": 1.0
+      },
+      {
+        "token": "generated",
+        "score": 0.6786
+      },
+      {
+        "token": "diffusion",
+        "score": 0.6405
+      },
+      {
+        "token": "exhibiting",
+        "score": 0.5018
+      },
+      {
+        "token": "hair",
+        "score": 0.467
+      }
+    ],
+    "failure_analysis": "Accurately resolved multimodal cues."
+  },
+  {
+    "case_id": "CASE_09",
+    "title": "Synthesized Non-Existent Disaster Scene",
+    "category": "diffusion_synthesis",
+    "claim_text": "Fully synthesized image of non-existent natural disaster flood published to deceive audiences.",
+    "ground_truth": "FAKE",
+    "predicted_verdict": "FAKE",
+    "confidence": 0.913,
+    "real_probability": 0.087,
+    "fake_probability": 0.913,
+    "is_uncertain": false,
+    "is_correct": true,
+    "manipulation_type": "Potential visual / multimodal manipulation",
+    "difficulty_rationale": "Generative synthetic disaster images containing realistic lighting and water reflections without human faces.",
+    "explanation": "The content was classified as FAKE with 91.3% model confidence. Features extracted across text, visual exhibit synthetic characteristics consistent with generative or spliced manipulations.",
+    "top_salient_tokens": [
+      {
+        "token": "audiences",
+        "score": 1.0
+      },
+      {
+        "token": "published",
+        "score": 0.7125
+      },
+      {
+        "token": "synthesized",
+        "score": 0.5931
+      },
+      {
+        "token": "image",
+        "score": 0.585
+      },
+      {
+        "token": "fully",
+        "score": 0.4639
+      }
+    ],
+    "failure_analysis": "Accurately resolved multimodal cues."
+  },
+  {
+    "case_id": "CASE_10",
+    "title": "AI Composite Military Hardware Prototype",
+    "category": "diffusion_synthesis",
+    "claim_text": "AI-generated composite depicting fabricated futuristic military prototype in desert testing.",
+    "ground_truth": "FAKE",
+    "predicted_verdict": "FAKE",
+    "confidence": 0.9021,
+    "real_probability": 0.0979,
+    "fake_probability": 0.9021,
+    "is_uncertain": false,
+    "is_correct": true,
+    "manipulation_type": "Potential visual / multimodal manipulation",
+    "difficulty_rationale": "Technical object rendering where background is convincing and subject lacks biological facial cues.",
+    "explanation": "The content was classified as FAKE with 90.2% model confidence. Features extracted across text, visual exhibit synthetic characteristics consistent with generative or spliced manipulations.",
+    "top_salient_tokens": [
+      {
+        "token": "depicting",
+        "score": 1.0
+      },
+      {
+        "token": "futuristic",
+        "score": 0.9945
+      },
+      {
+        "token": "ai",
+        "score": 0.9884
+      },
+      {
+        "token": "composite",
+        "score": 0.9724
+      },
+      {
+        "token": "generated",
+        "score": 0.9338
+      }
+    ],
+    "failure_analysis": "Accurately resolved multimodal cues."
+  },
+  {
+    "case_id": "CASE_11",
+    "title": "Authentic Television Broadcast with Spliced Bank Run Banner",
+    "category": "spliced_banner",
+    "claim_text": "Authentic television broadcast altered with spliced banner claiming nationwide bank collapse.",
+    "ground_truth": "FAKE",
+    "predicted_verdict": "FAKE",
+    "confidence": 0.9349,
+    "real_probability": 0.0651,
+    "fake_probability": 0.9349,
+    "is_uncertain": false,
+    "is_correct": true,
+    "manipulation_type": "Potential visual / multimodal manipulation",
+    "difficulty_rationale": "90% of the image is genuine news anchor footage, but the lower third banner text is forged.",
+    "explanation": "The content was classified as FAKE with 93.5% model confidence. Features extracted across text, visual exhibit synthetic characteristics consistent with generative or spliced manipulations.",
+    "top_salient_tokens": [
+      {
+        "token": "broadcast",
+        "score": 1.0
+      },
+      {
+        "token": "altered",
+        "score": 0.9985
+      },
+      {
+        "token": "authentic",
+        "score": 0.897
+      },
+      {
+        "token": "television",
+        "score": 0.8207
+      },
+      {
+        "token": "nationwide",
+        "score": 0.7616
+      }
+    ],
+    "failure_analysis": "Accurately resolved multimodal cues."
+  },
+  {
+    "case_id": "CASE_12",
+    "title": "Cloned Military Convoy Vehicle Duplication",
+    "category": "spliced_banner",
+    "claim_text": "Image showing military convoy altered by digitally cloning vehicles to exaggerate troop numbers.",
+    "ground_truth": "FAKE",
+    "predicted_verdict": "FAKE",
+    "confidence": 0.9289,
+    "real_probability": 0.0711,
+    "fake_probability": 0.9289,
+    "is_uncertain": false,
+    "is_correct": true,
+    "manipulation_type": "Potential visual / multimodal manipulation",
+    "difficulty_rationale": "Copy-move forgery within the same image, preserving natural lighting, camera grain, and color temperature.",
+    "explanation": "The content was classified as FAKE with 92.9% model confidence. Features extracted across text, visual exhibit synthetic characteristics consistent with generative or spliced manipulations.",
+    "top_salient_tokens": [
+      {
+        "token": "image",
+        "score": 1.0
+      },
+      {
+        "token": ".",
+        "score": 0.7994
+      },
+      {
+        "token": "convoy",
+        "score": 0.7048
+      },
+      {
+        "token": "troop",
+        "score": 0.6271
+      },
+      {
+        "token": "showing",
+        "score": 0.6251
+      }
+    ],
+    "failure_analysis": "Accurately resolved multimodal cues."
+  },
+  {
+    "case_id": "CASE_13",
+    "title": "Voice-Cloned Election Official Phone Call",
+    "category": "synthetic_speech",
+    "claim_text": "Cloned audio clip imitating election official claiming polling station closure in key district.",
+    "ground_truth": "FAKE",
+    "predicted_verdict": "FAKE",
+    "confidence": 0.9233,
+    "real_probability": 0.0767,
+    "fake_probability": 0.9233,
+    "is_uncertain": false,
+    "is_correct": true,
+    "manipulation_type": "Potential visual / multimodal manipulation",
+    "difficulty_rationale": "Neural vocoder audio clones imitate vocal timbres with minimal acoustic artifacts, deceiving unimodal listeners.",
+    "explanation": "The content was classified as FAKE with 92.3% model confidence. Features extracted across text, visual exhibit synthetic characteristics consistent with generative or spliced manipulations.",
+    "top_salient_tokens": [
+      {
+        "token": "clone",
+        "score": 1.0
+      },
+      {
+        "token": "key",
+        "score": 0.8344
+      },
+      {
+        "token": ".",
+        "score": 0.7634
+      },
+      {
+        "token": "audio",
+        "score": 0.7516
+      },
+      {
+        "token": "clip",
+        "score": 0.7483
+      }
+    ],
+    "failure_analysis": "Accurately resolved multimodal cues."
+  },
+  {
+    "case_id": "CASE_14",
+    "title": "Synthesized Executive Authorization Call",
+    "category": "synthetic_speech",
+    "claim_text": "Voice-cloned phone call impersonating executive officer authorizing fraudulent wire transfer.",
+    "ground_truth": "FAKE",
+    "predicted_verdict": "FAKE",
+    "confidence": 0.9185,
+    "real_probability": 0.0815,
+    "fake_probability": 0.9185,
+    "is_uncertain": false,
+    "is_correct": true,
+    "manipulation_type": "Potential visual / multimodal manipulation",
+    "difficulty_rationale": "Business context with plausible formal diction; requires cross-checking metadata and spectral anomalies.",
+    "explanation": "The content was classified as FAKE with 91.8% model confidence. Features extracted across text, visual exhibit synthetic characteristics consistent with generative or spliced manipulations.",
+    "top_salient_tokens": [
+      {
+        "token": "fraudulent",
+        "score": 1.0
+      },
+      {
+        "token": "clone",
+        "score": 0.9893
+      },
+      {
+        "token": "##erson",
+        "score": 0.913
+      },
+      {
+        "token": "author",
+        "score": 0.8699
+      },
+      {
+        "token": ".",
+        "score": 0.7533
+      }
+    ],
+    "failure_analysis": "Accurately resolved multimodal cues."
+  },
+  {
+    "case_id": "CASE_15",
+    "title": "Genuine Scientific Glacial Ice Shelf Telemetry",
+    "category": "authentic_edge_case",
+    "claim_text": "Verified NASA satellite imagery documenting glacial ice shelf variations over five-year observation cycle.",
+    "ground_truth": "REAL",
+    "predicted_verdict": "REAL",
+    "confidence": 0.9197,
+    "real_probability": 0.9197,
+    "fake_probability": 0.0803,
+    "is_uncertain": false,
+    "is_correct": true,
+    "manipulation_type": "No manipulation detected (Authentic)",
+    "difficulty_rationale": "Complex geometric patterns and irregular natural satellite textures that uncalibrated detectors frequently false-positive as synthetic noise.",
+    "explanation": "The content was verified as REAL with 92.0% model confidence. Analysis across text, visual demonstrates coherence with authentic reference distributions.",
+    "top_salient_tokens": [
+      {
+        "token": "verified",
+        "score": 1.0
+      },
+      {
+        "token": "nasa",
+        "score": 0.7322
+      },
+      {
+        "token": "imagery",
+        "score": 0.6932
+      },
+      {
+        "token": "documenting",
+        "score": 0.6581
+      },
+      {
+        "token": "satellite",
+        "score": 0.5399
+      }
+    ],
+    "failure_analysis": "Accurately resolved multimodal cues."
+  }
+]

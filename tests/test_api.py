@@ -77,6 +77,24 @@ def test_verify_multimodal_endpoint():
     assert "explanation" in data
 
 
+def test_verify_audio_endpoint():
+    import numpy as np
+    import scipy.io.wavfile as wavfile
+    # Create 0.5s test tone in memory
+    rate = 16000
+    t = np.linspace(0, 0.5, int(rate * 0.5), endpoint=False)
+    data = (np.sin(2 * np.pi * 440 * t) * 32767).astype(np.int16)
+    buf = io.BytesIO()
+    wavfile.write(buf, rate, data)
+    buf.seek(0)
+
+    response = client.post("/verify/audio", files={"audio": ("sample.wav", buf, "audio/wav")})
+    assert response.status_code == 200
+    res = response.json()
+    assert res["prediction"] in ["REAL", "FAKE", "UNCERTAIN"]
+    assert "audio" in res["modalities_used"]
+
+
 def test_verify_invalid_file_extension():
     fake_txt = io.BytesIO(b"not an image or video")
     response = client.post("/verify/image", files={"image": ("script.sh", fake_txt, "text/plain")})

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FileText, Image as ImageIcon, Video, X, Sparkles, AlertCircle } from 'lucide-react';
+import { FileText, Image as ImageIcon, Video, Music, X, Sparkles, AlertCircle } from 'lucide-react';
 import { verifyMultimodal } from '../services/api';
 import { VerificationReport } from '../types';
 import { PredictionCard } from '../components/PredictionCard';
@@ -11,6 +11,8 @@ export const VerificationPage: React.FC = () => {
   const [imagePreview, setImagePreview] = useState<string | null>(null);
   const [videoFile, setVideoFile] = useState<File | null>(null);
   const [videoPreview, setVideoPreview] = useState<string | null>(null);
+  const [audioFile, setAudioFile] = useState<File | null>(null);
+  const [audioName, setAudioName] = useState<string | null>(null);
 
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
@@ -21,9 +23,10 @@ export const VerificationPage: React.FC = () => {
       const file = e.target.files[0];
       setImageFile(file);
       setImagePreview(URL.createObjectURL(file));
-      // Reset video if image is chosen
       setVideoFile(null);
       setVideoPreview(null);
+      setAudioFile(null);
+      setAudioName(null);
     }
   };
 
@@ -32,15 +35,28 @@ export const VerificationPage: React.FC = () => {
       const file = e.target.files[0];
       setVideoFile(file);
       setVideoPreview(URL.createObjectURL(file));
-      // Reset image if video is chosen
       setImageFile(null);
       setImagePreview(null);
+      setAudioFile(null);
+      setAudioName(null);
+    }
+  };
+
+  const handleAudioChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files[0]) {
+      const file = e.target.files[0];
+      setAudioFile(file);
+      setAudioName(file.name);
+      setImageFile(null);
+      setImagePreview(null);
+      setVideoFile(null);
+      setVideoPreview(null);
     }
   };
 
   const handleVerify = async () => {
-    if (!text.trim() && !imageFile && !videoFile) {
-      setError('Please provide at least text, an image, or a video for verification.');
+    if (!text.trim() && !imageFile && !videoFile && !audioFile) {
+      setError('Please provide at least text, an image, a video, or an audio clip for verification.');
       return;
     }
 
@@ -51,7 +67,8 @@ export const VerificationPage: React.FC = () => {
       const res = await verifyMultimodal(
         text.trim() ? text.trim() : undefined,
         imageFile || undefined,
-        videoFile || undefined
+        videoFile || undefined,
+        audioFile || undefined
       );
       setReport(res);
     } catch (err: any) {
@@ -67,6 +84,8 @@ export const VerificationPage: React.FC = () => {
     setImagePreview(null);
     setVideoFile(null);
     setVideoPreview(null);
+    setAudioFile(null);
+    setAudioName(null);
     setReport(null);
     setError(null);
   };
@@ -77,7 +96,7 @@ export const VerificationPage: React.FC = () => {
       <div>
         <h1 className="text-3xl font-extrabold text-white tracking-tight">Multimodal Content Verification</h1>
         <p className="text-slate-400 text-sm mt-1">
-          Verify digital claims across text, imagery, and video using cross-modal deep learning and explainable evidence extraction.
+          Verify digital claims across text, imagery, video, and audio using cross-modal deep learning and explainable evidence extraction.
         </p>
       </div>
 
@@ -114,41 +133,48 @@ export const VerificationPage: React.FC = () => {
               <span className="text-slate-500">Presets:</span>
               <button
                 type="button"
-                onClick={() => setText('Verified satellite observation confirms Antarctic ice sheet stability.')}
+                onClick={() => setText('Ministry of Health releases updated quarterly public health statistics and preventive guidelines.')}
                 className="px-2.5 py-1 rounded-md bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 transition"
               >
-                Authentic Claim
+                Authentic Official
               </button>
               <button
                 type="button"
-                onClick={() => setText('Shocking leaked synthetic video shows prominent political leader in fabricated controversy.')}
+                onClick={() => setText('Manipulated facial reenactment video shows prominent diplomat uttering unverified threats.')}
                 className="px-2.5 py-1 rounded-md bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 transition"
               >
-                Deepfake Claim
+                Deepfake Faceswap
+              </button>
+              <button
+                type="button"
+                onClick={() => setText('Cloned audio clip imitating election official claiming polling station closure in key district.')}
+                className="px-2.5 py-1 rounded-md bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 transition"
+              >
+                Cloned Voice
               </button>
             </div>
           </div>
 
-          {/* Right Column: Visual Media Upload */}
+          {/* Right Column: Visual & Audio Media Upload */}
           <div className="space-y-4">
             <div className="flex items-center justify-between">
               <label className="text-sm font-semibold text-slate-200 flex items-center space-x-2">
                 <ImageIcon className="w-4 h-4 text-emerald-400" />
-                <span>Visual Evidence (Image / Video)</span>
+                <span>Non-Textual Evidence (Image, Video, Audio)</span>
               </label>
-              <span className="text-xs text-slate-500">PNG, JPG, MP4, MOV</span>
+              <span className="text-xs text-slate-500">PNG, JPG, MP4, WAV, MP3</span>
             </div>
 
             {/* Upload Area / Previews */}
-            {!imagePreview && !videoPreview ? (
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            {!imagePreview && !videoPreview && !audioName ? (
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
                 {/* Image Picker */}
-                <label className="border-2 border-dashed border-slate-800 hover:border-sky-500/50 rounded-xl p-6 flex flex-col items-center justify-center cursor-pointer bg-slate-900/40 hover:bg-slate-900/80 transition group h-52">
-                  <div className="w-12 h-12 rounded-xl bg-sky-500/10 flex items-center justify-center text-sky-400 group-hover:scale-110 transition-transform mb-3">
-                    <ImageIcon className="w-6 h-6" />
+                <label className="border-2 border-dashed border-slate-800 hover:border-sky-500/50 rounded-xl p-4 flex flex-col items-center justify-center cursor-pointer bg-slate-900/40 hover:bg-slate-900/80 transition group h-52">
+                  <div className="w-10 h-10 rounded-xl bg-sky-500/10 flex items-center justify-center text-sky-400 group-hover:scale-110 transition-transform mb-2">
+                    <ImageIcon className="w-5 h-5" />
                   </div>
                   <span className="text-xs font-semibold text-slate-300">Upload Image</span>
-                  <span className="text-[11px] text-slate-500 mt-1 text-center">ResNet18 & Grad-CAM</span>
+                  <span className="text-[10px] text-slate-500 mt-1 text-center">ResNet18 & CAM</span>
                   <input
                     type="file"
                     accept="image/png, image/jpeg, image/webp"
@@ -158,16 +184,31 @@ export const VerificationPage: React.FC = () => {
                 </label>
 
                 {/* Video Picker */}
-                <label className="border-2 border-dashed border-slate-800 hover:border-purple-500/50 rounded-xl p-6 flex flex-col items-center justify-center cursor-pointer bg-slate-900/40 hover:bg-slate-900/80 transition group h-52">
-                  <div className="w-12 h-12 rounded-xl bg-purple-500/10 flex items-center justify-center text-purple-400 group-hover:scale-110 transition-transform mb-3">
-                    <Video className="w-6 h-6" />
+                <label className="border-2 border-dashed border-slate-800 hover:border-purple-500/50 rounded-xl p-4 flex flex-col items-center justify-center cursor-pointer bg-slate-900/40 hover:bg-slate-900/80 transition group h-52">
+                  <div className="w-10 h-10 rounded-xl bg-purple-500/10 flex items-center justify-center text-purple-400 group-hover:scale-110 transition-transform mb-2">
+                    <Video className="w-5 h-5" />
                   </div>
                   <span className="text-xs font-semibold text-slate-300">Upload Video</span>
-                  <span className="text-[11px] text-slate-500 mt-1 text-center">8 Uniform Frames</span>
+                  <span className="text-[10px] text-slate-500 mt-1 text-center">8 Frames Sample</span>
                   <input
                     type="file"
                     accept="video/mp4, video/quicktime, video/avi"
                     onChange={handleVideoChange}
+                    className="hidden"
+                  />
+                </label>
+
+                {/* Audio Picker */}
+                <label className="border-2 border-dashed border-slate-800 hover:border-amber-500/50 rounded-xl p-4 flex flex-col items-center justify-center cursor-pointer bg-slate-900/40 hover:bg-slate-900/80 transition group h-52">
+                  <div className="w-10 h-10 rounded-xl bg-amber-500/10 flex items-center justify-center text-amber-400 group-hover:scale-110 transition-transform mb-2">
+                    <Music className="w-5 h-5" />
+                  </div>
+                  <span className="text-xs font-semibold text-slate-300">Upload Audio</span>
+                  <span className="text-[10px] text-slate-500 mt-1 text-center">Spectral Vocoder</span>
+                  <input
+                    type="file"
+                    accept="audio/wav, audio/mpeg, audio/mp3, audio/ogg"
+                    onChange={handleAudioChange}
                     className="hidden"
                   />
                 </label>
@@ -181,6 +222,8 @@ export const VerificationPage: React.FC = () => {
                     setImagePreview(null);
                     setVideoFile(null);
                     setVideoPreview(null);
+                    setAudioFile(null);
+                    setAudioName(null);
                   }}
                   className="absolute top-3 right-3 p-1.5 rounded-full bg-slate-800/80 hover:bg-rose-500/80 text-white transition z-10"
                   title="Remove media"
@@ -202,6 +245,13 @@ export const VerificationPage: React.FC = () => {
                     className="max-h-44 object-contain rounded-lg"
                   />
                 )}
+                {audioName && (
+                  <div className="text-center p-4">
+                    <Music className="w-12 h-12 text-amber-400 mx-auto mb-2 animate-pulse" />
+                    <span className="text-sm font-semibold text-slate-200 block truncate max-w-xs">{audioName}</span>
+                    <span className="text-xs text-slate-400">Audio ready for acoustic feature extraction</span>
+                  </div>
+                )}
               </div>
             )}
           </div>
@@ -210,7 +260,7 @@ export const VerificationPage: React.FC = () => {
         {/* CTA Action Row */}
         <div className="mt-8 pt-6 border-t border-slate-800 flex flex-wrap items-center justify-between gap-4">
           <div className="text-xs text-slate-400">
-            Pipeline: <span className="text-sky-400 font-medium">Text (DistilBERT) + Vision (ResNet18) + Cross-Attention</span>
+            Active Architecture: <span className="text-sky-400 font-medium">Text (DistilBERT) + Vision (ResNet18) + Audio (Spectral) + Bidirectional Cross-Attention</span>
           </div>
 
           <div className="flex items-center space-x-3">

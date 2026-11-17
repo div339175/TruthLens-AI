@@ -1,0 +1,43 @@
+{
+  "fusion_type": "concat",
+  "epochs": 5,
+  "final_train_acc": 0.9911,
+  "final_val_acc": 1.0,
+  "history": [
+    {
+      "epoch": 1,
+      "train_loss": 0.6495,
+      "train_acc": 0.6473,
+      "val_loss": 0.5568,
+      "val_acc": 0.875
+    },
+    {
+      "epoch": 2,
+      "train_loss": 0.5526,
+      "train_acc": 0.8571,
+      "val_loss": 0.374,
+      "val_acc": 1.0
+    },
+    {
+      "epoch": 3,
+      "train_loss": 0.4229,
+      "train_acc": 0.9509,
+      "val_loss": 0.2424,
+      "val_acc": 1.0
+    },
+    {
+      "epoch": 4,
+      "train_loss": 0.3127,
+      "train_acc": 0.9777,
+      "val_loss": 0.1689,
+      "val_acc": 1.0
+    },
+    {
+      "epoch": 5,
+      "train_loss": 0.2433,
+      "train_acc": 0.9911,
+      "val_loss": 0.1395,
+      "val_acc": 1.0
+    }
+  ]
+}

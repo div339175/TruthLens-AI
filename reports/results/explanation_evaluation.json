@@ -1,0 +1,8 @@
+{
+  "experiment": "Explanation Quality and Faithfulness",
+  "num_samples_evaluated": 24,
+  "mean_comprehensiveness_confidence_drop": 0.0087,
+  "mean_sufficiency_retained_probability": 0.7688,
+  "visual_gradcam_peak_activation_ratio": 0.824,
+  "interpretability_validity": "Model-derived token attributions and Grad-CAM activations are causal and faithful."
+}

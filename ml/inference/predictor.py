@@ -13,6 +13,7 @@ from ml.models.classifier import DecisionPolicy
 from ml.preprocessing.text import TextPreprocessor
 from ml.preprocessing.image import ImagePreprocessor
 from ml.preprocessing.video import VideoPreprocessor
+from ml.preprocessing.audio import AudioPreprocessor
 from ml.explainability.text_explanation import TextExplainer
 from ml.explainability.visual_explanation import VisualGradCAM
 from ml.explainability.evidence import EvidenceEngine
@@ -42,6 +43,9 @@ class TruthLensPredictor:
 
         logger.info(f"Loading Video Preprocessor (sample_frames={settings.VIDEO_SAMPLE_FRAMES})...")
         self.video_preprocessor = VideoPreprocessor(sample_frames=settings.VIDEO_SAMPLE_FRAMES)
+
+        logger.info("Loading Audio Preprocessor (16kHz, STFT/Spectral)...")
+        self.audio_preprocessor = AudioPreprocessor()
 
         logger.info(f"Initializing Multimodal Model (fusion={settings.FUSION_TYPE})...")
         self.model = MultimodalVerificationModel(
@@ -81,17 +85,25 @@ class TruthLensPredictor:
         text: Optional[str] = None,
         image_source: Optional[Union[str, Path, Image.Image]] = None,
         video_path: Optional[Union[str, Path]] = None,
+        audio_path: Optional[Union[str, Path]] = None,
     ) -> VerificationReport:
-        """Run multimodal inference across text, image, and/or video."""
+        """Run multimodal inference across text, image, video, and/or audio."""
         if self.mode == "demo":
-            return self._demo_response(text=text, has_image=image_source is not None, has_video=video_path is not None)
+            return self._demo_response(
+                text=text,
+                has_image=image_source is not None,
+                has_video=video_path is not None,
+                has_audio=audio_path is not None,
+            )
 
         modalities: List[str] = []
         input_ids = None
         attention_mask = None
         image_tensor = None
+        audio_tensor = None
         pil_image = None
         video_meta = None
+        audio_meta = None
 
         # 1. Process Text if provided
         if text and text.strip():
@@ -105,10 +117,8 @@ class TruthLensPredictor:
         if video_path:
             logger.info(f"Processing video input from {video_path}...")
             frame_tensor, pil_frames, indices = self.video_preprocessor.preprocess_video(video_path)
-            # Pool video frames using vision encoder
             frame_tensor = frame_tensor.to(self.device)
             modalities.append("video")
-            # Select key middle frame for Grad-CAM visualization
             pil_image = pil_frames[len(pil_frames) // 2]
             image_tensor = frame_tensor[len(frame_tensor) // 2 : len(frame_tensor) // 2 + 1]
             video_meta = {
@@ -122,8 +132,20 @@ class TruthLensPredictor:
             image_tensor = self.image_preprocessor.preprocess(pil_image).unsqueeze(0).to(self.device)
             modalities.append("visual")
 
+        # 4. Process Audio if provided
+        if audio_path:
+            logger.info(f"Processing audio input from {audio_path}...")
+            audio_out = self.audio_preprocessor.extract_features(audio_path)
+            audio_tensor = audio_out["feature_tensor"].unsqueeze(0).to(self.device)
+            modalities.append("audio")
+            audio_meta = {
+                "zero_crossing_rate": audio_out["zero_crossing_rate"],
+                "high_freq_ratio": audio_out["high_freq_ratio"],
+                "duration_sec": audio_out["duration_sec"],
+            }
+
         if not modalities:
-            raise ValueError("No valid input provided. Please supply text, image, or video.")
+            raise ValueError("No valid input provided. Please supply text, image, video, or audio.")
 
         logger.info(f"Running multimodal forward pass on device={self.device} with modalities: {modalities}")
         with torch.no_grad():
@@ -131,6 +153,7 @@ class TruthLensPredictor:
                 input_ids=input_ids,
                 attention_mask=attention_mask,
                 images=image_tensor,
+                audio_features=audio_tensor,
             )
             logits = out["logits"]
 
@@ -175,6 +198,7 @@ class TruthLensPredictor:
             cam_data_uri=cam_data_uri,
             cam_meta=cam_meta,
             video_meta=video_meta,
+            audio_meta=audio_meta,
             cross_attention_data=out.get("cross_attention"),
             execution_mode="real",
             model_version=version_label,
@@ -182,7 +206,13 @@ class TruthLensPredictor:
             device_used=str(self.device),
         )
 
-    def _demo_response(self, text: Optional[str], has_image: bool, has_video: bool) -> VerificationReport:
+    def _demo_response(
+        self,
+        text: Optional[str],
+        has_image: bool,
+        has_video: bool,
+        has_audio: bool = False,
+    ) -> VerificationReport:
         """Demo response with explicit DEMO labelling."""
         mods = []
         if text:
@@ -191,6 +221,8 @@ class TruthLensPredictor:
             mods.append("video")
         elif has_image:
             mods.append("visual")
+        if has_audio:
+            mods.append("audio")
 
         decision = {
             "prediction": "FAKE",

@@ -20,16 +20,21 @@ class VerificationService:
     def verify_video(self, video_path: Path) -> VerificationReport:
         return self.predictor.predict_multimodal(video_path=video_path)
 
+    def verify_audio(self, audio_path: Path) -> VerificationReport:
+        return self.predictor.predict_multimodal(audio_path=audio_path)
+
     def verify_multimodal(
         self,
         text: Optional[str] = None,
         image_path: Optional[Path] = None,
         video_path: Optional[Path] = None,
+        audio_path: Optional[Path] = None,
     ) -> VerificationReport:
         return self.predictor.predict_multimodal(
             text=text,
             image_source=image_path,
             video_path=video_path,
+            audio_path=audio_path,
         )
 
     def get_model_info(self) -> ModelInfoResponse:

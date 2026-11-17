@@ -62,21 +62,40 @@ async def verify_video_endpoint(video: UploadFile = File(...)):
         cleanup_file(temp_path)
 
 
+@router.post("/verify/audio", response_model=VerificationReport)
+async def verify_audio_endpoint(audio: UploadFile = File(...)):
+    """Verify audio file for synthetic voice cloning or manipulation."""
+    temp_path, file_type = save_upload_to_temp(audio, settings.UPLOAD_TEMP_DIR)
+    if file_type != "audio":
+        cleanup_file(temp_path)
+        raise HTTPException(status_code=400, detail="Uploaded file is not an audio file.")
+
+    try:
+        report = verification_service.verify_audio(temp_path)
+        return report
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+    finally:
+        cleanup_file(temp_path)
+
+
 @router.post("/verify/multimodal", response_model=VerificationReport)
 async def verify_multimodal_endpoint(
     text: Optional[str] = Form(None),
     image: Optional[UploadFile] = File(None),
     video: Optional[UploadFile] = File(None),
+    audio: Optional[UploadFile] = File(None),
 ):
-    """Main verification endpoint accepting text, image, and/or video."""
-    if not text and not image and not video:
+    """Main verification endpoint accepting text, image, video, and/or audio."""
+    if not text and not image and not video and not audio:
         raise HTTPException(
             status_code=400,
-            detail="At least one modality (text, image, or video) must be supplied.",
+            detail="At least one modality (text, image, video, or audio) must be supplied.",
         )
 
     img_temp_path: Optional[Path] = None
     vid_temp_path: Optional[Path] = None
+    aud_temp_path: Optional[Path] = None
 
     try:
         if image and image.filename:
@@ -89,10 +108,16 @@ async def verify_multimodal_endpoint(
             if ftype != "video":
                 raise HTTPException(status_code=400, detail="Uploaded video file is not a video.")
 
+        if audio and audio.filename:
+            aud_temp_path, ftype = save_upload_to_temp(audio, settings.UPLOAD_TEMP_DIR)
+            if ftype != "audio":
+                raise HTTPException(status_code=400, detail="Uploaded audio file is not an audio file.")
+
         report = verification_service.verify_multimodal(
             text=text if (text and text.strip()) else None,
             image_path=img_temp_path,
             video_path=vid_temp_path,
+            audio_path=aud_temp_path,
         )
         return report
 
@@ -105,6 +130,8 @@ async def verify_multimodal_endpoint(
             cleanup_file(img_temp_path)
         if vid_temp_path:
             cleanup_file(vid_temp_path)
+        if aud_temp_path:
+            cleanup_file(aud_temp_path)
 
 
 @router.get("/model/info", response_model=ModelInfoResponse)

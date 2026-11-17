@@ -48,10 +48,26 @@ export async function verifyImage(imageFile: File): Promise<VerificationReport> 
   return res.json();
 }
 
+export async function verifyAudio(audioFile: File): Promise<VerificationReport> {
+  const formData = new FormData();
+  formData.append('audio', audioFile);
+
+  const res = await fetch(`${API_BASE}/verify/audio`, {
+    method: 'POST',
+    body: formData,
+  });
+  if (!res.ok) {
+    const err = await res.json().catch(() => ({ detail: res.statusText }));
+    throw new Error(err.detail || 'Audio verification failed');
+  }
+  return res.json();
+}
+
 export async function verifyMultimodal(
   text?: string,
   imageFile?: File,
-  videoFile?: File
+  videoFile?: File,
+  audioFile?: File
 ): Promise<VerificationReport> {
   const formData = new FormData();
   if (text && text.trim()) {
@@ -62,6 +78,9 @@ export async function verifyMultimodal(
   }
   if (videoFile) {
     formData.append('video', videoFile);
+  }
+  if (audioFile) {
+    formData.append('audio', audioFile);
   }
 
   const res = await fetch(`${API_BASE}/verify/multimodal`, {

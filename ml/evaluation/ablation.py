@@ -58,6 +58,28 @@ def run_ablation_study(device_str: str = "auto") -> List[Dict[str, Any]]:
             projection_dim=256,
             pretrained_vision=True,
         ).to(device)
+
+        if v["name"] == "Text_Only":
+            ckpt_file = BASE_DIR / "experiments" / "baseline" / "text_baseline.pt"
+            if ckpt_file.exists():
+                data = torch.load(ckpt_file, map_location=device)
+                model.text_encoder.load_state_dict(data["encoder_state"], strict=False)
+                model.text_classifier.load_state_dict(data["classifier_state"], strict=False)
+        elif v["name"] == "Vision_Only":
+            ckpt_file = BASE_DIR / "experiments" / "baseline" / "vision_baseline.pt"
+            if ckpt_file.exists():
+                data = torch.load(ckpt_file, map_location=device)
+                model.vision_encoder.load_state_dict(data["encoder_state"], strict=False)
+                model.vision_classifier.load_state_dict(data["classifier_state"], strict=False)
+        elif v["name"] == "Multimodal_Concat":
+            ckpt_file = BASE_DIR / "models" / "multimodal_concat.pt"
+            if ckpt_file.exists():
+                model.load_state_dict(torch.load(ckpt_file, map_location=device), strict=False)
+        elif v["name"] == "Multimodal_CrossAttn":
+            ckpt_file = BASE_DIR / "models" / "multimodal_cross_attention.pt"
+            if ckpt_file.exists():
+                model.load_state_dict(torch.load(ckpt_file, map_location=device), strict=False)
+
         model.eval()
 
         y_true = []

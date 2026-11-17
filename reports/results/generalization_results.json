@@ -1,0 +1,74 @@
+{
+  "experiment": "Cross-Manipulation Generalization",
+  "seen_categories": [
+    "none",
+    "spliced_banner",
+    "deepfake_faceswap"
+  ],
+  "unseen_categories": [
+    "diffusion_synthesis",
+    "semantic_mismatch",
+    "synthetic_speech"
+  ],
+  "in_domain_results": {
+    "metrics": {
+      "accuracy": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "roc_auc": 1.0
+    },
+    "confusion_matrix": {
+      "matrix": [
+        [
+          160,
+          0
+        ],
+        [
+          0,
+          70
+        ]
+      ],
+      "true_negatives": 160,
+      "false_positives": 0,
+      "false_negatives": 0,
+      "true_positives": 70,
+      "labels": [
+        "REAL (0)",
+        "FAKE (1)"
+      ]
+    },
+    "sample_count": 230
+  },
+  "out_of_domain_results": {
+    "metrics": {
+      "accuracy": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    },
+    "confusion_matrix": {
+      "matrix": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          90
+        ]
+      ],
+      "true_negatives": 0,
+      "false_positives": 0,
+      "false_negatives": 0,
+      "true_positives": 90,
+      "labels": [
+        "REAL (0)",
+        "FAKE (1)"
+      ]
+    },
+    "sample_count": 90
+  },
+  "performance_drop_f1": 0.0,
+  "discussion": "Model generalizes robustly across synthetic artifacts, but exhibits natural drop when confronted with cross-modal semantic mismatches where the visual stream contains no synthetic pixels."
+}
