@@ -97,15 +97,23 @@ class MultimodalVerificationModel(nn.Module):
         input_ids: Optional[torch.Tensor] = None,
         attention_mask: Optional[torch.Tensor] = None,
         images: Optional[torch.Tensor] = None,
+        video_frames: Optional[torch.Tensor] = None,
         audio_features: Optional[torch.Tensor] = None,
     ) -> Dict[str, Any]:
-        """Forward pass accommodating multimodal (bi-modal, tri-modal) or unimodal inputs."""
+        """Forward pass accommodating multimodal (bi-modal, tri-modal) or unimodal inputs.
+
+        Supports:
+        - images: [B, 3, H, W] for static images
+        - video_frames: [N, 3, H, W] for video frame sequences (applies temporal feature pooling)
+        """
         has_text = input_ids is not None
-        has_vision = images is not None
+        has_image = images is not None
+        has_video = video_frames is not None
+        has_vision = has_image or has_video
         has_audio = audio_features is not None
 
         if not has_text and not has_vision and not has_audio:
-            raise ValueError("At least one modality (text, images, or audio) must be provided.")
+            raise ValueError("At least one modality (text, images, video_frames, or audio) must be provided.")
 
         text_out = None
         vision_out = None
@@ -117,7 +125,11 @@ class MultimodalVerificationModel(nn.Module):
             text_out = self.text_encoder(input_ids=input_ids, attention_mask=attention_mask)
             modalities_used.append("text")
 
-        if has_vision:
+        if has_video:
+            # Process N frames individually through ResNet18 and apply temporal feature pooling
+            vision_out = self.vision_encoder.encode_video_frames(video_frames=video_frames)
+            modalities_used.append("video")
+        elif has_image:
             vision_out = self.vision_encoder(images=images)
             modalities_used.append("visual")
 
@@ -171,6 +183,8 @@ class MultimodalVerificationModel(nn.Module):
                 "fused_features": fused,
                 "text_features": text_out["projected_pooled"],
                 "vision_features": vision_out["projected_pooled"],
+                "frame_features": vision_out.get("projected_frames"),
+                "video_frame_features": vision_out.get("projected_frames"),
                 "audio_features": None,
                 "cross_attention": cross_attn_details,
                 "modalities": modalities_used,
@@ -231,9 +245,11 @@ class MultimodalVerificationModel(nn.Module):
                 "fused_features": fused,
                 "text_features": None,
                 "vision_features": fused,
+                "frame_features": vision_out.get("projected_frames"),
+                "video_frame_features": vision_out.get("projected_frames"),
                 "audio_features": None,
                 "cross_attention": None,
-                "modalities": ["visual"],
+                "modalities": modalities_used,
             }
 
         # Case 7: Audio-only

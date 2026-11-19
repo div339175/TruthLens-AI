@@ -100,6 +100,7 @@ class TruthLensPredictor:
         input_ids = None
         attention_mask = None
         image_tensor = None
+        video_tensor = None
         audio_tensor = None
         pil_image = None
         video_meta = None
@@ -113,17 +114,19 @@ class TruthLensPredictor:
             attention_mask = encoded["attention_mask"].to(self.device)
             modalities.append("text")
 
-        # 2. Process Video if provided
+        # 2. Process Video if provided (Pass all sampled frames to vision encoder for feature-level pooling)
         if video_path:
             logger.info(f"Processing video input from {video_path}...")
             frame_tensor, pil_frames, indices = self.video_preprocessor.preprocess_video(video_path)
-            frame_tensor = frame_tensor.to(self.device)
+            # Retain all 8 individual frames as batch tensor [N, 3, 224, 224] on device
+            video_tensor = frame_tensor.to(self.device)
             modalities.append("video")
+            # Center frame as representative frame for visual explainability
             pil_image = pil_frames[len(pil_frames) // 2]
-            image_tensor = frame_tensor[len(frame_tensor) // 2 : len(frame_tensor) // 2 + 1]
             video_meta = {
                 "sampled_frames_count": len(pil_frames),
                 "frame_indices": indices,
+                "temporal_pooling": "feature_mean_pooling",
             }
         # 3. Process Image if provided (and no video)
         elif image_source:
@@ -153,9 +156,14 @@ class TruthLensPredictor:
                 input_ids=input_ids,
                 attention_mask=attention_mask,
                 images=image_tensor,
+                video_frames=video_tensor,
                 audio_features=audio_tensor,
             )
             logits = out["logits"]
+
+        if video_meta and "frame_features" in out and out["frame_features"] is not None:
+            video_meta["frame_feature_dim"] = out["frame_features"].shape[-1]
+            video_meta["pooled_feature_dim"] = out["vision_features"].shape[-1] if out.get("vision_features") is not None else 256
 
         decision = self.decision_policy.evaluate(logits)
         logger.info(f"Raw prediction: {decision['prediction']} (confidence: {decision['confidence']})")
@@ -175,14 +183,17 @@ class TruthLensPredictor:
             except Exception as e:
                 logger.warning(f"Could not compute text saliency: {e}")
 
-        # Visual Grad-CAM explanation
+        # Visual Grad-CAM explanation (on static image or representative video key frame)
         cam_data_uri = None
         cam_meta = None
-        if image_tensor is not None and pil_image is not None:
+        vis_eval_tensor = image_tensor if image_tensor is not None else (
+            video_tensor[len(video_tensor) // 2 : len(video_tensor) // 2 + 1] if video_tensor is not None else None
+        )
+        if vis_eval_tensor is not None and pil_image is not None:
             try:
                 target_cls = 1 if decision["prediction"] == "FAKE" else 0
                 cam_data_uri, cam_meta = self.grad_cam.generate_cam_overlay(
-                    image_tensor=image_tensor,
+                    image_tensor=vis_eval_tensor,
                     pil_image=pil_image,
                     target_class=target_cls,
                 )

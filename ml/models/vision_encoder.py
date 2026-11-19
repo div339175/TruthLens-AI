@@ -91,3 +91,64 @@ class VisionEncoder(nn.Module):
         Uses mean pooling over temporal frame dimension.
         """
         return torch.mean(frame_features, dim=0, keepdim=True)
+
+    def encode_video_frames(self, video_frames: torch.Tensor) -> Dict[str, torch.Tensor]:
+        """Encode N video frames individually through ResNet18 and apply temporal feature pooling.
+
+        Pipeline:
+            [N, 3, H, W] -> ResNet18 -> [N, 512] -> Temporal Mean Pooling -> [1, 512]
+            [N, 512] -> Projection -> [N, projection_dim] -> Temporal Mean Pooling -> [1, projection_dim]
+
+        Args:
+            video_frames: [N, 3, H, W] batch of sampled frames.
+
+        Returns:
+            Dict containing:
+                - 'frame_features': [N, 512] individual frame feature vectors
+                - 'projected_frames': [N, projection_dim] individual projected frame embeddings
+                - 'pooled_features': [1, 512] temporally mean-pooled features
+                - 'projected_pooled': [1, projection_dim] temporally mean-pooled video embedding
+                - 'projected_sequence': [1, 49, projection_dim] temporally mean-pooled spatial sequence
+        """
+        if video_frames.dim() == 5:
+            # Shape [B, N, C, H, W]
+            b, n, c, h, w = video_frames.shape
+            flat_frames = video_frames.view(b * n, c, h, w)
+            frame_out = self.forward(flat_frames)
+
+            proj_frames = frame_out["projected_pooled"].view(b, n, -1)
+            raw_frames = frame_out["pooled_features"].view(b, n, -1)
+            proj_seq = frame_out["projected_sequence"].view(b, n, 49, -1)
+
+            pooled_proj = torch.mean(proj_frames, dim=1)  # [B, projection_dim]
+            pooled_raw = torch.mean(raw_frames, dim=1)    # [B, 512]
+            pooled_seq = torch.mean(proj_seq, dim=1)      # [B, 49, projection_dim]
+
+            return {
+                "frame_features": raw_frames,
+                "projected_frames": proj_frames,
+                "pooled_features": pooled_raw,
+                "projected_pooled": pooled_proj,
+                "projected_sequence": pooled_seq,
+                "spatial_features": frame_out["spatial_features"],
+            }
+
+        # video_frames is [N, 3, 224, 224]
+        frame_out = self.forward(video_frames)
+        frame_features = frame_out["pooled_features"]       # [N, 512]
+        projected_frames = frame_out["projected_pooled"]     # [N, projection_dim]
+
+        # Temporal feature-level pooling across frame dimension (dim 0)
+        pooled_features = torch.mean(frame_features, dim=0, keepdim=True)       # [1, 512]
+        projected_pooled = torch.mean(projected_frames, dim=0, keepdim=True)     # [1, projection_dim]
+        projected_sequence = torch.mean(frame_out["projected_sequence"], dim=0, keepdim=True)  # [1, 49, projection_dim]
+
+        return {
+            "spatial_features": frame_out["spatial_features"],
+            "spatial_sequence": frame_out["spatial_sequence"],
+            "frame_features": frame_features,
+            "projected_frames": projected_frames,
+            "pooled_features": pooled_features,
+            "projected_pooled": projected_pooled,
+            "projected_sequence": projected_sequence,
+        }

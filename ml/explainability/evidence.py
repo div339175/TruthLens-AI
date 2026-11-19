@@ -84,10 +84,14 @@ class EvidenceEngine:
         # 3. Video Evidence
         if "video" in modalities_used and video_meta:
             n_frames = video_meta.get("sampled_frames_count", 8)
+            pooling_strategy = video_meta.get("temporal_pooling", "feature_mean_pooling")
             evidence_list.append(ModalityEvidence(
                 modality="video",
-                type="heuristic",
-                description=f"Uniform temporal sampling evaluated {n_frames} frames across video duration for cross-frame continuity.",
+                type="model-derived",
+                description=(
+                    f"Uniform temporal sampling extracted {n_frames} individual frames through ResNet18, "
+                    f"followed by feature-level temporal pooling ({pooling_strategy}) to construct the video representation."
+                ),
                 details=video_meta,
             ))
 
