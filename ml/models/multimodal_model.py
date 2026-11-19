@@ -152,6 +152,8 @@ class MultimodalVerificationModel(nn.Module):
                 "fused_features": fused,
                 "text_features": t_feat,
                 "vision_features": v_feat,
+                "frame_features": vision_out.get("projected_frames"),
+                "video_frame_features": vision_out.get("projected_frames"),
                 "audio_features": a_feat,
                 "cross_attention": None,
                 "modalities": modalities_used,
@@ -194,7 +196,23 @@ class MultimodalVerificationModel(nn.Module):
         elif has_text and has_audio:
             t_feat = text_out["projected_pooled"]
             a_feat = audio_out
-            fused = self.fusion_module(t_feat, a_feat) if hasattr(self.fusion_module, "mlp") else self.trimodal_fusion(torch.cat([t_feat, a_feat, t_feat], dim=-1))
+            if self.fusion_type == "concat":
+                fused = self.fusion_module(text_feature=t_feat, vision_feature=a_feat)
+                cross_attn_details = None
+            else:  # cross_attention
+                pad_mask = (attention_mask == 0) if attention_mask is not None else None
+                a_seq = a_feat.unsqueeze(1) if a_feat.dim() == 2 else a_feat
+                ca_out = self.fusion_module(
+                    text_seq=text_out["projected_sequence"],
+                    vision_seq=a_seq,
+                    text_padding_mask=pad_mask,
+                )
+                fused = ca_out["fused_embedding"]
+                cross_attn_details = {
+                    "text_to_vision_attn": ca_out["text_to_vision_attn"],
+                    "vision_to_text_attn": ca_out["vision_to_text_attn"],
+                }
+
             logits = self.classifier(fused)
             return {
                 "logits": logits,
@@ -202,7 +220,7 @@ class MultimodalVerificationModel(nn.Module):
                 "text_features": t_feat,
                 "vision_features": None,
                 "audio_features": a_feat,
-                "cross_attention": None,
+                "cross_attention": cross_attn_details,
                 "modalities": modalities_used,
             }
 
@@ -210,15 +228,31 @@ class MultimodalVerificationModel(nn.Module):
         elif has_vision and has_audio:
             v_feat = vision_out["projected_pooled"]
             a_feat = audio_out
-            fused = self.fusion_module(v_feat, a_feat) if hasattr(self.fusion_module, "mlp") else self.trimodal_fusion(torch.cat([v_feat, a_feat, v_feat], dim=-1))
+            if self.fusion_type == "concat":
+                fused = self.fusion_module(text_feature=v_feat, vision_feature=a_feat)
+                cross_attn_details = None
+            else:  # cross_attention
+                a_seq = a_feat.unsqueeze(1) if a_feat.dim() == 2 else a_feat
+                ca_out = self.fusion_module(
+                    text_seq=vision_out["projected_sequence"],
+                    vision_seq=a_seq,
+                )
+                fused = ca_out["fused_embedding"]
+                cross_attn_details = {
+                    "text_to_vision_attn": ca_out["text_to_vision_attn"],
+                    "vision_to_text_attn": ca_out["vision_to_text_attn"],
+                }
+
             logits = self.classifier(fused)
             return {
                 "logits": logits,
                 "fused_features": fused,
                 "text_features": None,
                 "vision_features": v_feat,
+                "frame_features": vision_out.get("projected_frames"),
+                "video_frame_features": vision_out.get("projected_frames"),
                 "audio_features": a_feat,
-                "cross_attention": None,
+                "cross_attention": cross_attn_details,
                 "modalities": modalities_used,
             }
 

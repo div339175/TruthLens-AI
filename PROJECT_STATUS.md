@@ -16,18 +16,19 @@
 | **Text Preprocessing & NLP Backbone** |  DONE | DistilBERT tokenizer + embedding projection to 256-dim space (`ml/models/text_encoder.py`) |
 | **Vision Preprocessing & Image Backbone** |  DONE | ResNet18 convolutional stem feature map extraction + projection (`ml/models/vision_encoder.py`) |
 | **Video Feature-Level Temporal Pooling (Phase 2)** |  DONE | 8 frames $\rightarrow$ batch ResNet18 $\rightarrow$ 8 feature vectors $\rightarrow$ temporal mean pooling $[8, 256] \rightarrow [1, 256]$ (`ml/models/vision_encoder.py`, `ml/models/multimodal_model.py`) |
+| **Audio Modality Branch & Fusion (Phase 3)** |  DONE | 128-D STFT/spectral features $\rightarrow$ trainable `audio_projection` $[B, 128] \rightarrow [B, 256]$ $\rightarrow$ multimodal cross-attention & tri-modal fusion $\rightarrow$ `audio_classifier` (`ml/preprocessing/audio.py`, `ml/models/multimodal_model.py`, `ml/datasets/dataset.py`) |
 | **Multimodal Fusion (Concat)** |  DONE | Feature-level concatenation with 2-layer MLP projection (`ml/models/fusion.py`) |
-| **Multimodal Fusion (Cross-Attention)** |  DONE | Bidirectional Cross-Attention (Text $\leftrightarrow$ Vision) with residual LayerNorm (`ml/models/cross_attention.py`) |
+| **Multimodal Fusion (Cross-Attention)** |  DONE | Bidirectional Cross-Attention (Text $\leftrightarrow$ Vision, Text $\leftrightarrow$ Audio) with residual LayerNorm (`ml/models/cross_attention.py`) |
 | **Decision & Uncertainty Policy** |  DONE | Softmax confidence with calibrated `UNCERTAINTY_THRESHOLD=0.65` (`ml/models/classifier.py`) |
 | **Text Saliency Explainability** |  DONE | Gradient attribution on token embeddings (`ml/explainability/text_explanation.py`) |
 | **Visual Explainability (Grad-CAM)** |  DONE | Layer4 Grad-CAM activation overlays on representative keyframe encoded to base64 PNG (`ml/explainability/visual_explanation.py`) |
 | **Evidence & Report Engine** |  DONE | Structured `VerificationReport` with model-derived vs heuristic labelling (`ml/explainability/evidence.py`) |
-| **FastAPI Backend Endpoints** |  DONE | `/health`, `/verify/text`, `/verify/image`, `/verify/video`, `/verify/multimodal`, `/history`, `/model/info`, `/dataset/stats` |
+| **FastAPI Backend Endpoints** |  DONE | `/health`, `/verify/text`, `/verify/image`, `/verify/video`, `/verify/audio`, `/verify/multimodal`, `/history`, `/model/info`, `/dataset/stats` |
 | **React + Vite + TypeScript Frontend** |  DONE | Interactive Dashboard, Live Verification, Verification History (`/history`), Professor Demo (`/demo`), Architecture, Dataset stats |
-| **Dataset Management & Metadata** |  DONE | Metadata CSV abstraction, validation, stratified splits without data leakage (`dataset.csv`) |
-| **Training Pipeline** |  DONE | `train_baseline.py` and `train_multimodal.py` saving real checkpoint to `models/multimodal_baseline.pt` |
+| **Dataset Management & Metadata** |  DONE | Metadata CSV abstraction with text, image, video, and audio fields (`dataset.csv`) |
+| **Training Pipeline** |  DONE | `train_baseline.py` and `train_multimodal.py` supporting text, visual, and audio parameter gradient updates |
 | **Evaluation & Ablation** |  DONE | `evaluate.py` and `ablation.py` logging genuine metrics to `reports/results/` |
-| **Test Suite** |  DONE | 35 automated tests in `tests/` covering preprocessing, models, fusion, video temporal pooling, history DB, and API endpoints |
+| **Test Suite** |  DONE | 44 automated tests in `tests/` covering preprocessing, models, fusion, video temporal pooling, audio branch & backprop, history DB, and API endpoints |
 
 ---
 

@@ -84,18 +84,20 @@ def test_history_service_list_ordering():
     """Test that list_verifications returns records in descending order (newest first)."""
     import time
     service = HistoryService()
-    r1 = create_dummy_report(id_val="order_001")
+    id_1 = f"order_001_{time.time()}"
+    r1 = create_dummy_report(id_val=id_1)
     service.save_verification(r1, case_name="First Case")
     time.sleep(0.01)
-    r2 = create_dummy_report(id_val="order_002")
+    id_2 = f"order_002_{time.time()}"
+    r2 = create_dummy_report(id_val=id_2)
     service.save_verification(r2, case_name="Second Case")
 
     records = service.list_verifications(limit=50)
     record_ids = [r.id for r in records]
-    assert "order_001" in record_ids
-    assert "order_002" in record_ids
-    # order_002 must appear earlier in the list than order_001
-    assert record_ids.index("order_002") < record_ids.index("order_001")
+    assert id_1 in record_ids
+    assert id_2 in record_ids
+    # id_2 must appear earlier in the list than id_1
+    assert record_ids.index(id_2) < record_ids.index(id_1)
 
 
 def test_get_verifications_api():

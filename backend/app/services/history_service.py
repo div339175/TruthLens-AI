@@ -61,6 +61,7 @@ class HistoryService:
             existing = db.query(VerificationRecord).filter(VerificationRecord.id == record_id).first()
             if existing:
                 existing.case_name = case_name
+                existing.created_at = datetime.now(timezone.utc)
                 existing.prediction = report.prediction
                 existing.confidence = report.confidence
                 existing.real_probability = report.real_probability

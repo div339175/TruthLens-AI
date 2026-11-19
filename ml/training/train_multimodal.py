@@ -5,6 +5,7 @@ import sys
 import json
 import argparse
 from pathlib import Path
+from typing import Dict, Any, Optional
 import torch
 from torch.utils.data import DataLoader
 
@@ -55,10 +56,16 @@ def train_multimodal(
     ).to(device)
 
     # Train fusion and classification heads while keeping backbone feature extractors mostly frozen initially
-    # Enable gradients for projection heads and fusion
+    # Enable gradients for projection heads (text, vision, audio), fusion, and classifiers
     for param in model.text_encoder.projection.parameters():
         param.requires_grad = True
     for param in model.vision_encoder.projection.parameters():
+        param.requires_grad = True
+    for param in model.audio_projection.parameters():
+        param.requires_grad = True
+    for param in model.audio_classifier.parameters():
+        param.requires_grad = True
+    for param in model.trimodal_fusion.parameters():
         param.requires_grad = True
     for param in model.fusion_module.parameters():
         param.requires_grad = True
@@ -85,7 +92,19 @@ def train_multimodal(
             images = batch["image"].to(device)
             targets = batch["label"].to(device)
 
-            out = model(input_ids=input_ids, attention_mask=attention_mask, images=images)
+            has_aud = batch.get("has_audio")
+            aud_tensor = batch.get("audio")
+            if aud_tensor is not None and has_aud is not None and has_aud.sum() > 0:
+                audio_features = aud_tensor.to(device)
+            else:
+                audio_features = None
+
+            out = model(
+                input_ids=input_ids,
+                attention_mask=attention_mask,
+                images=images,
+                audio_features=audio_features,
+            )
             logits = out["logits"]
 
             loss = criterion(logits, targets)
@@ -112,7 +131,16 @@ def train_multimodal(
                     v_img = batch["image"].to(device)
                     v_tar = batch["label"].to(device)
 
-                    v_out = model(input_ids=v_in, attention_mask=v_mask, images=v_img)
+                    v_has_aud = batch.get("has_audio")
+                    v_aud = batch.get("audio")
+                    v_audio_feat = v_aud.to(device) if (v_aud is not None and v_has_aud is not None and v_has_aud.sum() > 0) else None
+
+                    v_out = model(
+                        input_ids=v_in,
+                        attention_mask=v_mask,
+                        images=v_img,
+                        audio_features=v_audio_feat,
+                    )
                     val_loss += criterion(v_out["logits"], v_tar).item() * len(v_tar)
                     v_preds = torch.argmax(v_out["logits"], dim=-1)
                     val_correct += (v_preds == v_tar).sum().item()
@@ -150,6 +178,36 @@ def train_multimodal(
         }, f, indent=2)
 
     print(f"[INFO] Multimodal training metrics recorded in: {metrics_file}")
+
+
+def verify_audio_gradient_flow(model: MultimodalVerificationModel, device: torch.device) -> Dict[str, float]:
+    """Diagnostic check confirming audio projection & classifier receive non-zero gradients."""
+    model.train()
+    for param in model.audio_projection.parameters():
+        param.requires_grad = True
+    for param in model.audio_classifier.parameters():
+        param.requires_grad = True
+    for param in model.trimodal_fusion.parameters():
+        param.requires_grad = True
+
+    model.zero_grad()
+    dummy_audio = torch.randn(2, 128, device=device)
+    dummy_targets = torch.tensor([0, 1], dtype=torch.long, device=device)
+
+    out = model(audio_features=dummy_audio)
+    loss = torch.nn.functional.cross_entropy(out["logits"], dummy_targets)
+    loss.backward()
+
+    grad_norms = {}
+    for name, param in model.audio_projection.named_parameters():
+        if param.grad is not None:
+            grad_norms[f"audio_projection.{name}"] = float(param.grad.norm().item())
+    for name, param in model.audio_classifier.named_parameters():
+        if param.grad is not None:
+            grad_norms[f"audio_classifier.{name}"] = float(param.grad.norm().item())
+
+    model.zero_grad()
+    return grad_norms
 
 
 def main():

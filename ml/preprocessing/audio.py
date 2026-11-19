@@ -33,6 +33,8 @@ class AudioPreprocessor:
             data = data.astype(np.float32) / 2147483648.0
         elif data.dtype == np.uint8:
             data = (data.astype(np.float32) - 128.0) / 128.0
+        elif data.dtype in (np.float32, np.float64):
+            data = data.astype(np.float32)
 
         # Stereo to mono
         if len(data.shape) > 1 and data.shape[1] > 1:
@@ -94,3 +96,20 @@ class AudioPreprocessor:
             "high_freq_ratio": round(high_freq_ratio, 4),
             "duration_sec": round(len(audio) / sr, 2),
         }
+
+    def batch_extract_features(
+        self,
+        audio_sources: Union[list, Tuple[Union[str, Path, np.ndarray], ...]],
+    ) -> torch.Tensor:
+        """Extracts fixed-dimensional 128-D acoustic features for a batch of audio sources.
+
+        Returns:
+            torch.Tensor: Shape [B, 128]
+        """
+        features = []
+        for src in audio_sources:
+            res = self.extract_features(src)
+            features.append(res["feature_tensor"])
+        if features:
+            return torch.stack(features, dim=0)
+        return torch.empty((0, 128), dtype=torch.float32)
