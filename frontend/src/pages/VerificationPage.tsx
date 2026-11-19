@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { FileText, Image as ImageIcon, Video, Music, X, Sparkles, AlertCircle } from 'lucide-react';
+import { FileText, Image as ImageIcon, Video, Music, X, Sparkles, AlertCircle, Database, CheckCircle2 } from 'lucide-react';
 import { verifyMultimodal } from '../services/api';
 import { VerificationReport } from '../types';
 import { PredictionCard } from '../components/PredictionCard';
 import { EvidenceSection } from '../components/EvidenceSection';
 
 export const VerificationPage: React.FC = () => {
+  const [caseName, setCaseName] = useState<string>('');
   const [text, setText] = useState<string>('');
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [imagePreview, setImagePreview] = useState<string | null>(null);
@@ -68,7 +69,8 @@ export const VerificationPage: React.FC = () => {
         text.trim() ? text.trim() : undefined,
         imageFile || undefined,
         videoFile || undefined,
-        audioFile || undefined
+        audioFile || undefined,
+        caseName.trim() ? caseName.trim() : undefined
       );
       setReport(res);
     } catch (err: any) {
@@ -79,6 +81,7 @@ export const VerificationPage: React.FC = () => {
   };
 
   const handleClear = () => {
+    setCaseName('');
     setText('');
     setImageFile(null);
     setImagePreview(null);
@@ -108,7 +111,21 @@ export const VerificationPage: React.FC = () => {
       )}
 
       {/* Input Form Box */}
-      <div className="glass-panel rounded-2xl p-6 sm:p-8 border border-slate-800">
+      <div className="glass-panel rounded-2xl p-6 sm:p-8 border border-slate-800 space-y-6">
+        {/* Optional Case Name Input */}
+        <div>
+          <label className="text-xs font-semibold uppercase tracking-wider text-slate-400 block mb-1.5">
+            Verification / Case Name (Optional)
+          </label>
+          <input
+            type="text"
+            value={caseName}
+            onChange={(e) => setCaseName(e.target.value)}
+            placeholder="e.g. Breaking News Broadcast Verification #01"
+            className="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-slate-800 focus:border-sky-500 focus:ring-1 focus:ring-sky-500 text-sm text-slate-200 placeholder:text-slate-500"
+          />
+        </div>
+
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Left Column: Text Claim Input */}
           <div className="space-y-4">
@@ -296,6 +313,22 @@ export const VerificationPage: React.FC = () => {
       {/* Verification Output */}
       {report && (
         <div className="space-y-6 animate-fadeIn">
+          {/* Persistence Confirmation Badge */}
+          {report.id && (
+            <div className="p-3.5 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-300 flex items-center justify-between text-xs">
+              <div className="flex items-center space-x-2">
+                <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
+                <span>
+                  <strong>Saved to Persistent Database:</strong> Case record #{report.id} ({report.case_name || 'Verification'}) safely stored in SQLite.
+                </span>
+              </div>
+              <div className="flex items-center space-x-1.5 font-mono text-[11px] text-emerald-400 bg-emerald-950/60 px-2.5 py-1 rounded-md border border-emerald-500/30">
+                <Database className="w-3.5 h-3.5" />
+                <span>ID: {report.id}</span>
+              </div>
+            </div>
+          )}
+
           <PredictionCard report={report} />
           <EvidenceSection evidence={report.evidence} originalImagePreview={imagePreview} />
         </div>

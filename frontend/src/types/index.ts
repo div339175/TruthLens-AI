@@ -14,6 +14,8 @@ export interface ModalityEvidence {
 }
 
 export interface VerificationReport {
+  id?: string;
+  case_name?: string;
   prediction: 'REAL' | 'FAKE' | 'UNCERTAIN';
   confidence: number;
   real_probability: number;
@@ -28,6 +30,29 @@ export interface VerificationReport {
   device_used: string;
   execution_mode: 'real' | 'demo';
   timestamp: string;
+}
+
+export interface VerificationSummary {
+  id: string;
+  case_name: string;
+  created_at: string;
+  prediction: 'REAL' | 'FAKE' | 'UNCERTAIN';
+  confidence: number;
+  real_probability: number;
+  fake_probability: number;
+  uncertain: boolean;
+  modalities_used: string[];
+  manipulation_type: string;
+  text_snippet?: string;
+  has_image: boolean;
+  has_video: boolean;
+  has_audio: boolean;
+  execution_mode: string;
+}
+
+export interface VerificationListResponse {
+  total: number;
+  items: VerificationSummary[];
 }
 
 export interface ModelInfo {

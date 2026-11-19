@@ -20,6 +20,8 @@ class ModalityEvidence(BaseModel):
 
 
 class VerificationReport(BaseModel):
+    id: Optional[str] = Field(None, description="Persistent unique verification ID")
+    case_name: Optional[str] = Field(None, description="Human-readable title or label for the case")
     prediction: str = Field(..., description="REAL, FAKE, or UNCERTAIN")
     confidence: float = Field(..., ge=0.0, le=1.0)
     real_probability: float = Field(..., ge=0.0, le=1.0)
@@ -36,8 +38,37 @@ class VerificationReport(BaseModel):
     timestamp: str
 
 
+class VerificationSummary(BaseModel):
+    id: str
+    case_name: str
+    created_at: str
+    prediction: str
+    confidence: float
+    real_probability: float
+    fake_probability: float
+    uncertain: bool
+    modalities_used: List[str]
+    manipulation_type: str
+    text_snippet: Optional[str] = ""
+    has_image: bool = False
+    has_video: bool = False
+    has_audio: bool = False
+    execution_mode: str = "real"
+
+
+class SaveVerificationRequest(BaseModel):
+    case_name: Optional[str] = None
+    report: VerificationReport
+
+
+class VerificationListResponse(BaseModel):
+    total: int
+    items: List[VerificationSummary]
+
+
 class TextVerificationRequest(BaseModel):
     text: str = Field(..., min_length=1, max_length=5000)
+    case_name: Optional[str] = None
 
 
 class HealthResponse(BaseModel):

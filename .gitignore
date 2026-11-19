@@ -45,6 +45,11 @@ ml/data/processed/*
 .env
 .env.local
 
+# Databases
+*.db
+*.sqlite
+*.sqlite3
+
 # Node / Frontend
 frontend/node_modules/
 frontend/dist/

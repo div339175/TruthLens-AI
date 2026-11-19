@@ -1,10 +1,10 @@
 import React from 'react';
-import { ShieldCheck, Cpu, Database, Activity, Sparkles } from 'lucide-react';
+import { ShieldCheck, Cpu, Database, Activity, Sparkles, History } from 'lucide-react';
 import { HealthInfo } from '../types';
 
 interface NavbarProps {
-  activeTab: 'verify' | 'demo' | 'architecture' | 'dataset';
-  setActiveTab: (tab: 'verify' | 'demo' | 'architecture' | 'dataset') => void;
+  activeTab: 'verify' | 'history' | 'demo' | 'architecture' | 'dataset';
+  setActiveTab: (tab: 'verify' | 'history' | 'demo' | 'architecture' | 'dataset') => void;
   health: HealthInfo | null;
 }
 
@@ -40,6 +40,17 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, setActiveTab, health 
               }`}
             >
               Verify Content
+            </button>
+            <button
+              onClick={() => setActiveTab('history')}
+              className={`px-3 py-2 rounded-lg text-sm font-medium transition-colors flex items-center space-x-1.5 ${
+                activeTab === 'history'
+                  ? 'bg-sky-500/15 text-sky-400 border border-sky-500/30'
+                  : 'text-slate-300 hover:text-white hover:bg-slate-800/60'
+              }`}
+            >
+              <History className="w-4 h-4" />
+              <span>History</span>
             </button>
             <button
               onClick={() => setActiveTab('demo')}

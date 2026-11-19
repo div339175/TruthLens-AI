@@ -1,15 +1,21 @@
 """TruthLens AI Backend FastAPI Application."""
 
 import logging
+from pathlib import Path
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 
 from backend.app.config import settings
+from backend.app.database.session import init_db
 from backend.app.api.health import router as health_router
 from backend.app.api.routes import router as verification_router
 
 logger = logging.getLogger("truthlens.app")
 logging.basicConfig(level=logging.INFO, format="[%(levelname)s] %(message)s")
+
+# Initialize database tables on module import / startup
+init_db()
 
 app = FastAPI(
     title=settings.PROJECT_NAME,
@@ -31,6 +37,11 @@ app.add_middleware(
 # Register routers
 app.include_router(health_router)
 app.include_router(verification_router)
+
+# Mount sample media files if available
+samples_dir = settings.DATA_DIR / "samples"
+if samples_dir.exists():
+    app.mount("/api/samples", StaticFiles(directory=str(samples_dir)), name="samples")
 
 
 @app.get("/")

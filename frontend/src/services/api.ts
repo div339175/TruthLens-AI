@@ -1,4 +1,10 @@
-import { VerificationReport, ModelInfo, DatasetStats, HealthInfo } from '../types';
+import {
+  VerificationReport,
+  ModelInfo,
+  DatasetStats,
+  HealthInfo,
+  VerificationListResponse,
+} from '../types';
 
 const API_BASE = '/api';
 
@@ -20,11 +26,33 @@ export async function getDatasetStats(): Promise<DatasetStats> {
   return res.json();
 }
 
-export async function verifyText(text: string): Promise<VerificationReport> {
+export async function getVerifications(limit = 100, offset = 0): Promise<VerificationListResponse> {
+  const res = await fetch(`${API_BASE}/verifications?limit=${limit}&offset=${offset}`);
+  if (!res.ok) throw new Error(`Failed to fetch history: ${res.statusText}`);
+  return res.json();
+}
+
+export async function getVerificationById(id: string): Promise<VerificationReport> {
+  const res = await fetch(`${API_BASE}/verifications/${id}`);
+  if (!res.ok) {
+    const err = await res.json().catch(() => ({ detail: res.statusText }));
+    throw new Error(err.detail || `Failed to fetch verification ${id}`);
+  }
+  return res.json();
+}
+
+export async function deleteVerification(id: string): Promise<void> {
+  const res = await fetch(`${API_BASE}/verifications/${id}`, {
+    method: 'DELETE',
+  });
+  if (!res.ok) throw new Error(`Failed to delete verification ${id}`);
+}
+
+export async function verifyText(text: string, caseName?: string): Promise<VerificationReport> {
   const res = await fetch(`${API_BASE}/verify/text`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ text }),
+    body: JSON.stringify({ text, case_name: caseName }),
   });
   if (!res.ok) {
     const err = await res.json().catch(() => ({ detail: res.statusText }));
@@ -67,7 +95,8 @@ export async function verifyMultimodal(
   text?: string,
   imageFile?: File,
   videoFile?: File,
-  audioFile?: File
+  audioFile?: File,
+  caseName?: string
 ): Promise<VerificationReport> {
   const formData = new FormData();
   if (text && text.trim()) {
@@ -81,6 +110,9 @@ export async function verifyMultimodal(
   }
   if (audioFile) {
     formData.append('audio', audioFile);
+  }
+  if (caseName && caseName.trim()) {
+    formData.append('case_name', caseName.trim());
   }
 
   const res = await fetch(`${API_BASE}/verify/multimodal`, {

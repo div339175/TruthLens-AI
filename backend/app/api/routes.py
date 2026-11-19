@@ -11,6 +11,9 @@ from backend.app.schemas.verification import (
     TextVerificationRequest,
     ModelInfoResponse,
     DatasetStatsResponse,
+    VerificationSummary,
+    SaveVerificationRequest,
+    VerificationListResponse,
 )
 from backend.app.services.verification_service import VerificationService
 from backend.app.utils.file_utils import save_upload_to_temp, cleanup_file
@@ -21,9 +24,9 @@ verification_service = VerificationService()
 
 @router.post("/verify/text", response_model=VerificationReport)
 def verify_text_endpoint(payload: TextVerificationRequest):
-    """Verify textual claim or caption."""
+    """Verify textual claim or caption and auto-persist to history."""
     try:
-        return verification_service.verify_text(text=payload.text)
+        return verification_service.verify_text(text=payload.text, case_name=payload.case_name)
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
@@ -82,6 +85,7 @@ async def verify_audio_endpoint(audio: UploadFile = File(...)):
 @router.post("/verify/multimodal", response_model=VerificationReport)
 async def verify_multimodal_endpoint(
     text: Optional[str] = Form(None),
+    case_name: Optional[str] = Form(None),
     image: Optional[UploadFile] = File(None),
     video: Optional[UploadFile] = File(None),
     audio: Optional[UploadFile] = File(None),
@@ -118,6 +122,7 @@ async def verify_multimodal_endpoint(
             image_path=img_temp_path,
             video_path=vid_temp_path,
             audio_path=aud_temp_path,
+            case_name=case_name,
         )
         return report
 
@@ -132,6 +137,50 @@ async def verify_multimodal_endpoint(
             cleanup_file(vid_temp_path)
         if aud_temp_path:
             cleanup_file(aud_temp_path)
+
+
+# ==============================================================================
+# Persistent Verification History Endpoints (SQLite / SQLAlchemy)
+# ==============================================================================
+
+
+@router.get("/verifications", response_model=VerificationListResponse)
+def list_verifications_endpoint(limit: int = 100, offset: int = 0):
+    """Retrieve previous verification records ordered newest-first from SQLite database."""
+    records = verification_service.history_service.list_verifications(limit=limit, offset=offset)
+    items = [VerificationSummary(**r.to_summary_dict()) for r in records]
+    return VerificationListResponse(total=len(items), items=items)
+
+
+@router.get("/verifications/{verification_id}", response_model=VerificationReport)
+def get_verification_endpoint(verification_id: str):
+    """Retrieve complete saved verification result by unique ID."""
+    record = verification_service.history_service.get_verification(verification_id)
+    if not record:
+        raise HTTPException(status_code=404, detail=f"Verification record '{verification_id}' not found.")
+    return VerificationReport(**record.to_full_report_dict())
+
+
+@router.post("/verifications", response_model=VerificationReport)
+def save_verification_endpoint(payload: SaveVerificationRequest):
+    """Explicitly save or update a completed verification report in persistent history."""
+    try:
+        record = verification_service.history_service.save_verification(
+            report=payload.report,
+            case_name=payload.case_name,
+        )
+        return VerificationReport(**record.to_full_report_dict())
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@router.delete("/verifications/{verification_id}")
+def delete_verification_endpoint(verification_id: str):
+    """Delete a verification record from persistent history."""
+    deleted = verification_service.history_service.delete_verification(verification_id)
+    if not deleted:
+        raise HTTPException(status_code=404, detail=f"Verification record '{verification_id}' not found.")
+    return {"status": "success", "message": f"Verification '{verification_id}' deleted successfully."}
 
 
 @router.get("/model/info", response_model=ModelInfoResponse)

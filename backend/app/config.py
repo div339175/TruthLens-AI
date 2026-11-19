@@ -5,6 +5,10 @@ from pathlib import Path
 from pydantic import BaseModel
 import torch
 
+# Prevent slow Hugging Face network retries when local cached weights exist
+os.environ.setdefault("TRANSFORMERS_OFFLINE", "1")
+os.environ.setdefault("HF_HUB_OFFLINE", "1")
+
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 
@@ -43,6 +47,9 @@ class Settings(BaseModel):
     METADATA_PATH: Path = BASE_DIR / "ml" / "data" / "metadata" / "dataset.csv"
     MODELS_DIR: Path = BASE_DIR / "models"
     UPLOAD_TEMP_DIR: Path = BASE_DIR / "backend" / "app" / "uploads"
+    MEDIA_STORAGE_DIR: Path = BASE_DIR / "backend" / "app" / "storage" / "media"
+    DATABASE_PATH: Path = BASE_DIR / "backend" / "app" / "truthlens.db"
+    DATABASE_URL: str = os.getenv("DATABASE_URL", f"sqlite:///{BASE_DIR / 'backend' / 'app' / 'truthlens.db'}")
 
     def get_torch_device(self) -> torch.device:
         """Resolve torch device based on config and platform availability."""
@@ -60,5 +67,6 @@ class Settings(BaseModel):
 
 
 settings = Settings()
-# Ensure uploads directory exists
+# Ensure directories exist
 settings.UPLOAD_TEMP_DIR.mkdir(parents=True, exist_ok=True)
+settings.MEDIA_STORAGE_DIR.mkdir(parents=True, exist_ok=True)

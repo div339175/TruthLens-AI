@@ -77,6 +77,37 @@ def test_verify_multimodal_endpoint():
     assert "explanation" in data
 
 
+def test_verify_video_endpoint():
+    import tempfile
+    import cv2
+    import numpy as np
+
+    # Generate small 5-frame temporary mp4
+    with tempfile.NamedTemporaryFile(suffix=".mp4", delete=False) as tmp_file:
+        tmp_path = tmp_file.name
+
+    try:
+        fourcc = cv2.VideoWriter_fourcc(*"mp4v")
+        writer = cv2.VideoWriter(tmp_path, fourcc, 10.0, (128, 128))
+        for i in range(5):
+            frame = np.full((128, 128, 3), i * 30, dtype=np.uint8)
+            writer.write(frame)
+        writer.release()
+
+        with open(tmp_path, "rb") as f:
+            response = client.post("/verify/video", files={"video": ("test_clip.mp4", f, "video/mp4")})
+
+        assert response.status_code == 200
+        res = response.json()
+        assert res["prediction"] in ["REAL", "FAKE", "UNCERTAIN"]
+        assert "video" in res["modalities_used"]
+        assert res["id"] is not None
+    finally:
+        import os
+        if os.path.exists(tmp_path):
+            os.remove(tmp_path)
+
+
 def test_verify_audio_endpoint():
     import numpy as np
     import scipy.io.wavfile as wavfile
