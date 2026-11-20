@@ -28,7 +28,8 @@
 | **Dataset Management & Metadata** |  DONE | Metadata CSV abstraction with text, image, video, and audio fields (`dataset.csv`) |
 | **Training Pipeline** |  DONE | `train_baseline.py` and `train_multimodal.py` supporting text, visual, and audio parameter gradient updates |
 | **Experimental Evaluation & Ablation (Phase 4)** |  DONE | Reproducible evaluation framework (`experiments/`), dataset leakage audit, fusion comparison (Concat vs Cross-Attention), modality ablation, 15 difficult cases error analysis, ROC/PR curves & confusion matrix generation |
-| **Test Suite** |  DONE | 53 automated tests in `tests/` covering preprocessing, models, fusion, video temporal pooling, audio branch & backprop, history DB, API endpoints, and evaluation metrics framework |
+| **Real-World Benchmark Expansion & Generalization (Phase 5)** |  DONE | Ingestion of 180 external benchmark samples (`external_dataset_manifest.csv`), Fakeddit text+image generalization, Deepfake Audio v4 benchmark (ROC-AUC: 0.8100), Generative Video Sora benchmark (ROC-AUC: 0.8200), 4-condition Semantic Mismatch study, and 89 mined failure cases |
+| **Test Suite** |  DONE | 62 automated tests in `tests/` covering preprocessing, models, fusion, video temporal pooling, audio branch & backprop, history DB, API endpoints, Phase 4 evaluation metrics, and Phase 5 generalization framework |
 
 ---
 

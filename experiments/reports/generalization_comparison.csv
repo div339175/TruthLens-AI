@@ -1,0 +1,7 @@
+Experiment ID,Model,Benchmark,Modality,Sample Count,Accuracy,Precision,Recall,F1-Score,ROC-AUC,Delta Acc (vs In-Domain),Delta F1 (vs In-Domain)
+EXP_FAKEDDIT_TEXT_001,TruthLens DistilBERT Unimodal Baseline,Fakeddit (External),text,60,0.3333,0.3333,0.3333,0.3333,0.3156,-0.6667,-0.6667
+EXP_FAKEDDIT_VISION_001,TruthLens ResNet18 Unimodal Baseline,Fakeddit (External),visual,60,0.5000,0.5000,1.0000,0.6667,0.4378,-0.5000,-0.3333
+EXP_FAKEDDIT_CONCAT_001,TruthLens Concatenation Fusion,Fakeddit (External),text+visual,60,0.5167,0.5085,1.0000,0.6742,0.4589,-0.4833,-0.3258
+EXP_FAKEDDIT_CA_001,TruthLens Bidirectional Cross-Attention,Fakeddit (External),text+visual,60,0.4667,0.4815,0.8667,0.6190,0.3789,-0.5333,-0.3810
+EXP_AUDIO_GEN_001,TruthLens Audio Projection Branch,"Deepfake Audio Detection (v4, ElevenLabs/Hume vs Human)",audio,40,0.5000,0.5000,1.0000,0.6667,0.8100,N/A (New Modality),N/A (New Modality)
+EXP_VIDEO_GEN_001,TruthLens Video Temporal Feature Pooling,Generative Video Benchmark (Sora/Veo vs Real),video,20,0.5000,0.0000,0.0000,0.0000,0.8200,N/A (New Modality),N/A (New Modality)

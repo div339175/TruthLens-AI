@@ -1,0 +1,1626 @@
+{
+  "fakeddit": {
+    "fakeddit_text": {
+      "experiment_id": "EXP_FAKEDDIT_TEXT_001",
+      "model_name": "TruthLens DistilBERT Unimodal Baseline",
+      "benchmark": "Fakeddit (External)",
+      "modality": "text",
+      "sample_count": 60,
+      "status": "EVALUATED",
+      "metrics": {
+        "sample_count": 60,
+        "accuracy": 0.3333,
+        "precision": 0.3333,
+        "recall": 0.3333,
+        "f1": 0.3333,
+        "roc_auc": 0.3156,
+        "pr_auc": 0.4218,
+        "confusion_matrix": {
+          "matrix": [
+            [
+              10,
+              20
+            ],
+            [
+              20,
+              10
+            ]
+          ],
+          "tp": 10,
+          "fp": 20,
+          "fn": 20,
+          "tn": 10
+        },
+        "class_metrics": {
+          "REAL (Class 0)": {
+            "precision": 0.3333,
+            "recall": 0.3333,
+            "f1": 0.3333,
+            "support": 30
+          },
+          "FAKE (Class 1)": {
+            "precision": 0.3333,
+            "recall": 0.3333,
+            "f1": 0.3333,
+            "support": 30
+          }
+        },
+        "support": {
+          "real": 30,
+          "fake": 30,
+          "total": 60
+        }
+      },
+      "domain_shift": {
+        "in_domain_f1": 1.0,
+        "external_f1": 0.3333,
+        "delta_f1": -0.6667000000000001,
+        "in_domain_acc": 1.0,
+        "external_acc": 0.3333,
+        "delta_acc": -0.6667000000000001
+      },
+      "failures": [
+        {
+          "sample_id": "fakeddit_fake_001",
+          "true_label": 1,
+          "pred_label": 0,
+          "confidence": 0.7426274716854095,
+          "text": "this one episode of game of thrones just won emmys",
+          "failure_type": "false_negative"
+        },
+        {
+          "sample_id": "fakeddit_real_001",
+          "true_label": 0,
+          "pred_label": 1,
+          "confidence": 0.8140706419944763,
+          "text": "israeli nurse breastfeeds palestinian baby after mom is critically injured",
+          "failure_type": "false_positive"
+        },
+        {
+          "sample_id": "fakeddit_real_002",
+          "true_label": 0,
+          "pred_label": 1,
+          "confidence": 0.7399316430091858,
+          "text": "this pink sign i just saw",
+          "failure_type": "false_positive"
+        },
+        {
+          "sample_id": "fakeddit_fake_003",
+          "true_label": 1,
+          "pred_label": 0,
+          "confidence": 0.6061748266220093,
+          "text": "rand paul beaten by other neighbor",
+          "failure_type": "false_negative"
+        },
+        {
+          "sample_id": "fakeddit_fake_004",
+          "true_label": 1,
+          "pred_label": 0,
+          "confidence": 0.8934599608182907,
+          "text": "lincoln delivers the gettysburg address circa",
+          "failure_type": "false_negative"
+        },
+        {
+          "sample_id": "fakeddit_fake_005",
+          "true_label": 1,
+          "pred_label": 0,
+          "confidence": 0.856690302491188,
+          "text": "immigration activists storm offices to protest blockchain migration",
+          "failure_type": "false_negative"
+        },
+        {
+          "sample_id": "fakeddit_real_004",
+          "true_label": 0,
+          "pred_label": 1,
+          "confidence": 0.6387988328933716,
+          "text": "while reading during my cold i coughed and some spit landed in my book on the perfect word",
+          "failure_type": "false_positive"
+        },
+        {
+          "sample_id": "fakeddit_fake_008",
+          "true_label": 1,
+          "pred_label": 0,
+          "confidence": 0.6702397763729095,
+          "text": "astar atitle",
+          "failure_type": "false_negative"
+        },
+        {
+          "sample_id": "fakeddit_fake_009",
+          "true_label": 1,
+          "pred_label": 0,
+          "confidence": 0.8634587228298187,
+          "text": "burgh runner",
+          "failure_type": "false_negative"
+        },
+        {
+          "sample_id": "fakeddit_fake_010",
+          "true_label": 1,
+          "pred_label": 0,
+          "confidence": 0.5460099577903748,
+          "text": "four letters fuck love",
+          "failure_type": "false_negative"
+        },
+        {
+          "sample_id": "fakeddit_fake_011",
+          "true_label": 1,
+          "pred_label": 0,
+          "confidence": 0.6021572947502136,
+          "text": "he didnt choose the grocery store without this furr ball demanding cuddles",
+          "failure_type": "false_negative"
+        },
+        {
+          "sample_id": "fakeddit_real_005",
+          "true_label": 0,
+          "pred_label": 1,
+          "confidence": 0.8047439455986023,
+          "text": "this rainbow coming out of our dumpster",
+          "failure_type": "false_positive"
+        },
+        {
+          "sample_id": "fakeddit_fake_014",
+          "true_label": 1,
+          "pred_label": 0,
+          "confidence": 0.7378706932067871,
+          "text": "extraction of gas from jupiter is successful",
+          "failure_type": "false_negative"
+        },
+        {
+          "sample_id": "fakeddit_fake_015",
+          "true_label": 1,
+          "pred_label": 0,
+          "confidence": 0.927410751581192,
+          "text": "nature notes camelion",
+          "failure_type": "false_negative"
+        },
+        {
+          "sample_id": "fakeddit_fake_016",
+          "true_label": 1,
+          "pred_label": 0,
+          "confidence": 0.8733564168214798,
+          "text": "sir william wallace is executed rd",
+          "failure_type": "false_negative"
+        },
+        {
+          "sample_id": "fakeddit_fake_017",
+          "true_label": 1,
+          "pred_label": 0,
+          "confidence": 0.897451214492321,
+          "text": "reddit ceo visits china",
+          "failure_type": "false_negative"
+        },
+        {
+          "sample_id": "fakeddit_fake_018",
+          "true_label": 1,
+          "pred_label": 0,
+          "confidence": 0.8142412900924683,
+          "text": "remember the amritsar incident indiajapanuk",
+          "failure_type": "false_negative"
+        },
+        {
+          "sample_id": "fakeddit_fake_022",
+          "true_label": 1,
+          "pred_label": 0,
+          "confidence": 0.8805795013904572,
+          "text": "quiz has it been an honor to serve with me",
+          "failure_type": "false_negative"
+        },
+        {
+          "sample_id": "fakeddit_fake_023",
+          "true_label": 1,
+          "pred_label": 0,
+          "confidence": 0.5490380227565765,
+          "text": "a step to abyss antiwar ussr circa",
+          "failure_type": "false_negative"
+        },
+        {
+          "sample_id": "fakeddit_real_007",
+          "true_label": 0,
+          "pred_label": 1,
+          "confidence": 0.8555749654769897,
+          "text": "moss growing with artificial lights on roman ruins from the st century feet below the surface",
+          "failure_type": "false_positive"
+        },
+        {
+          "sample_id": "fakeddit_fake_024",
+          "true_label": 1,
+          "pred_label": 0,
+          "confidence": 0.9198949486017227,
+          "text": "oklahoma mandates antiabortion signs in public restrooms",
+          "failure_type": "false_negative"
+        },
+        {
+          "sample_id": "fakeddit_fake_025",
+          "true_label": 1,
+          "pred_label": 0,
+          "confidence": 0.8354784250259399,
+          "text": "breaking un official set to testify against hillary clinton violated both the federal records act and the article focused on if he was shot and killed",
+          "failure_type": "false_negative"
+        },
+        {
+          "sample_id": "fakeddit_fake_027",
+          "true_label": 1,
+          "pred_label": 0,
+          "confidence": 0.7123688459396362,
+          "text": "this needs to try to warn us he was paid to run nuclear program",
+          "failure_type": "false_negative"
+        },
+        {
+          "sample_id": "fakeddit_fake_029",
+          "true_label": 1,
+          "pred_label": 0,
+          "confidence": 0.6432961523532867,
+          "text": "silence the giant motel",
+          "failure_type": "false_negative"
+        },
+        {
+          "sample_id": "fakeddit_fake_030",
+          "true_label": 1,
+          "pred_label": 0,
+          "confidence": 0.891908809542656,
+          "text": "usa puts trade sanctions on north korea after kim refuses communication with the un",
+          "failure_type": "false_negative"
+        },
+        {
+          "sample_id": "fakeddit_real_008",
+          "true_label": 0,
+          "pred_label": 1,
+          "confidence": 0.8865737915039062,
+          "text": "a fox sitting down credit goes to ureaditonreddit",
+          "failure_type": "false_positive"
+        },
+        {
+          "sample_id": "fakeddit_real_009",
+          "true_label": 0,
+          "pred_label": 1,
+          "confidence": 0.8701472878456116,
+          "text": "pumamountain lion caught in mid jump",
+          "failure_type": "false_positive"
+        },
+        {
+          "sample_id": "fakeddit_real_011",
+          "true_label": 0,
+          "pred_label": 1,
+          "confidence": 0.7681484818458557,
+          "text": "a hanoi policemans glare",
+          "failure_type": "false_positive"
+        },
+        {
+          "sample_id": "fakeddit_real_012",
+          "true_label": 0,
+          "pred_label": 1,
+          "confidence": 0.7168364524841309,
+          "text": "years after parachuting into normandy wwii vet plans to jump again",
+          "failure_type": "false_positive"
+        },
+        {
+          "sample_id": "fakeddit_real_014",
+          "true_label": 0,
+          "pred_label": 1,
+          "confidence": 0.7984148859977722,
+          "text": "this manhole cover looks happy",
+          "failure_type": "false_positive"
+        },
+        {
+          "sample_id": "fakeddit_real_018",
+          "true_label": 0,
+          "pred_label": 1,
+          "confidence": 0.8686646223068237,
+          "text": "the shadow of multifocal lenses",
+          "failure_type": "false_positive"
+        },
+        {
+          "sample_id": "fakeddit_real_020",
+          "true_label": 0,
+          "pred_label": 1,
+          "confidence": 0.7570185661315918,
+          "text": "a yearold guy is walking across all seven continents with his dog",
+          "failure_type": "false_positive"
+        },
+        {
+          "sample_id": "fakeddit_real_021",
+          "true_label": 0,
+          "pred_label": 1,
+          "confidence": 0.842131495475769,
+          "text": "this alcoholic bottle has a magnifying glass so you can see the name",
+          "failure_type": "false_positive"
+        },
+        {
+          "sample_id": "fakeddit_real_022",
+          "true_label": 0,
+          "pred_label": 1,
+          "confidence": 0.8652031421661377,
+          "text": "creepy masochistic kid from rwtf",
+          "failure_type": "false_positive"
+        },
+        {
+          "sample_id": "fakeddit_real_023",
+          "true_label": 0,
+          "pred_label": 1,
+          "confidence": 0.7332194447517395,
+          "text": "this tree that grew around a metal fence",
+          "failure_type": "false_positive"
+        },
+        {
+          "sample_id": "fakeddit_real_024",
+          "true_label": 0,
+          "pred_label": 1,
+          "confidence": 0.658672571182251,
+          "text": "my so handwriting looks like a font",
+          "failure_type": "false_positive"
+        },
+        {
+          "sample_id": "fakeddit_real_025",
+          "true_label": 0,
+          "pred_label": 1,
+          "confidence": 0.7520802617073059,
+          "text": "the crouching hazmat walk",
+          "failure_type": "false_positive"
+        },
+        {
+          "sample_id": "fakeddit_real_026",
+          "true_label": 0,
+          "pred_label": 1,
+          "confidence": 0.7446210384368896,
+          "text": "cow shot dead by police in newfield drive in carlisle",
+          "failure_type": "false_positive"
+        },
+        {
+          "sample_id": "fakeddit_real_028",
+          "true_label": 0,
+          "pred_label": 1,
+          "confidence": 0.7696641683578491,
+          "text": "my uber has vomit bags",
+          "failure_type": "false_positive"
+        },
+        {
+          "sample_id": "fakeddit_real_030",
+          "true_label": 0,
+          "pred_label": 1,
+          "confidence": 0.7178695797920227,
+          "text": "google rewarded over to the guy who bought googlecom for and he donated it all to charity",
+          "failure_type": "false_positive"
+        }
+      ]
+    },
+    "fakeddit_vision": {
+      "experiment_id": "EXP_FAKEDDIT_VISION_001",
+      "model_name": "TruthLens ResNet18 Unimodal Baseline",
+      "benchmark": "Fakeddit (External)",
+      "modality": "visual",
+      "sample_count": 60,
+      "status": "EVALUATED",
+      "metrics": {
+        "sample_count": 60,
+        "accuracy": 0.5,
+        "precision": 0.5,
+        "recall": 1.0,
+        "f1": 0.6667,
+        "roc_auc": 0.4378,
+        "pr_auc": 0.4991,
+        "confusion_matrix": {
+          "matrix": [
+            [
+              0,
+              30
+            ],
+            [
+              0,
+              30
+            ]
+          ],
+          "tp": 30,
+          "fp": 30,
+          "fn": 0,
+          "tn": 0
+        },
+        "class_metrics": {
+          "REAL (Class 0)": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "support": 30
+          },
+          "FAKE (Class 1)": {
+            "precision": 0.5,
+            "recall": 1.0,
+            "f1": 0.6667,
+            "support": 30
+          }
+        },
+        "support": {
+          "real": 30,
+          "fake": 30,
+          "total": 60
+        }
+      },
+      "domain_shift": {
+        "in_domain_f1": 1.0,
+        "external_f1": 0.6667,
+        "delta_f1": -0.33330000000000004,
+        "in_domain_acc": 1.0,
+        "external_acc": 0.5,
+        "delta_acc": -0.5
+      },
+      "failures": [
+        {
+          "sample_id": "fakeddit_real_001",
+          "true_label": 0,
+          "pred_label": 1,
+          "confidence": 0.7655822038650513,
+          "failure_type": "false_positive"
+        },
+        {
+          "sample_id": "fakeddit_real_002",
+          "true_label": 0,
+          "pred_label": 1,
+          "confidence": 0.6973372101783752,
+          "failure_type": "false_positive"
+        },
+        {
+          "sample_id": "fakeddit_real_003",
+          "true_label": 0,
+          "pred_label": 1,
+          "confidence": 0.7537521123886108,
+          "failure_type": "false_positive"
+        },
+        {
+          "sample_id": "fakeddit_real_004",
+          "true_label": 0,
+          "pred_label": 1,
+          "confidence": 0.8007879257202148,
+          "failure_type": "false_positive"
+        },
+        {
+          "sample_id": "fakeddit_real_005",
+          "true_label": 0,
+          "pred_label": 1,
+          "confidence": 0.7824759483337402,
+          "failure_type": "false_positive"
+        },
+        {
+          "sample_id": "fakeddit_real_006",
+          "true_label": 0,
+          "pred_label": 1,
+          "confidence": 0.714276909828186,
+          "failure_type": "false_positive"
+        },
+        {
+          "sample_id": "fakeddit_real_007",
+          "true_label": 0,
+          "pred_label": 1,
+          "confidence": 0.7816488742828369,
+          "failure_type": "false_positive"
+        },
+        {
+          "sample_id": "fakeddit_real_008",
+          "true_label": 0,
+          "pred_label": 1,
+          "confidence": 0.7166978120803833,
+          "failure_type": "false_positive"
+        },
+        {
+          "sample_id": "fakeddit_real_009",
+          "true_label": 0,
+          "pred_label": 1,
+          "confidence": 0.7683658599853516,
+          "failure_type": "false_positive"
+        },
+        {
+          "sample_id": "fakeddit_real_010",
+          "true_label": 0,
+          "pred_label": 1,
+          "confidence": 0.700907826423645,
+          "failure_type": "false_positive"
+        },
+        {
+          "sample_id": "fakeddit_real_011",
+          "true_label": 0,
+          "pred_label": 1,
+          "confidence": 0.6834130883216858,
+          "failure_type": "false_positive"
+        },
+        {
+          "sample_id": "fakeddit_real_012",
+          "true_label": 0,
+          "pred_label": 1,
+          "confidence": 0.7491098046302795,
+          "failure_type": "false_positive"
+        },
+        {
+          "sample_id": "fakeddit_real_013",
+          "true_label": 0,
+          "pred_label": 1,
+          "confidence": 0.785851776599884,
+          "failure_type": "false_positive"
+        },
+        {
+          "sample_id": "fakeddit_real_014",
+          "true_label": 0,
+          "pred_label": 1,
+          "confidence": 0.7309110164642334,
+          "failure_type": "false_positive"
+        },
+        {
+          "sample_id": "fakeddit_real_015",
+          "true_label": 0,
+          "pred_label": 1,
+          "confidence": 0.7353541851043701,
+          "failure_type": "false_positive"
+        },
+        {
+          "sample_id": "fakeddit_real_016",
+          "true_label": 0,
+          "pred_label": 1,
+          "confidence": 0.8075816035270691,
+          "failure_type": "false_positive"
+        },
+        {
+          "sample_id": "fakeddit_real_017",
+          "true_label": 0,
+          "pred_label": 1,
+          "confidence": 0.7407047152519226,
+          "failure_type": "false_positive"
+        },
+        {
+          "sample_id": "fakeddit_real_018",
+          "true_label": 0,
+          "pred_label": 1,
+          "confidence": 0.7653548717498779,
+          "failure_type": "false_positive"
+        },
+        {
+          "sample_id": "fakeddit_real_019",
+          "true_label": 0,
+          "pred_label": 1,
+          "confidence": 0.8095153570175171,
+          "failure_type": "false_positive"
+        },
+        {
+          "sample_id": "fakeddit_real_020",
+          "true_label": 0,
+          "pred_label": 1,
+          "confidence": 0.7441480159759521,
+          "failure_type": "false_positive"
+        },
+        {
+          "sample_id": "fakeddit_real_021",
+          "true_label": 0,
+          "pred_label": 1,
+          "confidence": 0.8144417405128479,
+          "failure_type": "false_positive"
+        },
+        {
+          "sample_id": "fakeddit_real_022",
+          "true_label": 0,
+          "pred_label": 1,
+          "confidence": 0.7624648809432983,
+          "failure_type": "false_positive"
+        },
+        {
+          "sample_id": "fakeddit_real_023",
+          "true_label": 0,
+          "pred_label": 1,
+          "confidence": 0.7568286061286926,
+          "failure_type": "false_positive"
+        },
+        {
+          "sample_id": "fakeddit_real_024",
+          "true_label": 0,
+          "pred_label": 1,
+          "confidence": 0.6971039175987244,
+          "failure_type": "false_positive"
+        },
+        {
+          "sample_id": "fakeddit_real_025",
+          "true_label": 0,
+          "pred_label": 1,
+          "confidence": 0.7859764695167542,
+          "failure_type": "false_positive"
+        },
+        {
+          "sample_id": "fakeddit_real_026",
+          "true_label": 0,
+          "pred_label": 1,
+          "confidence": 0.6785171627998352,
+          "failure_type": "false_positive"
+        },
+        {
+          "sample_id": "fakeddit_real_027",
+          "true_label": 0,
+          "pred_label": 1,
+          "confidence": 0.7291228771209717,
+          "failure_type": "false_positive"
+        },
+        {
+          "sample_id": "fakeddit_real_028",
+          "true_label": 0,
+          "pred_label": 1,
+          "confidence": 0.7812225818634033,
+          "failure_type": "false_positive"
+        },
+        {
+          "sample_id": "fakeddit_real_029",
+          "true_label": 0,
+          "pred_label": 1,
+          "confidence": 0.6782257556915283,
+          "failure_type": "false_positive"
+        },
+        {
+          "sample_id": "fakeddit_real_030",
+          "true_label": 0,
+          "pred_label": 1,
+          "confidence": 0.7474812269210815,
+          "failure_type": "false_positive"
+        }
+      ]
+    },
+    "fakeddit_concat": {
+      "experiment_id": "EXP_FAKEDDIT_CONCAT_001",
+      "model_name": "TruthLens Concatenation Fusion",
+      "benchmark": "Fakeddit (External)",
+      "modality": "text+visual",
+      "sample_count": 60,
+      "status": "EVALUATED",
+      "metrics": {
+        "sample_count": 60,
+        "accuracy": 0.5167,
+        "precision": 0.5085,
+        "recall": 1.0,
+        "f1": 0.6742,
+        "roc_auc": 0.4589,
+        "pr_auc": 0.5018,
+        "confusion_matrix": {
+          "matrix": [
+            [
+              1,
+              29
+            ],
+            [
+              0,
+              30
+            ]
+          ],
+          "tp": 30,
+          "fp": 29,
+          "fn": 0,
+          "tn": 1
+        },
+        "class_metrics": {
+          "REAL (Class 0)": {
+            "precision": 1.0,
+            "recall": 0.0333,
+            "f1": 0.0645,
+            "support": 30
+          },
+          "FAKE (Class 1)": {
+            "precision": 0.5085,
+            "recall": 1.0,
+            "f1": 0.6742,
+            "support": 30
+          }
+        },
+        "support": {
+          "real": 30,
+          "fake": 30,
+          "total": 60
+        }
+      },
+      "domain_shift": {
+        "in_domain_f1": 1.0,
+        "external_f1": 0.6742,
+        "delta_f1": -0.3258,
+        "in_domain_acc": 1.0,
+        "external_acc": 0.5167,
+        "delta_acc": -0.48329999999999995
+      },
+      "failures": [
+        {
+          "sample_id": "fakeddit_real_001",
+          "true_label": 0,
+          "pred_label": 1,
+          "confidence": 0.774398148059845,
+          "text": "israeli nurse breastfeeds palestinian baby after mom is critically injured",
+          "failure_type": "false_positive"
+        },
+        {
+          "sample_id": "fakeddit_real_002",
+          "true_label": 0,
+          "pred_label": 1,
+          "confidence": 0.7358989715576172,
+          "text": "this pink sign i just saw",
+          "failure_type": "false_positive"
+        },
+        {
+          "sample_id": "fakeddit_real_003",
+          "true_label": 0,
+          "pred_label": 1,
+          "confidence": 0.7059150338172913,
+          "text": "starting her own business at latika chakravarty is proof that there is no expiry date for realizing your dreams",
+          "failure_type": "false_positive"
+        },
+        {
+          "sample_id": "fakeddit_real_004",
+          "true_label": 0,
+          "pred_label": 1,
+          "confidence": 0.6992619633674622,
+          "text": "while reading during my cold i coughed and some spit landed in my book on the perfect word",
+          "failure_type": "false_positive"
+        },
+        {
+          "sample_id": "fakeddit_real_005",
+          "true_label": 0,
+          "pred_label": 1,
+          "confidence": 0.7377347946166992,
+          "text": "this rainbow coming out of our dumpster",
+          "failure_type": "false_positive"
+        },
+        {
+          "sample_id": "fakeddit_real_006",
+          "true_label": 0,
+          "pred_label": 1,
+          "confidence": 0.7995790243148804,
+          "text": "us election donald trump splits the republican party",
+          "failure_type": "false_positive"
+        },
+        {
+          "sample_id": "fakeddit_real_007",
+          "true_label": 0,
+          "pred_label": 1,
+          "confidence": 0.704865574836731,
+          "text": "moss growing with artificial lights on roman ruins from the st century feet below the surface",
+          "failure_type": "false_positive"
+        },
+        {
+          "sample_id": "fakeddit_real_008",
+          "true_label": 0,
+          "pred_label": 1,
+          "confidence": 0.7661136388778687,
+          "text": "a fox sitting down credit goes to ureaditonreddit",
+          "failure_type": "false_positive"
+        },
+        {
+          "sample_id": "fakeddit_real_009",
+          "true_label": 0,
+          "pred_label": 1,
+          "confidence": 0.6790168881416321,
+          "text": "pumamountain lion caught in mid jump",
+          "failure_type": "false_positive"
+        },
+        {
+          "sample_id": "fakeddit_real_011",
+          "true_label": 0,
+          "pred_label": 1,
+          "confidence": 0.8087531924247742,
+          "text": "a hanoi policemans glare",
+          "failure_type": "false_positive"
+        },
+        {
+          "sample_id": "fakeddit_real_012",
+          "true_label": 0,
+          "pred_label": 1,
+          "confidence": 0.7651152014732361,
+          "text": "years after parachuting into normandy wwii vet plans to jump again",
+          "failure_type": "false_positive"
+        },
+        {
+          "sample_id": "fakeddit_real_013",
+          "true_label": 0,
+          "pred_label": 1,
+          "confidence": 0.8546412587165833,
+          "text": "lowell police urge shovelwielding residents not to challenge snowplows",
+          "failure_type": "false_positive"
+        },
+        {
+          "sample_id": "fakeddit_real_014",
+          "true_label": 0,
+          "pred_label": 1,
+          "confidence": 0.6875786185264587,
+          "text": "this manhole cover looks happy",
+          "failure_type": "false_positive"
+        },
+        {
+          "sample_id": "fakeddit_real_015",
+          "true_label": 0,
+          "pred_label": 1,
+          "confidence": 0.8361600041389465,
+          "text": "japanese police arrest yearold ninja thief suspect",
+          "failure_type": "false_positive"
+        },
+        {
+          "sample_id": "fakeddit_real_016",
+          "true_label": 0,
+          "pred_label": 1,
+          "confidence": 0.7855785489082336,
+          "text": "onion inception",
+          "failure_type": "false_positive"
+        },
+        {
+          "sample_id": "fakeddit_real_017",
+          "true_label": 0,
+          "pred_label": 1,
+          "confidence": 0.5117048621177673,
+          "text": "breast cancer drug that can extend lives approved for the nhs",
+          "failure_type": "false_positive"
+        },
+        {
+          "sample_id": "fakeddit_real_018",
+          "true_label": 0,
+          "pred_label": 1,
+          "confidence": 0.601859986782074,
+          "text": "the shadow of multifocal lenses",
+          "failure_type": "false_positive"
+        },
+        {
+          "sample_id": "fakeddit_real_019",
+          "true_label": 0,
+          "pred_label": 1,
+          "confidence": 0.7720179557800293,
+          "text": "scientists say smelling farts prevents cancer",
+          "failure_type": "false_positive"
+        },
+        {
+          "sample_id": "fakeddit_real_020",
+          "true_label": 0,
+          "pred_label": 1,
+          "confidence": 0.5321101546287537,
+          "text": "a yearold guy is walking across all seven continents with his dog",
+          "failure_type": "false_positive"
+        },
+        {
+          "sample_id": "fakeddit_real_021",
+          "true_label": 0,
+          "pred_label": 1,
+          "confidence": 0.7738968133926392,
+          "text": "this alcoholic bottle has a magnifying glass so you can see the name",
+          "failure_type": "false_positive"
+        },
+        {
+          "sample_id": "fakeddit_real_022",
+          "true_label": 0,
+          "pred_label": 1,
+          "confidence": 0.6811807155609131,
+          "text": "creepy masochistic kid from rwtf",
+          "failure_type": "false_positive"
+        },
+        {
+          "sample_id": "fakeddit_real_023",
+          "true_label": 0,
+          "pred_label": 1,
+          "confidence": 0.5829067230224609,
+          "text": "this tree that grew around a metal fence",
+          "failure_type": "false_positive"
+        },
+        {
+          "sample_id": "fakeddit_real_024",
+          "true_label": 0,
+          "pred_label": 1,
+          "confidence": 0.8450116515159607,
+          "text": "my so handwriting looks like a font",
+          "failure_type": "false_positive"
+        },
+        {
+          "sample_id": "fakeddit_real_025",
+          "true_label": 0,
+          "pred_label": 1,
+          "confidence": 0.7960776090621948,
+          "text": "the crouching hazmat walk",
+          "failure_type": "false_positive"
+        },
+        {
+          "sample_id": "fakeddit_real_026",
+          "true_label": 0,
+          "pred_label": 1,
+          "confidence": 0.7705504298210144,
+          "text": "cow shot dead by police in newfield drive in carlisle",
+          "failure_type": "false_positive"
+        },
+        {
+          "sample_id": "fakeddit_real_027",
+          "true_label": 0,
+          "pred_label": 1,
+          "confidence": 0.6944860219955444,
+          "text": "former world chess champion vishy anand welcomed at the delhi airport",
+          "failure_type": "false_positive"
+        },
+        {
+          "sample_id": "fakeddit_real_028",
+          "true_label": 0,
+          "pred_label": 1,
+          "confidence": 0.6913784146308899,
+          "text": "my uber has vomit bags",
+          "failure_type": "false_positive"
+        },
+        {
+          "sample_id": "fakeddit_real_029",
+          "true_label": 0,
+          "pred_label": 1,
+          "confidence": 0.777434766292572,
+          "text": "a san francisco radio station has been playing nellys hot in herre for straight hours",
+          "failure_type": "false_positive"
+        },
+        {
+          "sample_id": "fakeddit_real_030",
+          "true_label": 0,
+          "pred_label": 1,
+          "confidence": 0.720743715763092,
+          "text": "google rewarded over to the guy who bought googlecom for and he donated it all to charity",
+          "failure_type": "false_positive"
+        }
+      ]
+    },
+    "fakeddit_cross_attention": {
+      "experiment_id": "EXP_FAKEDDIT_CA_001",
+      "model_name": "TruthLens Bidirectional Cross-Attention",
+      "benchmark": "Fakeddit (External)",
+      "modality": "text+visual",
+      "sample_count": 60,
+      "status": "EVALUATED",
+      "metrics": {
+        "sample_count": 60,
+        "accuracy": 0.4667,
+        "precision": 0.4815,
+        "recall": 0.8667,
+        "f1": 0.619,
+        "roc_auc": 0.3789,
+        "pr_auc": 0.4116,
+        "confusion_matrix": {
+          "matrix": [
+            [
+              2,
+              28
+            ],
+            [
+              4,
+              26
+            ]
+          ],
+          "tp": 26,
+          "fp": 28,
+          "fn": 4,
+          "tn": 2
+        },
+        "class_metrics": {
+          "REAL (Class 0)": {
+            "precision": 0.3333,
+            "recall": 0.0667,
+            "f1": 0.1111,
+            "support": 30
+          },
+          "FAKE (Class 1)": {
+            "precision": 0.4815,
+            "recall": 0.8667,
+            "f1": 0.619,
+            "support": 30
+          }
+        },
+        "support": {
+          "real": 30,
+          "fake": 30,
+          "total": 60
+        }
+      },
+      "domain_shift": {
+        "in_domain_f1": 1.0,
+        "external_f1": 0.619,
+        "delta_f1": -0.381,
+        "in_domain_acc": 1.0,
+        "external_acc": 0.4667,
+        "delta_acc": -0.5333
+      },
+      "failures": [
+        {
+          "sample_id": "fakeddit_fake_001",
+          "true_label": 1,
+          "pred_label": 0,
+          "confidence": 0.6344440579414368,
+          "text": "this one episode of game of thrones just won emmys",
+          "failure_type": "false_negative"
+        },
+        {
+          "sample_id": "fakeddit_real_001",
+          "true_label": 0,
+          "pred_label": 1,
+          "confidence": 0.8285935521125793,
+          "text": "israeli nurse breastfeeds palestinian baby after mom is critically injured",
+          "failure_type": "false_positive"
+        },
+        {
+          "sample_id": "fakeddit_real_002",
+          "true_label": 0,
+          "pred_label": 1,
+          "confidence": 0.7375330328941345,
+          "text": "this pink sign i just saw",
+          "failure_type": "false_positive"
+        },
+        {
+          "sample_id": "fakeddit_real_003",
+          "true_label": 0,
+          "pred_label": 1,
+          "confidence": 0.5650261640548706,
+          "text": "starting her own business at latika chakravarty is proof that there is no expiry date for realizing your dreams",
+          "failure_type": "false_positive"
+        },
+        {
+          "sample_id": "fakeddit_real_004",
+          "true_label": 0,
+          "pred_label": 1,
+          "confidence": 0.7641106247901917,
+          "text": "while reading during my cold i coughed and some spit landed in my book on the perfect word",
+          "failure_type": "false_positive"
+        },
+        {
+          "sample_id": "fakeddit_real_005",
+          "true_label": 0,
+          "pred_label": 1,
+          "confidence": 0.5661539435386658,
+          "text": "this rainbow coming out of our dumpster",
+          "failure_type": "false_positive"
+        },
+        {
+          "sample_id": "fakeddit_fake_017",
+          "true_label": 1,
+          "pred_label": 0,
+          "confidence": 0.5575655400753021,
+          "text": "reddit ceo visits china",
+          "failure_type": "false_negative"
+        },
+        {
+          "sample_id": "fakeddit_fake_022",
+          "true_label": 1,
+          "pred_label": 0,
+          "confidence": 0.6008041203022003,
+          "text": "quiz has it been an honor to serve with me",
+          "failure_type": "false_negative"
+        },
+        {
+          "sample_id": "fakeddit_real_006",
+          "true_label": 0,
+          "pred_label": 1,
+          "confidence": 0.5364343523979187,
+          "text": "us election donald trump splits the republican party",
+          "failure_type": "false_positive"
+        },
+        {
+          "sample_id": "fakeddit_real_007",
+          "true_label": 0,
+          "pred_label": 1,
+          "confidence": 0.7725367546081543,
+          "text": "moss growing with artificial lights on roman ruins from the st century feet below the surface",
+          "failure_type": "false_positive"
+        },
+        {
+          "sample_id": "fakeddit_fake_030",
+          "true_label": 1,
+          "pred_label": 0,
+          "confidence": 0.5012537837028503,
+          "text": "usa puts trade sanctions on north korea after kim refuses communication with the un",
+          "failure_type": "false_negative"
+        },
+        {
+          "sample_id": "fakeddit_real_008",
+          "true_label": 0,
+          "pred_label": 1,
+          "confidence": 0.6377342939376831,
+          "text": "a fox sitting down credit goes to ureaditonreddit",
+          "failure_type": "false_positive"
+        },
+        {
+          "sample_id": "fakeddit_real_009",
+          "true_label": 0,
+          "pred_label": 1,
+          "confidence": 0.6923426389694214,
+          "text": "pumamountain lion caught in mid jump",
+          "failure_type": "false_positive"
+        },
+        {
+          "sample_id": "fakeddit_real_011",
+          "true_label": 0,
+          "pred_label": 1,
+          "confidence": 0.7532233595848083,
+          "text": "a hanoi policemans glare",
+          "failure_type": "false_positive"
+        },
+        {
+          "sample_id": "fakeddit_real_012",
+          "true_label": 0,
+          "pred_label": 1,
+          "confidence": 0.6287451982498169,
+          "text": "years after parachuting into normandy wwii vet plans to jump again",
+          "failure_type": "false_positive"
+        },
+        {
+          "sample_id": "fakeddit_real_013",
+          "true_label": 0,
+          "pred_label": 1,
+          "confidence": 0.6017300486564636,
+          "text": "lowell police urge shovelwielding residents not to challenge snowplows",
+          "failure_type": "false_positive"
+        },
+        {
+          "sample_id": "fakeddit_real_014",
+          "true_label": 0,
+          "pred_label": 1,
+          "confidence": 0.7461251020431519,
+          "text": "this manhole cover looks happy",
+          "failure_type": "false_positive"
+        },
+        {
+          "sample_id": "fakeddit_real_015",
+          "true_label": 0,
+          "pred_label": 1,
+          "confidence": 0.7928162813186646,
+          "text": "japanese police arrest yearold ninja thief suspect",
+          "failure_type": "false_positive"
+        },
+        {
+          "sample_id": "fakeddit_real_016",
+          "true_label": 0,
+          "pred_label": 1,
+          "confidence": 0.5353435277938843,
+          "text": "onion inception",
+          "failure_type": "false_positive"
+        },
+        {
+          "sample_id": "fakeddit_real_017",
+          "true_label": 0,
+          "pred_label": 1,
+          "confidence": 0.6785447001457214,
+          "text": "breast cancer drug that can extend lives approved for the nhs",
+          "failure_type": "false_positive"
+        },
+        {
+          "sample_id": "fakeddit_real_018",
+          "true_label": 0,
+          "pred_label": 1,
+          "confidence": 0.7783608436584473,
+          "text": "the shadow of multifocal lenses",
+          "failure_type": "false_positive"
+        },
+        {
+          "sample_id": "fakeddit_real_019",
+          "true_label": 0,
+          "pred_label": 1,
+          "confidence": 0.7264811992645264,
+          "text": "scientists say smelling farts prevents cancer",
+          "failure_type": "false_positive"
+        },
+        {
+          "sample_id": "fakeddit_real_021",
+          "true_label": 0,
+          "pred_label": 1,
+          "confidence": 0.8813353180885315,
+          "text": "this alcoholic bottle has a magnifying glass so you can see the name",
+          "failure_type": "false_positive"
+        },
+        {
+          "sample_id": "fakeddit_real_022",
+          "true_label": 0,
+          "pred_label": 1,
+          "confidence": 0.6882293224334717,
+          "text": "creepy masochistic kid from rwtf",
+          "failure_type": "false_positive"
+        },
+        {
+          "sample_id": "fakeddit_real_023",
+          "true_label": 0,
+          "pred_label": 1,
+          "confidence": 0.6703421473503113,
+          "text": "this tree that grew around a metal fence",
+          "failure_type": "false_positive"
+        },
+        {
+          "sample_id": "fakeddit_real_024",
+          "true_label": 0,
+          "pred_label": 1,
+          "confidence": 0.7909990549087524,
+          "text": "my so handwriting looks like a font",
+          "failure_type": "false_positive"
+        },
+        {
+          "sample_id": "fakeddit_real_025",
+          "true_label": 0,
+          "pred_label": 1,
+          "confidence": 0.657024085521698,
+          "text": "the crouching hazmat walk",
+          "failure_type": "false_positive"
+        },
+        {
+          "sample_id": "fakeddit_real_026",
+          "true_label": 0,
+          "pred_label": 1,
+          "confidence": 0.6371203660964966,
+          "text": "cow shot dead by police in newfield drive in carlisle",
+          "failure_type": "false_positive"
+        },
+        {
+          "sample_id": "fakeddit_real_027",
+          "true_label": 0,
+          "pred_label": 1,
+          "confidence": 0.5506824254989624,
+          "text": "former world chess champion vishy anand welcomed at the delhi airport",
+          "failure_type": "false_positive"
+        },
+        {
+          "sample_id": "fakeddit_real_028",
+          "true_label": 0,
+          "pred_label": 1,
+          "confidence": 0.7997357845306396,
+          "text": "my uber has vomit bags",
+          "failure_type": "false_positive"
+        },
+        {
+          "sample_id": "fakeddit_real_029",
+          "true_label": 0,
+          "pred_label": 1,
+          "confidence": 0.6886042356491089,
+          "text": "a san francisco radio station has been playing nellys hot in herre for straight hours",
+          "failure_type": "false_positive"
+        },
+        {
+          "sample_id": "fakeddit_real_030",
+          "true_label": 0,
+          "pred_label": 1,
+          "confidence": 0.7652202248573303,
+          "text": "google rewarded over to the guy who bought googlecom for and he donated it all to charity",
+          "failure_type": "false_positive"
+        }
+      ]
+    }
+  },
+  "audio": {
+    "experiment_id": "EXP_AUDIO_GEN_001",
+    "model_name": "TruthLens Audio Projection Branch",
+    "benchmark": "Deepfake Audio Detection (v4, ElevenLabs/Hume vs Human)",
+    "modality": "audio",
+    "sample_count": 40,
+    "status": "EVALUATED",
+    "metrics": {
+      "sample_count": 40,
+      "accuracy": 0.5,
+      "precision": 0.5,
+      "recall": 1.0,
+      "f1": 0.6667,
+      "roc_auc": 0.81,
+      "pr_auc": 0.817,
+      "confusion_matrix": {
+        "matrix": [
+          [
+            0,
+            20
+          ],
+          [
+            0,
+            20
+          ]
+        ],
+        "tp": 20,
+        "fp": 20,
+        "fn": 0,
+        "tn": 0
+      },
+      "class_metrics": {
+        "REAL (Class 0)": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 20
+        },
+        "FAKE (Class 1)": {
+          "precision": 0.5,
+          "recall": 1.0,
+          "f1": 0.6667,
+          "support": 20
+        }
+      },
+      "support": {
+        "real": 20,
+        "fake": 20,
+        "total": 40
+      }
+    },
+    "failures": [
+      {
+        "sample_id": "audio_real_001",
+        "true_label": 0,
+        "pred_label": 1,
+        "confidence": 0.5398763418197632,
+        "audio_path": "/Users/divakarmaurya/nlp_project/experiments/external_dataset/data/audio/audio_real_001.wav",
+        "failure_type": "false_positive"
+      },
+      {
+        "sample_id": "audio_real_002",
+        "true_label": 0,
+        "pred_label": 1,
+        "confidence": 0.5406619310379028,
+        "audio_path": "/Users/divakarmaurya/nlp_project/experiments/external_dataset/data/audio/audio_real_002.wav",
+        "failure_type": "false_positive"
+      },
+      {
+        "sample_id": "audio_real_003",
+        "true_label": 0,
+        "pred_label": 1,
+        "confidence": 0.540411114692688,
+        "audio_path": "/Users/divakarmaurya/nlp_project/experiments/external_dataset/data/audio/audio_real_003.wav",
+        "failure_type": "false_positive"
+      },
+      {
+        "sample_id": "audio_real_004",
+        "true_label": 0,
+        "pred_label": 1,
+        "confidence": 0.5408705472946167,
+        "audio_path": "/Users/divakarmaurya/nlp_project/experiments/external_dataset/data/audio/audio_real_004.wav",
+        "failure_type": "false_positive"
+      },
+      {
+        "sample_id": "audio_real_005",
+        "true_label": 0,
+        "pred_label": 1,
+        "confidence": 0.5402541160583496,
+        "audio_path": "/Users/divakarmaurya/nlp_project/experiments/external_dataset/data/audio/audio_real_005.wav",
+        "failure_type": "false_positive"
+      },
+      {
+        "sample_id": "audio_real_006",
+        "true_label": 0,
+        "pred_label": 1,
+        "confidence": 0.541079044342041,
+        "audio_path": "/Users/divakarmaurya/nlp_project/experiments/external_dataset/data/audio/audio_real_006.wav",
+        "failure_type": "false_positive"
+      },
+      {
+        "sample_id": "audio_real_007",
+        "true_label": 0,
+        "pred_label": 1,
+        "confidence": 0.5403081178665161,
+        "audio_path": "/Users/divakarmaurya/nlp_project/experiments/external_dataset/data/audio/audio_real_007.wav",
+        "failure_type": "false_positive"
+      },
+      {
+        "sample_id": "audio_real_008",
+        "true_label": 0,
+        "pred_label": 1,
+        "confidence": 0.5401399731636047,
+        "audio_path": "/Users/divakarmaurya/nlp_project/experiments/external_dataset/data/audio/audio_real_008.wav",
+        "failure_type": "false_positive"
+      },
+      {
+        "sample_id": "audio_real_009",
+        "true_label": 0,
+        "pred_label": 1,
+        "confidence": 0.5414019823074341,
+        "audio_path": "/Users/divakarmaurya/nlp_project/experiments/external_dataset/data/audio/audio_real_009.wav",
+        "failure_type": "false_positive"
+      },
+      {
+        "sample_id": "audio_real_010",
+        "true_label": 0,
+        "pred_label": 1,
+        "confidence": 0.5400210618972778,
+        "audio_path": "/Users/divakarmaurya/nlp_project/experiments/external_dataset/data/audio/audio_real_010.wav",
+        "failure_type": "false_positive"
+      },
+      {
+        "sample_id": "audio_real_011",
+        "true_label": 0,
+        "pred_label": 1,
+        "confidence": 0.5405115485191345,
+        "audio_path": "/Users/divakarmaurya/nlp_project/experiments/external_dataset/data/audio/audio_real_011.wav",
+        "failure_type": "false_positive"
+      },
+      {
+        "sample_id": "audio_real_012",
+        "true_label": 0,
+        "pred_label": 1,
+        "confidence": 0.5404741764068604,
+        "audio_path": "/Users/divakarmaurya/nlp_project/experiments/external_dataset/data/audio/audio_real_012.wav",
+        "failure_type": "false_positive"
+      },
+      {
+        "sample_id": "audio_real_013",
+        "true_label": 0,
+        "pred_label": 1,
+        "confidence": 0.5410324335098267,
+        "audio_path": "/Users/divakarmaurya/nlp_project/experiments/external_dataset/data/audio/audio_real_013.wav",
+        "failure_type": "false_positive"
+      },
+      {
+        "sample_id": "audio_real_014",
+        "true_label": 0,
+        "pred_label": 1,
+        "confidence": 0.5403186678886414,
+        "audio_path": "/Users/divakarmaurya/nlp_project/experiments/external_dataset/data/audio/audio_real_014.wav",
+        "failure_type": "false_positive"
+      },
+      {
+        "sample_id": "audio_real_015",
+        "true_label": 0,
+        "pred_label": 1,
+        "confidence": 0.540032148361206,
+        "audio_path": "/Users/divakarmaurya/nlp_project/experiments/external_dataset/data/audio/audio_real_015.wav",
+        "failure_type": "false_positive"
+      },
+      {
+        "sample_id": "audio_real_016",
+        "true_label": 0,
+        "pred_label": 1,
+        "confidence": 0.5406907796859741,
+        "audio_path": "/Users/divakarmaurya/nlp_project/experiments/external_dataset/data/audio/audio_real_016.wav",
+        "failure_type": "false_positive"
+      },
+      {
+        "sample_id": "audio_real_017",
+        "true_label": 0,
+        "pred_label": 1,
+        "confidence": 0.5403600931167603,
+        "audio_path": "/Users/divakarmaurya/nlp_project/experiments/external_dataset/data/audio/audio_real_017.wav",
+        "failure_type": "false_positive"
+      },
+      {
+        "sample_id": "audio_real_018",
+        "true_label": 0,
+        "pred_label": 1,
+        "confidence": 0.539821982383728,
+        "audio_path": "/Users/divakarmaurya/nlp_project/experiments/external_dataset/data/audio/audio_real_018.wav",
+        "failure_type": "false_positive"
+      },
+      {
+        "sample_id": "audio_real_019",
+        "true_label": 0,
+        "pred_label": 1,
+        "confidence": 0.5408070683479309,
+        "audio_path": "/Users/divakarmaurya/nlp_project/experiments/external_dataset/data/audio/audio_real_019.wav",
+        "failure_type": "false_positive"
+      },
+      {
+        "sample_id": "audio_real_020",
+        "true_label": 0,
+        "pred_label": 1,
+        "confidence": 0.5399593114852905,
+        "audio_path": "/Users/divakarmaurya/nlp_project/experiments/external_dataset/data/audio/audio_real_020.wav",
+        "failure_type": "false_positive"
+      }
+    ]
+  },
+  "video": {
+    "experiment_id": "EXP_VIDEO_GEN_001",
+    "model_name": "TruthLens Video Temporal Feature Pooling",
+    "benchmark": "Generative Video Benchmark (Sora/Veo vs Real)",
+    "modality": "video",
+    "sample_count": 20,
+    "status": "EVALUATED",
+    "metrics": {
+      "sample_count": 20,
+      "accuracy": 0.5,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "roc_auc": 0.82,
+      "pr_auc": 0.8805,
+      "confusion_matrix": {
+        "matrix": [
+          [
+            10,
+            0
+          ],
+          [
+            10,
+            0
+          ]
+        ],
+        "tp": 0,
+        "fp": 0,
+        "fn": 10,
+        "tn": 10
+      },
+      "class_metrics": {
+        "REAL (Class 0)": {
+          "precision": 0.5,
+          "recall": 1.0,
+          "f1": 0.6667,
+          "support": 10
+        },
+        "FAKE (Class 1)": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 10
+        }
+      },
+      "support": {
+        "real": 10,
+        "fake": 10,
+        "total": 20
+      }
+    },
+    "failures": [
+      {
+        "sample_id": "video_fake_001",
+        "true_label": 1,
+        "pred_label": 0,
+        "confidence": 0.5628423690795898,
+        "video_path": "/Users/divakarmaurya/nlp_project/experiments/external_dataset/data/video/video_fake_001.mp4",
+        "failure_type": "false_negative"
+      },
+      {
+        "sample_id": "video_fake_002",
+        "true_label": 1,
+        "pred_label": 0,
+        "confidence": 0.5909314751625061,
+        "video_path": "/Users/divakarmaurya/nlp_project/experiments/external_dataset/data/video/video_fake_002.mp4",
+        "failure_type": "false_negative"
+      },
+      {
+        "sample_id": "video_fake_003",
+        "true_label": 1,
+        "pred_label": 0,
+        "confidence": 0.5742225050926208,
+        "video_path": "/Users/divakarmaurya/nlp_project/experiments/external_dataset/data/video/video_fake_003.mp4",
+        "failure_type": "false_negative"
+      },
+      {
+        "sample_id": "video_fake_004",
+        "true_label": 1,
+        "pred_label": 0,
+        "confidence": 0.5386455059051514,
+        "video_path": "/Users/divakarmaurya/nlp_project/experiments/external_dataset/data/video/video_fake_004.mp4",
+        "failure_type": "false_negative"
+      },
+      {
+        "sample_id": "video_fake_005",
+        "true_label": 1,
+        "pred_label": 0,
+        "confidence": 0.5566690564155579,
+        "video_path": "/Users/divakarmaurya/nlp_project/experiments/external_dataset/data/video/video_fake_005.mp4",
+        "failure_type": "false_negative"
+      },
+      {
+        "sample_id": "video_fake_006",
+        "true_label": 1,
+        "pred_label": 0,
+        "confidence": 0.5725836455821991,
+        "video_path": "/Users/divakarmaurya/nlp_project/experiments/external_dataset/data/video/video_fake_006.mp4",
+        "failure_type": "false_negative"
+      },
+      {
+        "sample_id": "video_fake_007",
+        "true_label": 1,
+        "pred_label": 0,
+        "confidence": 0.5598788261413574,
+        "video_path": "/Users/divakarmaurya/nlp_project/experiments/external_dataset/data/video/video_fake_007.mp4",
+        "failure_type": "false_negative"
+      },
+      {
+        "sample_id": "video_fake_008",
+        "true_label": 1,
+        "pred_label": 0,
+        "confidence": 0.5898407101631165,
+        "video_path": "/Users/divakarmaurya/nlp_project/experiments/external_dataset/data/video/video_fake_008.mp4",
+        "failure_type": "false_negative"
+      },
+      {
+        "sample_id": "video_fake_009",
+        "true_label": 1,
+        "pred_label": 0,
+        "confidence": 0.5631983578205109,
+        "video_path": "/Users/divakarmaurya/nlp_project/experiments/external_dataset/data/video/video_fake_009.mp4",
+        "failure_type": "false_negative"
+      },
+      {
+        "sample_id": "video_fake_010",
+        "true_label": 1,
+        "pred_label": 0,
+        "confidence": 0.5519654154777527,
+        "video_path": "/Users/divakarmaurya/nlp_project/experiments/external_dataset/data/video/video_fake_010.mp4",
+        "failure_type": "false_negative"
+      }
+    ]
+  },
+  "fakeavceleb": {
+    "experiment_id": "EXP_FAKEAVCELEB_001",
+    "model_name": "TruthLens Tri-modal Architecture",
+    "benchmark": "FakeAVCeleb (Audio-Video Deepfakes)",
+    "modality": "video+audio",
+    "status": "NOT AVAILABLE",
+    "reason": "Official FakeAVCeleb requires signed academic Google Request Form approval. Public HuggingFace mirrors contain metadata only (raw video bytes: None). In compliance with TruthLens Scientific Integrity Guidelines, this benchmark is transparently documented as restricted/unavailable rather than fabricating access."
+  }
+}
