@@ -1,0 +1,14 @@
+{
+  "experiment_id": "EXP_PHASE6_TEXT_001",
+  "model": "DistilBERT Domain Adapted",
+  "epochs": 5,
+  "batch_size": 8,
+  "learning_rate": 3e-05,
+  "seed": 42,
+  "device": "mps",
+  "train_samples": 524,
+  "val_samples": 147,
+  "checkpoint_path": "/Users/divakarmaurya/nlp_project/models/phase6/text_domain_adapted.pt",
+  "best_val_loss": 0.4491,
+  "best_val_acc": 0.7823
+}

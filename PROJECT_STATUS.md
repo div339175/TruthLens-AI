@@ -29,7 +29,8 @@
 | **Training Pipeline** |  DONE | `train_baseline.py` and `train_multimodal.py` supporting text, visual, and audio parameter gradient updates |
 | **Experimental Evaluation & Ablation (Phase 4)** |  DONE | Reproducible evaluation framework (`experiments/`), dataset leakage audit, fusion comparison (Concat vs Cross-Attention), modality ablation, 15 difficult cases error analysis, ROC/PR curves & confusion matrix generation |
 | **Real-World Benchmark Expansion & Generalization (Phase 5)** |  DONE | Ingestion of 180 external benchmark samples (`external_dataset_manifest.csv`), Fakeddit text+image generalization, Deepfake Audio v4 benchmark (ROC-AUC: 0.8100), Generative Video Sora benchmark (ROC-AUC: 0.8200), 4-condition Semantic Mismatch study, and 89 mined failure cases |
-| **Test Suite** |  DONE | 62 automated tests in `tests/` covering preprocessing, models, fusion, video temporal pooling, audio branch & backprop, history DB, API endpoints, Phase 4 evaluation metrics, and Phase 5 generalization framework |
+| **Model Improvement, Alignment & Calibration (Phase 6)** |  DONE | Rehearsal domain adaptation (+23.34% Fakeddit acc, 0% forgetting), InfoNCE contrastive alignment ($\lambda=0.05$, 100% C2 mismatch acc), Temperature scaling ($T^*=1.4628$, ECE drop by up to 7.05%), 6-config ablation study ($N=276$), 7 publication figures, and 17 new unit tests |
+| **Test Suite** |  DONE | 79 automated tests in `tests/` covering preprocessing, models, fusion, video temporal pooling, audio branch & backprop, history DB, API endpoints, Phase 4 evaluation metrics, Phase 5 generalization, and Phase 6 improvements (contrastive, calibration, adaptation) |
 
 ---
 

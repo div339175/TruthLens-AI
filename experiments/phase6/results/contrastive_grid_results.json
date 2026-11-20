@@ -1,0 +1,641 @@
+{
+  "best_lambda": 0.05,
+  "best_lambda_mismatch_acc": 0.6,
+  "runs": [
+    {
+      "lambda_val": 0.0,
+      "use_domain_adapted_text": false,
+      "checkpoint_path": "/Users/divakarmaurya/nlp_project/models/phase6/multimodal_contrastive_lambda0.00.pt",
+      "final_train_acc": 1.0,
+      "final_val_acc": 1.0,
+      "final_val_loss": 0.1179,
+      "history": [
+        {
+          "epoch": 1,
+          "train_cls_loss": 0.1456,
+          "train_cont_loss": 0.0,
+          "train_total_loss": 0.1456,
+          "train_acc": 1.0,
+          "val_loss": 0.1269,
+          "val_acc": 1.0
+        },
+        {
+          "epoch": 2,
+          "train_cls_loss": 0.1332,
+          "train_cont_loss": 0.0,
+          "train_total_loss": 0.1332,
+          "train_acc": 1.0,
+          "val_loss": 0.1229,
+          "val_acc": 1.0
+        },
+        {
+          "epoch": 3,
+          "train_cls_loss": 0.1274,
+          "train_cont_loss": 0.0,
+          "train_total_loss": 0.1274,
+          "train_acc": 1.0,
+          "val_loss": 0.1202,
+          "val_acc": 1.0
+        },
+        {
+          "epoch": 4,
+          "train_cls_loss": 0.1235,
+          "train_cont_loss": 0.0,
+          "train_total_loss": 0.1235,
+          "train_acc": 1.0,
+          "val_loss": 0.1186,
+          "val_acc": 1.0
+        },
+        {
+          "epoch": 5,
+          "train_cls_loss": 0.1231,
+          "train_cont_loss": 0.0,
+          "train_total_loss": 0.1231,
+          "train_acc": 1.0,
+          "val_loss": 0.1179,
+          "val_acc": 1.0
+        }
+      ],
+      "initial_mismatch": {
+        "overall_accuracy": 0.55,
+        "overall_f1": 0.7033,
+        "overall_roc_auc": 0.3807,
+        "mean_attention_entropy": 3.8916,
+        "conditions": {
+          "condition_1": {
+            "name": "Congruent Real",
+            "sample_count": 15,
+            "accuracy": 0.0667,
+            "mean_fake_prob": 0.6677,
+            "mean_entropy": 3.8916
+          },
+          "condition_2": {
+            "name": "Semantic Mismatch Fake (Fabricated Claim)",
+            "sample_count": 15,
+            "accuracy": 0.9333,
+            "mean_fake_prob": 0.6817,
+            "mean_entropy": 3.8916
+          },
+          "condition_3": {
+            "name": "Swapped Context (Mismatched Image)",
+            "sample_count": 15,
+            "accuracy": 0.8667,
+            "mean_fake_prob": 0.6838,
+            "mean_entropy": 3.8916
+          },
+          "condition_4": {
+            "name": "Unrelated Multimodal (False Connection)",
+            "sample_count": 15,
+            "accuracy": 0.3333,
+            "mean_fake_prob": 0.423,
+            "mean_entropy": 3.8916
+          }
+        }
+      },
+      "final_mismatch": {
+        "overall_accuracy": 0.5333,
+        "overall_f1": 0.6889,
+        "overall_roc_auc": 0.3393,
+        "mean_attention_entropy": 3.8915,
+        "conditions": {
+          "condition_1": {
+            "name": "Congruent Real",
+            "sample_count": 15,
+            "accuracy": 0.0667,
+            "mean_fake_prob": 0.7833,
+            "mean_entropy": 3.8916
+          },
+          "condition_2": {
+            "name": "Semantic Mismatch Fake (Fabricated Claim)",
+            "sample_count": 15,
+            "accuracy": 1.0,
+            "mean_fake_prob": 0.7842,
+            "mean_entropy": 3.8915
+          },
+          "condition_3": {
+            "name": "Swapped Context (Mismatched Image)",
+            "sample_count": 15,
+            "accuracy": 0.9333,
+            "mean_fake_prob": 0.7969,
+            "mean_entropy": 3.8915
+          },
+          "condition_4": {
+            "name": "Unrelated Multimodal (False Connection)",
+            "sample_count": 15,
+            "accuracy": 0.1333,
+            "mean_fake_prob": 0.3508,
+            "mean_entropy": 3.8915
+          }
+        }
+      }
+    },
+    {
+      "lambda_val": 0.05,
+      "use_domain_adapted_text": false,
+      "checkpoint_path": "/Users/divakarmaurya/nlp_project/models/phase6/multimodal_contrastive_lambda0.05.pt",
+      "final_train_acc": 1.0,
+      "final_val_acc": 1.0,
+      "final_val_loss": 0.1184,
+      "history": [
+        {
+          "epoch": 1,
+          "train_cls_loss": 0.1488,
+          "train_cont_loss": 2.7601,
+          "train_total_loss": 0.2868,
+          "train_acc": 1.0,
+          "val_loss": 0.1288,
+          "val_acc": 1.0
+        },
+        {
+          "epoch": 2,
+          "train_cls_loss": 0.1328,
+          "train_cont_loss": 2.551,
+          "train_total_loss": 0.2604,
+          "train_acc": 1.0,
+          "val_loss": 0.1232,
+          "val_acc": 1.0
+        },
+        {
+          "epoch": 3,
+          "train_cls_loss": 0.1284,
+          "train_cont_loss": 2.398,
+          "train_total_loss": 0.2483,
+          "train_acc": 1.0,
+          "val_loss": 0.1205,
+          "val_acc": 1.0
+        },
+        {
+          "epoch": 4,
+          "train_cls_loss": 0.1262,
+          "train_cont_loss": 2.255,
+          "train_total_loss": 0.239,
+          "train_acc": 1.0,
+          "val_loss": 0.1192,
+          "val_acc": 1.0
+        },
+        {
+          "epoch": 5,
+          "train_cls_loss": 0.1228,
+          "train_cont_loss": 2.1319,
+          "train_total_loss": 0.2294,
+          "train_acc": 1.0,
+          "val_loss": 0.1184,
+          "val_acc": 1.0
+        }
+      ],
+      "initial_mismatch": {
+        "overall_accuracy": 0.55,
+        "overall_f1": 0.7033,
+        "overall_roc_auc": 0.3807,
+        "mean_attention_entropy": 3.8916,
+        "conditions": {
+          "condition_1": {
+            "name": "Congruent Real",
+            "sample_count": 15,
+            "accuracy": 0.0667,
+            "mean_fake_prob": 0.6677,
+            "mean_entropy": 3.8916
+          },
+          "condition_2": {
+            "name": "Semantic Mismatch Fake (Fabricated Claim)",
+            "sample_count": 15,
+            "accuracy": 0.9333,
+            "mean_fake_prob": 0.6817,
+            "mean_entropy": 3.8916
+          },
+          "condition_3": {
+            "name": "Swapped Context (Mismatched Image)",
+            "sample_count": 15,
+            "accuracy": 0.8667,
+            "mean_fake_prob": 0.6838,
+            "mean_entropy": 3.8916
+          },
+          "condition_4": {
+            "name": "Unrelated Multimodal (False Connection)",
+            "sample_count": 15,
+            "accuracy": 0.3333,
+            "mean_fake_prob": 0.423,
+            "mean_entropy": 3.8916
+          }
+        }
+      },
+      "final_mismatch": {
+        "overall_accuracy": 0.6,
+        "overall_f1": 0.7447,
+        "overall_roc_auc": 0.3422,
+        "mean_attention_entropy": 3.8915,
+        "conditions": {
+          "condition_1": {
+            "name": "Congruent Real",
+            "sample_count": 15,
+            "accuracy": 0.0667,
+            "mean_fake_prob": 0.8285,
+            "mean_entropy": 3.8915
+          },
+          "condition_2": {
+            "name": "Semantic Mismatch Fake (Fabricated Claim)",
+            "sample_count": 15,
+            "accuracy": 1.0,
+            "mean_fake_prob": 0.8406,
+            "mean_entropy": 3.8915
+          },
+          "condition_3": {
+            "name": "Swapped Context (Mismatched Image)",
+            "sample_count": 15,
+            "accuracy": 1.0,
+            "mean_fake_prob": 0.8384,
+            "mean_entropy": 3.8915
+          },
+          "condition_4": {
+            "name": "Unrelated Multimodal (False Connection)",
+            "sample_count": 15,
+            "accuracy": 0.3333,
+            "mean_fake_prob": 0.4314,
+            "mean_entropy": 3.8915
+          }
+        }
+      }
+    },
+    {
+      "lambda_val": 0.1,
+      "use_domain_adapted_text": false,
+      "checkpoint_path": "/Users/divakarmaurya/nlp_project/models/phase6/multimodal_contrastive_lambda0.10.pt",
+      "final_train_acc": 1.0,
+      "final_val_acc": 1.0,
+      "final_val_loss": 0.1183,
+      "history": [
+        {
+          "epoch": 1,
+          "train_cls_loss": 0.1478,
+          "train_cont_loss": 2.7274,
+          "train_total_loss": 0.4206,
+          "train_acc": 1.0,
+          "val_loss": 0.1287,
+          "val_acc": 1.0
+        },
+        {
+          "epoch": 2,
+          "train_cls_loss": 0.1353,
+          "train_cont_loss": 2.4979,
+          "train_total_loss": 0.3851,
+          "train_acc": 1.0,
+          "val_loss": 0.1233,
+          "val_acc": 1.0
+        },
+        {
+          "epoch": 3,
+          "train_cls_loss": 0.1295,
+          "train_cont_loss": 2.3639,
+          "train_total_loss": 0.3659,
+          "train_acc": 1.0,
+          "val_loss": 0.1206,
+          "val_acc": 1.0
+        },
+        {
+          "epoch": 4,
+          "train_cls_loss": 0.1251,
+          "train_cont_loss": 2.0942,
+          "train_total_loss": 0.3345,
+          "train_acc": 1.0,
+          "val_loss": 0.1191,
+          "val_acc": 1.0
+        },
+        {
+          "epoch": 5,
+          "train_cls_loss": 0.1239,
+          "train_cont_loss": 2.018,
+          "train_total_loss": 0.3257,
+          "train_acc": 1.0,
+          "val_loss": 0.1183,
+          "val_acc": 1.0
+        }
+      ],
+      "initial_mismatch": {
+        "overall_accuracy": 0.55,
+        "overall_f1": 0.7033,
+        "overall_roc_auc": 0.3807,
+        "mean_attention_entropy": 3.8916,
+        "conditions": {
+          "condition_1": {
+            "name": "Congruent Real",
+            "sample_count": 15,
+            "accuracy": 0.0667,
+            "mean_fake_prob": 0.6677,
+            "mean_entropy": 3.8916
+          },
+          "condition_2": {
+            "name": "Semantic Mismatch Fake (Fabricated Claim)",
+            "sample_count": 15,
+            "accuracy": 0.9333,
+            "mean_fake_prob": 0.6817,
+            "mean_entropy": 3.8916
+          },
+          "condition_3": {
+            "name": "Swapped Context (Mismatched Image)",
+            "sample_count": 15,
+            "accuracy": 0.8667,
+            "mean_fake_prob": 0.6838,
+            "mean_entropy": 3.8916
+          },
+          "condition_4": {
+            "name": "Unrelated Multimodal (False Connection)",
+            "sample_count": 15,
+            "accuracy": 0.3333,
+            "mean_fake_prob": 0.423,
+            "mean_entropy": 3.8916
+          }
+        }
+      },
+      "final_mismatch": {
+        "overall_accuracy": 0.55,
+        "overall_f1": 0.7033,
+        "overall_roc_auc": 0.3452,
+        "mean_attention_entropy": 3.8915,
+        "conditions": {
+          "condition_1": {
+            "name": "Congruent Real",
+            "sample_count": 15,
+            "accuracy": 0.0667,
+            "mean_fake_prob": 0.7597,
+            "mean_entropy": 3.8915
+          },
+          "condition_2": {
+            "name": "Semantic Mismatch Fake (Fabricated Claim)",
+            "sample_count": 15,
+            "accuracy": 1.0,
+            "mean_fake_prob": 0.7587,
+            "mean_entropy": 3.8915
+          },
+          "condition_3": {
+            "name": "Swapped Context (Mismatched Image)",
+            "sample_count": 15,
+            "accuracy": 0.9333,
+            "mean_fake_prob": 0.7798,
+            "mean_entropy": 3.8915
+          },
+          "condition_4": {
+            "name": "Unrelated Multimodal (False Connection)",
+            "sample_count": 15,
+            "accuracy": 0.2,
+            "mean_fake_prob": 0.3499,
+            "mean_entropy": 3.8915
+          }
+        }
+      }
+    },
+    {
+      "lambda_val": 0.2,
+      "use_domain_adapted_text": false,
+      "checkpoint_path": "/Users/divakarmaurya/nlp_project/models/phase6/multimodal_contrastive_lambda0.20.pt",
+      "final_train_acc": 1.0,
+      "final_val_acc": 1.0,
+      "final_val_loss": 0.1183,
+      "history": [
+        {
+          "epoch": 1,
+          "train_cls_loss": 0.1437,
+          "train_cont_loss": 2.7078,
+          "train_total_loss": 0.6853,
+          "train_acc": 1.0,
+          "val_loss": 0.1289,
+          "val_acc": 1.0
+        },
+        {
+          "epoch": 2,
+          "train_cls_loss": 0.1367,
+          "train_cont_loss": 2.5314,
+          "train_total_loss": 0.643,
+          "train_acc": 1.0,
+          "val_loss": 0.1235,
+          "val_acc": 1.0
+        },
+        {
+          "epoch": 3,
+          "train_cls_loss": 0.1287,
+          "train_cont_loss": 2.298,
+          "train_total_loss": 0.5883,
+          "train_acc": 1.0,
+          "val_loss": 0.1208,
+          "val_acc": 1.0
+        },
+        {
+          "epoch": 4,
+          "train_cls_loss": 0.1255,
+          "train_cont_loss": 2.1229,
+          "train_total_loss": 0.5501,
+          "train_acc": 1.0,
+          "val_loss": 0.1191,
+          "val_acc": 1.0
+        },
+        {
+          "epoch": 5,
+          "train_cls_loss": 0.125,
+          "train_cont_loss": 2.0341,
+          "train_total_loss": 0.5318,
+          "train_acc": 1.0,
+          "val_loss": 0.1183,
+          "val_acc": 1.0
+        }
+      ],
+      "initial_mismatch": {
+        "overall_accuracy": 0.55,
+        "overall_f1": 0.7033,
+        "overall_roc_auc": 0.3807,
+        "mean_attention_entropy": 3.8916,
+        "conditions": {
+          "condition_1": {
+            "name": "Congruent Real",
+            "sample_count": 15,
+            "accuracy": 0.0667,
+            "mean_fake_prob": 0.6677,
+            "mean_entropy": 3.8916
+          },
+          "condition_2": {
+            "name": "Semantic Mismatch Fake (Fabricated Claim)",
+            "sample_count": 15,
+            "accuracy": 0.9333,
+            "mean_fake_prob": 0.6817,
+            "mean_entropy": 3.8916
+          },
+          "condition_3": {
+            "name": "Swapped Context (Mismatched Image)",
+            "sample_count": 15,
+            "accuracy": 0.8667,
+            "mean_fake_prob": 0.6838,
+            "mean_entropy": 3.8916
+          },
+          "condition_4": {
+            "name": "Unrelated Multimodal (False Connection)",
+            "sample_count": 15,
+            "accuracy": 0.3333,
+            "mean_fake_prob": 0.423,
+            "mean_entropy": 3.8916
+          }
+        }
+      },
+      "final_mismatch": {
+        "overall_accuracy": 0.5,
+        "overall_f1": 0.6591,
+        "overall_roc_auc": 0.3467,
+        "mean_attention_entropy": 3.8915,
+        "conditions": {
+          "condition_1": {
+            "name": "Congruent Real",
+            "sample_count": 15,
+            "accuracy": 0.0667,
+            "mean_fake_prob": 0.7397,
+            "mean_entropy": 3.8915
+          },
+          "condition_2": {
+            "name": "Semantic Mismatch Fake (Fabricated Claim)",
+            "sample_count": 15,
+            "accuracy": 1.0,
+            "mean_fake_prob": 0.7495,
+            "mean_entropy": 3.8915
+          },
+          "condition_3": {
+            "name": "Swapped Context (Mismatched Image)",
+            "sample_count": 15,
+            "accuracy": 0.8667,
+            "mean_fake_prob": 0.7614,
+            "mean_entropy": 3.8915
+          },
+          "condition_4": {
+            "name": "Unrelated Multimodal (False Connection)",
+            "sample_count": 15,
+            "accuracy": 0.0667,
+            "mean_fake_prob": 0.309,
+            "mean_entropy": 3.8915
+          }
+        }
+      }
+    },
+    {
+      "lambda_val": 0.05,
+      "use_domain_adapted_text": true,
+      "checkpoint_path": "/Users/divakarmaurya/nlp_project/models/phase6/multimodal_adapted_contrastive.pt",
+      "final_train_acc": 1.0,
+      "final_val_acc": 1.0,
+      "final_val_loss": 0.1223,
+      "history": [
+        {
+          "epoch": 1,
+          "train_cls_loss": 0.3684,
+          "train_cont_loss": 3.0852,
+          "train_total_loss": 0.5226,
+          "train_acc": 0.9777,
+          "val_loss": 0.2058,
+          "val_acc": 1.0
+        },
+        {
+          "epoch": 2,
+          "train_cls_loss": 0.1909,
+          "train_cont_loss": 2.6522,
+          "train_total_loss": 0.3236,
+          "train_acc": 1.0,
+          "val_loss": 0.1474,
+          "val_acc": 1.0
+        },
+        {
+          "epoch": 3,
+          "train_cls_loss": 0.145,
+          "train_cont_loss": 2.3746,
+          "train_total_loss": 0.2637,
+          "train_acc": 1.0,
+          "val_loss": 0.1323,
+          "val_acc": 1.0
+        },
+        {
+          "epoch": 4,
+          "train_cls_loss": 0.1356,
+          "train_cont_loss": 2.2994,
+          "train_total_loss": 0.2506,
+          "train_acc": 1.0,
+          "val_loss": 0.1259,
+          "val_acc": 1.0
+        },
+        {
+          "epoch": 5,
+          "train_cls_loss": 0.1319,
+          "train_cont_loss": 2.2612,
+          "train_total_loss": 0.245,
+          "train_acc": 1.0,
+          "val_loss": 0.1223,
+          "val_acc": 1.0
+        }
+      ],
+      "initial_mismatch": {
+        "overall_accuracy": 0.7333,
+        "overall_f1": 0.8462,
+        "overall_roc_auc": 0.4193,
+        "mean_attention_entropy": 3.8914,
+        "conditions": {
+          "condition_1": {
+            "name": "Congruent Real",
+            "sample_count": 15,
+            "accuracy": 0.0,
+            "mean_fake_prob": 0.5653,
+            "mean_entropy": 3.8915
+          },
+          "condition_2": {
+            "name": "Semantic Mismatch Fake (Fabricated Claim)",
+            "sample_count": 15,
+            "accuracy": 0.9333,
+            "mean_fake_prob": 0.537,
+            "mean_entropy": 3.8915
+          },
+          "condition_3": {
+            "name": "Swapped Context (Mismatched Image)",
+            "sample_count": 15,
+            "accuracy": 1.0,
+            "mean_fake_prob": 0.5691,
+            "mean_entropy": 3.8914
+          },
+          "condition_4": {
+            "name": "Unrelated Multimodal (False Connection)",
+            "sample_count": 15,
+            "accuracy": 1.0,
+            "mean_fake_prob": 0.5674,
+            "mean_entropy": 3.8914
+          }
+        }
+      },
+      "final_mismatch": {
+        "overall_accuracy": 0.4333,
+        "overall_f1": 0.5641,
+        "overall_roc_auc": 0.4252,
+        "mean_attention_entropy": 3.8915,
+        "conditions": {
+          "condition_1": {
+            "name": "Congruent Real",
+            "sample_count": 15,
+            "accuracy": 0.2667,
+            "mean_fake_prob": 0.57,
+            "mean_entropy": 3.8915
+          },
+          "condition_2": {
+            "name": "Semantic Mismatch Fake (Fabricated Claim)",
+            "sample_count": 15,
+            "accuracy": 0.6,
+            "mean_fake_prob": 0.5732,
+            "mean_entropy": 3.8915
+          },
+          "condition_3": {
+            "name": "Swapped Context (Mismatched Image)",
+            "sample_count": 15,
+            "accuracy": 0.7333,
+            "mean_fake_prob": 0.5857,
+            "mean_entropy": 3.8914
+          },
+          "condition_4": {
+            "name": "Unrelated Multimodal (False Connection)",
+            "sample_count": 15,
+            "accuracy": 0.1333,
+            "mean_fake_prob": 0.2874,
+            "mean_entropy": 3.8915
+          }
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,5 @@
+Model,Dataset,Domain,Samples,Accuracy,Precision,Recall,F1,ROC-AUC,PR-AUC,Delta Acc,Delta F1
+DistilBERT Baseline,Course Test Split,In-Domain,48,1.0000,1.0000,1.0000,1.0000,1.0000,1.0000,0.0000,0.0000
+DistilBERT Domain-Adapted,Course Test Split,In-Domain,48,1.0000,1.0000,1.0000,1.0000,1.0000,1.0000,+0.0000,+0.0000
+DistilBERT Baseline,Fakeddit Test Subset,Out-of-Domain,60,0.3333,0.3333,0.3333,0.3333,0.3156,0.4218,0.0000,0.0000
+DistilBERT Domain-Adapted,Fakeddit Test Subset,Out-of-Domain,60,0.5667,0.5833,0.4667,0.5185,0.5356,0.5777,+0.2334,+0.1852
