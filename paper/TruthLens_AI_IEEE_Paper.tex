@@ -9,11 +9,11 @@
 \usepackage{url}
 \usepackage{microtype}
 \renewcommand{\ttdefault}{cmtt}
-\renewcommand{\IEEEiedlistdecl}{\setlength{\itemsep}{1.5pt}\setlength{\topsep}{2pt}\setlength{\parsep}{0pt}}
-\addtolength{\dbltextfloatsep}{-4pt}
-\addtolength{\textfloatsep}{-4pt}
-\addtolength{\abovecaptionskip}{-2pt}
-\addtolength{\belowcaptionskip}{-2pt}
+\renewcommand{\IEEEiedlistdecl}{\setlength{\itemsep}{1pt}\setlength{\topsep}{1.5pt}\setlength{\parsep}{0pt}}
+\addtolength{\dbltextfloatsep}{-6pt}
+\addtolength{\textfloatsep}{-6pt}
+\addtolength{\abovecaptionskip}{-3pt}
+\addtolength{\belowcaptionskip}{-3pt}
 
 \def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
     T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
@@ -24,10 +24,29 @@
 
 \author{
 \IEEEauthorblockN{Divakar Maurya}
-\IEEEauthorblockA{\textit{Department of Computer Science and Engineering} \\
-\textit{School of Computer Science Engineering and Technology} \\
+\IEEEauthorblockA{\textit{Dept. of Computer Science \& Eng.} \\
 \textit{Bennett University}, Greater Noida, India \\
-divakar.maurya@bennett.edu.in}
+s24cseu0807@bennett.edu.in}
+\and
+\IEEEauthorblockN{Vrishank Pathak}
+\IEEEauthorblockA{\textit{Dept. of Computer Science \& Eng.} \\
+\textit{Bennett University}, Greater Noida, India \\
+s24cseu0950@bennett.edu.in}
+\and
+\IEEEauthorblockN{Hrishit Goel}
+\IEEEauthorblockA{\textit{Dept. of Computer Science \& Eng.} \\
+\textit{Bennett University}, Greater Noida, India \\
+s24cseu2861@bennett.edu.in}
+\and
+\IEEEauthorblockN{Dhruv Agarwal}
+\IEEEauthorblockA{\textit{Dept. of Computer Science \& Eng.} \\
+\textit{Bennett University}, Greater Noida, India \\
+s24cseu0916@bennett.edu.in}
+\and
+\IEEEauthorblockN{Vishwas Bhargava}
+\IEEEauthorblockA{\textit{Dept. of Computer Science \& Eng.} \\
+\textit{Bennett University}, Greater Noida, India \\
+s24cseu0190@bennett.edu.in}
 }
 
 \maketitle
@@ -103,7 +122,7 @@ Li et al. \cite{li2021replay} & Audio & Spectral Projections & Spectral Saliency
 
 \begin{figure*}[!t]
 \centering
-\includegraphics[width=0.88\textwidth]{figures/architecture.png}
+\includegraphics[width=0.82\textwidth]{figures/architecture.png}
 \caption{Overall architectural flow of TruthLens AI, illustrating text, image, multi-frame video, and acoustic feature pipelines, bidirectional cross-attention fusion, temperature-scaled decision policy with uncertainty routing, and multimodal explainability artifact generation.}
 \label{fig:architecture}
 \end{figure*}
@@ -300,14 +319,14 @@ Contrastive cross-modal alignment (Config C, $\lambda = 0.05$) resolves this fai
 \centering
 \begin{minipage}{0.48\textwidth}
 \centering
-\includegraphics[height=3.4cm,keepaspectratio]{figures/semantic_mismatch.png}
+\includegraphics[height=3.0cm,keepaspectratio]{figures/semantic_mismatch.png}
 \vspace{-1.5mm}
 \centerline{\footnotesize (a) Semantic Mismatch across 4 Conditions}
 \end{minipage}
 \hfill
 \begin{minipage}{0.48\textwidth}
 \centering
-\includegraphics[height=3.4cm,keepaspectratio]{figures/calibration.png}
+\includegraphics[height=3.0cm,keepaspectratio]{figures/calibration.png}
 \vspace{-1.5mm}
 \centerline{\footnotesize (b) Reliability Diagram (Pre vs. Post-Calibration)}
 \end{minipage}
