@@ -1,0 +1,120 @@
+{
+  "text_baseline": {
+    "experiment_id": "EXP_TEXT_001",
+    "model_name": "TruthLens DistilBERT Unimodal Baseline",
+    "modality": "text",
+    "status": "SUPPORTED",
+    "metrics": {
+      "sample_count": 48,
+      "accuracy": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "roc_auc": 1.0,
+      "pr_auc": 1.0,
+      "confusion_matrix": {
+        "matrix": [
+          [
+            24,
+            0
+          ],
+          [
+            0,
+            24
+          ]
+        ],
+        "tp": 24,
+        "fp": 0,
+        "fn": 0,
+        "tn": 24
+      },
+      "class_metrics": {
+        "REAL (Class 0)": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 24
+        },
+        "FAKE (Class 1)": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 24
+        }
+      },
+      "support": {
+        "real": 24,
+        "fake": 24,
+        "total": 48
+      }
+    },
+    "reason": null
+  },
+  "vision_baseline": {
+    "experiment_id": "EXP_VISION_001",
+    "model_name": "TruthLens ResNet18 Unimodal Baseline",
+    "modality": "visual",
+    "status": "SUPPORTED",
+    "metrics": {
+      "sample_count": 48,
+      "accuracy": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "roc_auc": 1.0,
+      "pr_auc": 1.0,
+      "confusion_matrix": {
+        "matrix": [
+          [
+            24,
+            0
+          ],
+          [
+            0,
+            24
+          ]
+        ],
+        "tp": 24,
+        "fp": 0,
+        "fn": 0,
+        "tn": 24
+      },
+      "class_metrics": {
+        "REAL (Class 0)": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 24
+        },
+        "FAKE (Class 1)": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 24
+        }
+      },
+      "support": {
+        "real": 24,
+        "fake": 24,
+        "total": 48
+      }
+    },
+    "reason": null
+  },
+  "video_baseline": {
+    "experiment_id": "EXP_VIDEO_001",
+    "model_name": "TruthLens Video ResNet18 Temporal Pooling Baseline",
+    "modality": "video",
+    "status": "TECHNICAL_VERIFICATION_ONLY",
+    "metrics": null,
+    "reason": "The dataset contains 0 labeled video clips. Video frame temporal pooling pipeline is mathematically and technically verified (8/8 video tests pass), but quantitative benchmark cannot be scientifically evaluated without labeled video corpus."
+  },
+  "audio_baseline": {
+    "experiment_id": "EXP_AUDIO_001",
+    "model_name": "TruthLens 128-D Acoustic Projection Baseline",
+    "modality": "audio",
+    "status": "NOT_AVAILABLE",
+    "metrics": null,
+    "reason": "The dataset contains 0 labeled audio files. Audio preprocessing and trainable projection are verified via backpropagation unit tests (9/9 audio tests pass), but quantitative accuracy cannot be reported without labeled audio data."
+  }
+}

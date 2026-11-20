@@ -1,0 +1,3 @@
+Model,Modalities,Fusion,Accuracy,Precision,Recall,F1,ROC-AUC,PR-AUC
+EXP_MULTIMODAL_CONCAT_001,text+visual,concat,1.0000,1.0000,1.0000,1.0000,1.0000,1.0000
+EXP_MULTIMODAL_CA_001,text+visual,cross_attention,1.0000,1.0000,1.0000,1.0000,1.0000,1.0000

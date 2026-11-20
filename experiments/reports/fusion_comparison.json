@@ -1,0 +1,100 @@
+{
+  "concatenation": {
+    "experiment_id": "EXP_MULTIMODAL_CONCAT_001",
+    "fusion_type": "concat",
+    "modalities": "text+visual",
+    "metrics": {
+      "sample_count": 48,
+      "accuracy": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "roc_auc": 1.0,
+      "pr_auc": 1.0,
+      "confusion_matrix": {
+        "matrix": [
+          [
+            24,
+            0
+          ],
+          [
+            0,
+            24
+          ]
+        ],
+        "tp": 24,
+        "fp": 0,
+        "fn": 0,
+        "tn": 24
+      },
+      "class_metrics": {
+        "REAL (Class 0)": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 24
+        },
+        "FAKE (Class 1)": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 24
+        }
+      },
+      "support": {
+        "real": 24,
+        "fake": 24,
+        "total": 48
+      }
+    }
+  },
+  "cross_attention": {
+    "experiment_id": "EXP_MULTIMODAL_CA_001",
+    "fusion_type": "cross_attention",
+    "modalities": "text+visual",
+    "metrics": {
+      "sample_count": 48,
+      "accuracy": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "roc_auc": 1.0,
+      "pr_auc": 1.0,
+      "confusion_matrix": {
+        "matrix": [
+          [
+            24,
+            0
+          ],
+          [
+            0,
+            24
+          ]
+        ],
+        "tp": 24,
+        "fp": 0,
+        "fn": 0,
+        "tn": 24
+      },
+      "class_metrics": {
+        "REAL (Class 0)": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 24
+        },
+        "FAKE (Class 1)": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 24
+        }
+      },
+      "support": {
+        "real": 24,
+        "fake": 24,
+        "total": 48
+      }
+    }
+  }
+}

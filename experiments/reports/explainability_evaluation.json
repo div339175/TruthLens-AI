@@ -1,0 +1,68 @@
+{
+  "text_explainability": {
+    "modality": "text",
+    "evidence_type": "token_gradient_saliency",
+    "evidence_produced": true,
+    "token_count": 8,
+    "sample_tokens": [
+      {
+        "token": "confirms",
+        "score": 1.0
+      },
+      {
+        "token": "report",
+        "score": 0.9652
+      },
+      {
+        "token": "breaking",
+        "score": 0.9181
+      },
+      {
+        "token": "transfer",
+        "score": 0.9044
+      },
+      {
+        "token": "financial",
+        "score": 0.8928
+      }
+    ],
+    "pathway_verified": true,
+    "description": "Gradient attribution computed on DistilBERT embedding layer with respect to class logit."
+  },
+  "visual_explainability": {
+    "modality": "visual",
+    "evidence_type": "gradcam_activation_overlay",
+    "evidence_produced": false,
+    "layer_name": "layer4",
+    "heatmap_grid_size": [
+      7,
+      7
+    ],
+    "pathway_verified": true,
+    "description": "Grad-CAM computed on ResNet18 Layer4 convolutional feature maps with ReLU rectifying positive gradients."
+  },
+  "video_explainability": {
+    "modality": "video",
+    "evidence_type": "temporal_frame_pooling_and_keyframe_gradcam",
+    "evidence_produced": false,
+    "frames_sampled": 8,
+    "keyframe_index": 4,
+    "temporal_pooling_evidence": "Uniform temporal sampling extracted 8 individual frames through ResNet18, followed by feature-level temporal pooling (feature_mean_pooling) to construct the video representation.",
+    "pathway_verified": true,
+    "description": "8 frames uniformly sampled, batch-forwarded through ResNet18, temporally mean-pooled, and keyframe Grad-CAM generated on frame 4."
+  },
+  "audio_explainability": {
+    "modality": "audio",
+    "evidence_type": "acoustic_features_and_spectral_energy",
+    "evidence_produced": true,
+    "evidence_description": "Acoustic feature analysis (5.0s) confirms natural vocal harmonic distribution with consistent formant continuity.",
+    "details": {
+      "zero_crossing_rate": 0.002,
+      "high_freq_ratio": 0.001,
+      "duration_sec": 5.0
+    },
+    "pathway_verified": true,
+    "description": "128-D acoustic features (STFT log-mel spectral energy + std) extracted with ZCR and high-frequency energy ratio."
+  },
+  "all_pathways_verified": false
+}

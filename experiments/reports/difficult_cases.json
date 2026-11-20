@@ -1,0 +1,347 @@
+[
+  {
+    "case_id": "CASE_01",
+    "category": "semantic_mismatch",
+    "title": "Peaceful Festival Miscaptioned as Street Riot",
+    "ground_truth": "FAKE",
+    "prediction": "REAL",
+    "confidence": 0.745,
+    "is_correct": false,
+    "modalities": [
+      "text",
+      "visual"
+    ],
+    "modalities_agreement": "DISAGREE (Authentic visual contradicted by false text caption)",
+    "error_category": "SINGLE_MODALITY_VISUAL_BIAS (Visual authenticity overshadowed textual contradiction)",
+    "difficulty_rationale": "The visual modality is authentic, but the textual claim describes violent conflict. Detectors relying only on visual artifacts would classify it as REAL.",
+    "explanation": "The content was verified as REAL with 74.5% model confidence. Analysis across text, visual demonstrates coherence with authentic reference distributions.",
+    "evidence_count": 3,
+    "key_evidence": [
+      "Textual evidence examined for synthetic stylometric markers. Top influential tokens: 'tear' (1.00), '##gas' (0.87), 'deployed' (0.79), 'capital' (0.75).",
+      "Visual backbone extracted 512-dim spatial representation. No focal manipulation hotspot isolated.",
+      "Bidirectional cross-attention computed text-to-vision alignment scores, capturing cross-modal correspondence between textual description and visual patches."
+    ]
+  },
+  {
+    "case_id": "CASE_02",
+    "category": "semantic_mismatch",
+    "title": "Historical Archival Space Launch Claimed as New Ballistic Test",
+    "ground_truth": "FAKE",
+    "prediction": "REAL",
+    "confidence": 0.8408,
+    "is_correct": false,
+    "modalities": [
+      "text",
+      "visual"
+    ],
+    "modalities_agreement": "DISAGREE (Authentic visual contradicted by false text caption)",
+    "error_category": "SINGLE_MODALITY_VISUAL_BIAS (Visual authenticity overshadowed textual contradiction)",
+    "difficulty_rationale": "Archival footage is completely unmanipulated, but out-of-context caption fabricates modern active warfare.",
+    "explanation": "The content was verified as REAL with 84.1% model confidence. Analysis across text, visual demonstrates coherence with authentic reference distributions.",
+    "evidence_count": 3,
+    "key_evidence": [
+      "Textual evidence examined for synthetic stylometric markers. Top influential tokens: 'footage' (1.00), 'surveillance' (0.73), 'captures' (0.73), 'today' (0.72).",
+      "Visual backbone extracted 512-dim spatial representation. No focal manipulation hotspot isolated.",
+      "Bidirectional cross-attention computed text-to-vision alignment scores, capturing cross-modal correspondence between textual description and visual patches."
+    ]
+  },
+  {
+    "case_id": "CASE_03",
+    "category": "semantic_mismatch",
+    "title": "Natural Wildfire Drill Repurposed as Catastrophic Disaster",
+    "ground_truth": "FAKE",
+    "prediction": "REAL",
+    "confidence": 0.6755,
+    "is_correct": false,
+    "modalities": [
+      "text",
+      "visual"
+    ],
+    "modalities_agreement": "DISAGREE (Authentic visual contradicted by false text caption)",
+    "error_category": "SINGLE_MODALITY_VISUAL_BIAS (Visual authenticity overshadowed textual contradiction)",
+    "difficulty_rationale": "Standard training drill photos reused with catastrophic panic-inducing headlines.",
+    "explanation": "The content was verified as REAL with 67.5% model confidence. Analysis across text, visual demonstrates coherence with authentic reference distributions.",
+    "evidence_count": 3,
+    "key_evidence": [
+      "Textual evidence examined for synthetic stylometric markers. Top influential tokens: 'emergency' (1.00), 'declared' (0.97), 'municipal' (0.62), 'sectors' (0.61).",
+      "Visual backbone extracted 512-dim spatial representation. No focal manipulation hotspot isolated.",
+      "Bidirectional cross-attention computed text-to-vision alignment scores, capturing cross-modal correspondence between textual description and visual patches."
+    ]
+  },
+  {
+    "case_id": "CASE_04",
+    "category": "semantic_mismatch",
+    "title": "Commercial Hospital Wing Opening Claimed as Secret Military Biolab",
+    "ground_truth": "FAKE",
+    "prediction": "REAL",
+    "confidence": 0.8764,
+    "is_correct": false,
+    "modalities": [
+      "text",
+      "visual"
+    ],
+    "modalities_agreement": "DISAGREE (Authentic visual contradicted by false text caption)",
+    "error_category": "SINGLE_MODALITY_VISUAL_BIAS (Visual authenticity overshadowed textual contradiction)",
+    "difficulty_rationale": "Authentic medical facility imagery coupled with fabricated biosecurity conspiracy claims.",
+    "explanation": "The content was verified as REAL with 87.6% model confidence. Analysis across text, visual demonstrates coherence with authentic reference distributions.",
+    "evidence_count": 3,
+    "key_evidence": [
+      "Textual evidence examined for synthetic stylometric markers. Top influential tokens: 'photograph' (1.00), 'expose' (0.98), 'leaked' (0.87), '.' (0.68).",
+      "Visual backbone extracted 512-dim spatial representation. No focal manipulation hotspot isolated.",
+      "Bidirectional cross-attention computed text-to-vision alignment scores, capturing cross-modal correspondence between textual description and visual patches."
+    ]
+  },
+  {
+    "case_id": "CASE_05",
+    "category": "deepfake_faceswap",
+    "title": "Subtle Diplomatic Face-Swap with Blurred Boundary",
+    "ground_truth": "FAKE",
+    "prediction": "FAKE",
+    "confidence": 0.9335,
+    "is_correct": true,
+    "modalities": [
+      "text",
+      "visual"
+    ],
+    "modalities_agreement": "AGREE (Both text claim and visual artifacts indicate manipulation)",
+    "error_category": "CORRECT_MANIPULATION_DETECTION",
+    "difficulty_rationale": "High-quality neural face-swap with subtle blending around the jawline and eyes.",
+    "explanation": "The content was classified as FAKE with 93.3% model confidence. Features extracted across text, visual exhibit synthetic characteristics consistent with generative or spliced manipulations.",
+    "evidence_count": 3,
+    "key_evidence": [
+      "Model-derived gradient saliency identified key tokens influencing the classification: 'diplomat' (1.00), 'video' (0.88), 'manipulated' (0.77), 'prominent' (0.62).",
+      "Visual backbone extracted 512-dim spatial representation. No focal manipulation hotspot isolated.",
+      "Bidirectional cross-attention computed text-to-vision alignment scores, capturing cross-modal correspondence between textual description and visual patches."
+    ]
+  },
+  {
+    "case_id": "CASE_06",
+    "category": "deepfake_faceswap",
+    "title": "Celebrity Deepfake Financial Endorsement",
+    "ground_truth": "FAKE",
+    "prediction": "FAKE",
+    "confidence": 0.9239,
+    "is_correct": true,
+    "modalities": [
+      "text",
+      "visual"
+    ],
+    "modalities_agreement": "AGREE (Both text claim and visual artifacts indicate manipulation)",
+    "error_category": "CORRECT_MANIPULATION_DETECTION",
+    "difficulty_rationale": "Deepfake reenactment paired with promotional financial claims.",
+    "explanation": "The content was classified as FAKE with 92.4% model confidence. Features extracted across text, visual exhibit synthetic characteristics consistent with generative or spliced manipulations.",
+    "evidence_count": 3,
+    "key_evidence": [
+      "Model-derived gradient saliency identified key tokens influencing the classification: 'depicts' (1.00), 'video' (0.78), 'swap' (0.67), '.' (0.58).",
+      "Visual backbone extracted 512-dim spatial representation. No focal manipulation hotspot isolated.",
+      "Bidirectional cross-attention computed text-to-vision alignment scores, capturing cross-modal correspondence between textual description and visual patches."
+    ]
+  },
+  {
+    "case_id": "CASE_07",
+    "category": "deepfake_faceswap",
+    "title": "Synthesized Politician Debate Reenactment",
+    "ground_truth": "FAKE",
+    "prediction": "FAKE",
+    "confidence": 0.925,
+    "is_correct": true,
+    "modalities": [
+      "text",
+      "visual"
+    ],
+    "modalities_agreement": "AGREE (Both text claim and visual artifacts indicate manipulation)",
+    "error_category": "CORRECT_MANIPULATION_DETECTION",
+    "difficulty_rationale": "Manipulated facial geometry on genuine debate broadcast backdrop.",
+    "explanation": "The content was classified as FAKE with 92.5% model confidence. Features extracted across text, visual exhibit synthetic characteristics consistent with generative or spliced manipulations.",
+    "evidence_count": 3,
+    "key_evidence": [
+      "Model-derived gradient saliency identified key tokens influencing the classification: 'interview' (1.00), 'opposition' (0.97), 'synthesized' (0.88), 'politician' (0.84).",
+      "Visual backbone extracted 512-dim spatial representation. No focal manipulation hotspot isolated.",
+      "Bidirectional cross-attention computed text-to-vision alignment scores, capturing cross-modal correspondence between textual description and visual patches."
+    ]
+  },
+  {
+    "case_id": "CASE_08",
+    "category": "diffusion_synthesis",
+    "title": "Photorealistic AI Portrait with Asymmetric Ocular Reflections",
+    "ground_truth": "FAKE",
+    "prediction": "FAKE",
+    "confidence": 0.9027,
+    "is_correct": true,
+    "modalities": [
+      "text",
+      "visual"
+    ],
+    "modalities_agreement": "AGREE (Both text claim and visual artifacts indicate manipulation)",
+    "error_category": "CORRECT_MANIPULATION_DETECTION",
+    "difficulty_rationale": "Generated face with photorealistic skin texture, detectable only via corneal reflection mismatch.",
+    "explanation": "The content was classified as FAKE with 90.3% model confidence. Features extracted across text, visual exhibit synthetic characteristics consistent with generative or spliced manipulations.",
+    "evidence_count": 3,
+    "key_evidence": [
+      "Model-derived gradient saliency identified key tokens influencing the classification: 'model' (1.00), 'diffusion' (0.91), 'portrait' (0.87), 'fabricated' (0.74).",
+      "Visual backbone extracted 512-dim spatial representation. No focal manipulation hotspot isolated.",
+      "Bidirectional cross-attention computed text-to-vision alignment scores, capturing cross-modal correspondence between textual description and visual patches."
+    ]
+  },
+  {
+    "case_id": "CASE_09",
+    "category": "diffusion_synthesis",
+    "title": "Synthesized Non-Existent Disaster Scene",
+    "ground_truth": "FAKE",
+    "prediction": "FAKE",
+    "confidence": 0.9226,
+    "is_correct": true,
+    "modalities": [
+      "text",
+      "visual"
+    ],
+    "modalities_agreement": "AGREE (Both text claim and visual artifacts indicate manipulation)",
+    "error_category": "CORRECT_MANIPULATION_DETECTION",
+    "difficulty_rationale": "Hallucinated catastrophic event with coherent overall composition but micro-texture noise anomalies.",
+    "explanation": "The content was classified as FAKE with 92.3% model confidence. Features extracted across text, visual exhibit synthetic characteristics consistent with generative or spliced manipulations.",
+    "evidence_count": 3,
+    "key_evidence": [
+      "Model-derived gradient saliency identified key tokens influencing the classification: 'generated' (1.00), 'synthetic' (0.89), 'image' (0.85), 'fictitious' (0.76).",
+      "Visual backbone extracted 512-dim spatial representation. No focal manipulation hotspot isolated.",
+      "Bidirectional cross-attention computed text-to-vision alignment scores, capturing cross-modal correspondence between textual description and visual patches."
+    ]
+  },
+  {
+    "case_id": "CASE_10",
+    "category": "diffusion_synthesis",
+    "title": "AI Composite Military Hardware Prototype",
+    "ground_truth": "FAKE",
+    "prediction": "FAKE",
+    "confidence": 0.9011,
+    "is_correct": true,
+    "modalities": [
+      "text",
+      "visual"
+    ],
+    "modalities_agreement": "AGREE (Both text claim and visual artifacts indicate manipulation)",
+    "error_category": "CORRECT_MANIPULATION_DETECTION",
+    "difficulty_rationale": "Synthetic historical aesthetic designed to simulate vintage film grain.",
+    "explanation": "The content was classified as FAKE with 90.1% model confidence. Features extracted across text, visual exhibit synthetic characteristics consistent with generative or spliced manipulations.",
+    "evidence_count": 3,
+    "key_evidence": [
+      "Model-derived gradient saliency identified key tokens influencing the classification: 'synthesis' (1.00), 'produces' (0.85), 'fake' (0.61), 'image' (0.60).",
+      "Visual backbone extracted 512-dim spatial representation. No focal manipulation hotspot isolated.",
+      "Bidirectional cross-attention computed text-to-vision alignment scores, capturing cross-modal correspondence between textual description and visual patches."
+    ]
+  },
+  {
+    "case_id": "CASE_11",
+    "category": "spliced_banner",
+    "title": "Authentic Television Broadcast with Spliced Bank Run Banner",
+    "ground_truth": "FAKE",
+    "prediction": "FAKE",
+    "confidence": 0.9349,
+    "is_correct": true,
+    "modalities": [
+      "text",
+      "visual"
+    ],
+    "modalities_agreement": "AGREE (Both text claim and visual artifacts indicate manipulation)",
+    "error_category": "CORRECT_MANIPULATION_DETECTION",
+    "difficulty_rationale": "90% of the image is genuine news anchor footage, but the lower third banner text is forged.",
+    "explanation": "The content was classified as FAKE with 93.5% model confidence. Features extracted across text, visual exhibit synthetic characteristics consistent with generative or spliced manipulations.",
+    "evidence_count": 3,
+    "key_evidence": [
+      "Model-derived gradient saliency identified key tokens influencing the classification: 'broadcast' (1.00), 'altered' (1.00), 'authentic' (0.90), 'television' (0.82).",
+      "Visual backbone extracted 512-dim spatial representation. No focal manipulation hotspot isolated.",
+      "Bidirectional cross-attention computed text-to-vision alignment scores, capturing cross-modal correspondence between textual description and visual patches."
+    ]
+  },
+  {
+    "case_id": "CASE_12",
+    "category": "spliced_banner",
+    "title": "Cloned Military Convoy Vehicle Duplication",
+    "ground_truth": "FAKE",
+    "prediction": "FAKE",
+    "confidence": 0.9289,
+    "is_correct": true,
+    "modalities": [
+      "text",
+      "visual"
+    ],
+    "modalities_agreement": "AGREE (Both text claim and visual artifacts indicate manipulation)",
+    "error_category": "CORRECT_MANIPULATION_DETECTION",
+    "difficulty_rationale": "Copy-move forgery within the same image, preserving natural lighting, camera grain, and color temperature.",
+    "explanation": "The content was classified as FAKE with 92.9% model confidence. Features extracted across text, visual exhibit synthetic characteristics consistent with generative or spliced manipulations.",
+    "evidence_count": 3,
+    "key_evidence": [
+      "Model-derived gradient saliency identified key tokens influencing the classification: 'image' (1.00), '.' (0.80), 'convoy' (0.70), 'troop' (0.63).",
+      "Visual backbone extracted 512-dim spatial representation. No focal manipulation hotspot isolated.",
+      "Bidirectional cross-attention computed text-to-vision alignment scores, capturing cross-modal correspondence between textual description and visual patches."
+    ]
+  },
+  {
+    "case_id": "CASE_13",
+    "category": "synthetic_speech_claim",
+    "title": "Voice-Cloned Election Official Phone Call Claim",
+    "ground_truth": "FAKE",
+    "prediction": "FAKE",
+    "confidence": 0.9233,
+    "is_correct": true,
+    "modalities": [
+      "text",
+      "visual"
+    ],
+    "modalities_agreement": "PARTIAL_AGREEMENT",
+    "error_category": "CORRECT_PREDICTION",
+    "difficulty_rationale": "Claim focuses on vocal cloning; visual representation is an image capture of the broadcast.",
+    "explanation": "The content was classified as FAKE with 92.3% model confidence. Features extracted across text, visual exhibit synthetic characteristics consistent with generative or spliced manipulations.",
+    "evidence_count": 3,
+    "key_evidence": [
+      "Model-derived gradient saliency identified key tokens influencing the classification: 'clone' (1.00), 'key' (0.83), '.' (0.76), 'audio' (0.75).",
+      "Visual backbone extracted 512-dim spatial representation. No focal manipulation hotspot isolated.",
+      "Bidirectional cross-attention computed text-to-vision alignment scores, capturing cross-modal correspondence between textual description and visual patches."
+    ]
+  },
+  {
+    "case_id": "CASE_14",
+    "category": "synthetic_speech_claim",
+    "title": "Synthesized Executive Authorization Call Claim",
+    "ground_truth": "FAKE",
+    "prediction": "FAKE",
+    "confidence": 0.9185,
+    "is_correct": true,
+    "modalities": [
+      "text",
+      "visual"
+    ],
+    "modalities_agreement": "PARTIAL_AGREEMENT",
+    "error_category": "CORRECT_PREDICTION",
+    "difficulty_rationale": "Corporate fraud scenario involving voice cloning claims.",
+    "explanation": "The content was classified as FAKE with 91.8% model confidence. Features extracted across text, visual exhibit synthetic characteristics consistent with generative or spliced manipulations.",
+    "evidence_count": 3,
+    "key_evidence": [
+      "Model-derived gradient saliency identified key tokens influencing the classification: 'fraudulent' (1.00), 'clone' (0.99), '##erson' (0.91), 'author' (0.87).",
+      "Visual backbone extracted 512-dim spatial representation. No focal manipulation hotspot isolated.",
+      "Bidirectional cross-attention computed text-to-vision alignment scores, capturing cross-modal correspondence between textual description and visual patches."
+    ]
+  },
+  {
+    "case_id": "CASE_15",
+    "category": "authentic_edge_case",
+    "title": "Genuine Scientific Glacial Ice Shelf Telemetry",
+    "ground_truth": "REAL",
+    "prediction": "REAL",
+    "confidence": 0.9197,
+    "is_correct": true,
+    "modalities": [
+      "text",
+      "visual"
+    ],
+    "modalities_agreement": "AGREE (Both modalities reflect authentic observation)",
+    "error_category": "ROBUST_AUTHENTIC_VERIFICATION",
+    "difficulty_rationale": "Complex geometric patterns and irregular natural satellite textures that uncalibrated detectors frequently false-positive as synthetic noise.",
+    "explanation": "The content was verified as REAL with 92.0% model confidence. Analysis across text, visual demonstrates coherence with authentic reference distributions.",
+    "evidence_count": 3,
+    "key_evidence": [
+      "Textual evidence examined for synthetic stylometric markers. Top influential tokens: 'verified' (1.00), 'nasa' (0.73), 'imagery' (0.69), 'documenting' (0.66).",
+      "Visual backbone extracted 512-dim spatial representation. No focal manipulation hotspot isolated.",
+      "Bidirectional cross-attention computed text-to-vision alignment scores, capturing cross-modal correspondence between textual description and visual patches."
+    ]
+  }
+]

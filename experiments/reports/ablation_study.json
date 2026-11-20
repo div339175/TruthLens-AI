@@ -1,0 +1,157 @@
+{
+  "full_model": {
+    "variant": "Full Model (Text + Visual, Cross-Attention)",
+    "metrics": {
+      "sample_count": 48,
+      "accuracy": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "roc_auc": 1.0,
+      "pr_auc": 1.0,
+      "confusion_matrix": {
+        "matrix": [
+          [
+            24,
+            0
+          ],
+          [
+            0,
+            24
+          ]
+        ],
+        "tp": 24,
+        "fp": 0,
+        "fn": 0,
+        "tn": 24
+      },
+      "class_metrics": {
+        "REAL (Class 0)": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 24
+        },
+        "FAKE (Class 1)": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 24
+        }
+      },
+      "support": {
+        "real": 24,
+        "fake": 24,
+        "total": 48
+      }
+    },
+    "delta_f1": 0.0,
+    "delta_acc": 0.0
+  },
+  "without_text": {
+    "variant": "Full - Text (Vision-Only)",
+    "metrics": {
+      "sample_count": 48,
+      "accuracy": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "roc_auc": 1.0,
+      "pr_auc": 1.0,
+      "confusion_matrix": {
+        "matrix": [
+          [
+            24,
+            0
+          ],
+          [
+            0,
+            24
+          ]
+        ],
+        "tp": 24,
+        "fp": 0,
+        "fn": 0,
+        "tn": 24
+      },
+      "class_metrics": {
+        "REAL (Class 0)": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 24
+        },
+        "FAKE (Class 1)": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 24
+        }
+      },
+      "support": {
+        "real": 24,
+        "fake": 24,
+        "total": 48
+      }
+    },
+    "delta_f1": 0.0,
+    "delta_acc": 0.0
+  },
+  "without_visual": {
+    "variant": "Full - Visual (Text-Only)",
+    "metrics": {
+      "sample_count": 48,
+      "accuracy": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "roc_auc": 1.0,
+      "pr_auc": 1.0,
+      "confusion_matrix": {
+        "matrix": [
+          [
+            24,
+            0
+          ],
+          [
+            0,
+            24
+          ]
+        ],
+        "tp": 24,
+        "fp": 0,
+        "fn": 0,
+        "tn": 24
+      },
+      "class_metrics": {
+        "REAL (Class 0)": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 24
+        },
+        "FAKE (Class 1)": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 24
+        }
+      },
+      "support": {
+        "real": 24,
+        "fake": 24,
+        "total": 48
+      }
+    },
+    "delta_f1": 0.0,
+    "delta_acc": 0.0
+  },
+  "without_audio": {
+    "variant": "Full - Audio",
+    "status": "NOT_AVAILABLE",
+    "statement": "Audio ablation could not be quantitatively evaluated because the repository contains no labeled audio evaluation samples.",
+    "metrics": null,
+    "delta_f1": null,
+    "delta_acc": null
+  }
+}

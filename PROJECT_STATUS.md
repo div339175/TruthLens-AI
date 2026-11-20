@@ -27,8 +27,8 @@
 | **React + Vite + TypeScript Frontend** |  DONE | Interactive Dashboard, Live Verification, Verification History (`/history`), Professor Demo (`/demo`), Architecture, Dataset stats |
 | **Dataset Management & Metadata** |  DONE | Metadata CSV abstraction with text, image, video, and audio fields (`dataset.csv`) |
 | **Training Pipeline** |  DONE | `train_baseline.py` and `train_multimodal.py` supporting text, visual, and audio parameter gradient updates |
-| **Evaluation & Ablation** |  DONE | `evaluate.py` and `ablation.py` logging genuine metrics to `reports/results/` |
-| **Test Suite** |  DONE | 44 automated tests in `tests/` covering preprocessing, models, fusion, video temporal pooling, audio branch & backprop, history DB, and API endpoints |
+| **Experimental Evaluation & Ablation (Phase 4)** |  DONE | Reproducible evaluation framework (`experiments/`), dataset leakage audit, fusion comparison (Concat vs Cross-Attention), modality ablation, 15 difficult cases error analysis, ROC/PR curves & confusion matrix generation |
+| **Test Suite** |  DONE | 53 automated tests in `tests/` covering preprocessing, models, fusion, video temporal pooling, audio branch & backprop, history DB, API endpoints, and evaluation metrics framework |
 
 ---
 

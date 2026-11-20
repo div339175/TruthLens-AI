@@ -1,0 +1,5 @@
+Configuration,Accuracy,F1-Score,ΔAccuracy,ΔF1-Score,Status
+Full Model (Text + Visual),1.0000,1.0000,0.0000 (Baseline),0.0000 (Baseline),COMPLETE
+Full - Text (Vision-Only),1.0000,1.0000,+0.0000,+0.0000,COMPLETE
+Full - Visual (Text-Only),1.0000,1.0000,+0.0000,+0.0000,COMPLETE
+Full - Audio,N/A,N/A,N/A,N/A,NOT AVAILABLE (0 labeled audio samples in dataset)
