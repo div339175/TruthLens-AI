@@ -2,58 +2,52 @@
 
 **Project Name:** TruthLens AI  
 **Academic Title:** Multimodal NLP for Deepfake Detection and Explainable Content Verification  
-**Stage:** Milestone 1 / Working Prototype  
-**Date:** October 2026  
+**Stage:** Phase 7 Complete — Production Integration, Evaluation Hub & Demo Hardened  
+**Date:** November 2026  
 
 ---
 
 ## 1. Status Overview
 
 | Component | Status | Verification & Evidence |
-| :--- | :--- | :--- |
-| **Monorepo Architecture** |  DONE | Clean modular structure across `backend/`, `ml/`, `frontend/`, `scripts/`, `tests/` |
-| **Database & Verification History (Phase 1)** |  DONE | SQLite persistence via SQLAlchemy (`backend/database.py`), `/history` CRUD endpoints, full interactive history UI (`HistoryPage.tsx`) |
-| **Text Preprocessing & NLP Backbone** |  DONE | DistilBERT tokenizer + embedding projection to 256-dim space (`ml/models/text_encoder.py`) |
-| **Vision Preprocessing & Image Backbone** |  DONE | ResNet18 convolutional stem feature map extraction + projection (`ml/models/vision_encoder.py`) |
-| **Video Feature-Level Temporal Pooling (Phase 2)** |  DONE | 8 frames $\rightarrow$ batch ResNet18 $\rightarrow$ 8 feature vectors $\rightarrow$ temporal mean pooling $[8, 256] \rightarrow [1, 256]$ (`ml/models/vision_encoder.py`, `ml/models/multimodal_model.py`) |
-| **Audio Modality Branch & Fusion (Phase 3)** |  DONE | 128-D STFT/spectral features $\rightarrow$ trainable `audio_projection` $[B, 128] \rightarrow [B, 256]$ $\rightarrow$ multimodal cross-attention & tri-modal fusion $\rightarrow$ `audio_classifier` (`ml/preprocessing/audio.py`, `ml/models/multimodal_model.py`, `ml/datasets/dataset.py`) |
-| **Multimodal Fusion (Concat)** |  DONE | Feature-level concatenation with 2-layer MLP projection (`ml/models/fusion.py`) |
-| **Multimodal Fusion (Cross-Attention)** |  DONE | Bidirectional Cross-Attention (Text $\leftrightarrow$ Vision, Text $\leftrightarrow$ Audio) with residual LayerNorm (`ml/models/cross_attention.py`) |
-| **Decision & Uncertainty Policy** |  DONE | Softmax confidence with calibrated `UNCERTAINTY_THRESHOLD=0.65` (`ml/models/classifier.py`) |
-| **Text Saliency Explainability** |  DONE | Gradient attribution on token embeddings (`ml/explainability/text_explanation.py`) |
-| **Visual Explainability (Grad-CAM)** |  DONE | Layer4 Grad-CAM activation overlays on representative keyframe encoded to base64 PNG (`ml/explainability/visual_explanation.py`) |
-| **Evidence & Report Engine** |  DONE | Structured `VerificationReport` with model-derived vs heuristic labelling (`ml/explainability/evidence.py`) |
-| **FastAPI Backend Endpoints** |  DONE | `/health`, `/verify/text`, `/verify/image`, `/verify/video`, `/verify/audio`, `/verify/multimodal`, `/history`, `/model/info`, `/dataset/stats` |
-| **React + Vite + TypeScript Frontend** |  DONE | Interactive Dashboard, Live Verification, Verification History (`/history`), Professor Demo (`/demo`), Architecture, Dataset stats |
-| **Dataset Management & Metadata** |  DONE | Metadata CSV abstraction with text, image, video, and audio fields (`dataset.csv`) |
-| **Training Pipeline** |  DONE | `train_baseline.py` and `train_multimodal.py` supporting text, visual, and audio parameter gradient updates |
-| **Experimental Evaluation & Ablation (Phase 4)** |  DONE | Reproducible evaluation framework (`experiments/`), dataset leakage audit, fusion comparison (Concat vs Cross-Attention), modality ablation, 15 difficult cases error analysis, ROC/PR curves & confusion matrix generation |
-| **Real-World Benchmark Expansion & Generalization (Phase 5)** |  DONE | Ingestion of 180 external benchmark samples (`external_dataset_manifest.csv`), Fakeddit text+image generalization, Deepfake Audio v4 benchmark (ROC-AUC: 0.8100), Generative Video Sora benchmark (ROC-AUC: 0.8200), 4-condition Semantic Mismatch study, and 89 mined failure cases |
-| **Model Improvement, Alignment & Calibration (Phase 6)** |  DONE | Rehearsal domain adaptation (+23.34% Fakeddit acc, 0% forgetting), InfoNCE contrastive alignment ($\lambda=0.05$, 100% C2 mismatch acc), Temperature scaling ($T^*=1.4628$, ECE drop by up to 7.05%), 6-config ablation study ($N=276$), 7 publication figures, and 17 new unit tests |
-| **Test Suite** |  DONE | 79 automated tests in `tests/` covering preprocessing, models, fusion, video temporal pooling, audio branch & backprop, history DB, API endpoints, Phase 4 evaluation metrics, Phase 5 generalization, and Phase 6 improvements (contrastive, calibration, adaptation) |
+| :--- | :---: | :--- |
+| **Monorepo Architecture** | DONE | Clean modular structure across `backend/`, `ml/`, `frontend/`, `scripts/`, `tests/`, `experiments/` |
+| **Database & Verification History (Phase 1)** | DONE | SQLite persistence via SQLAlchemy (`backend/database.py`), `/history` CRUD endpoints, full interactive history UI (`HistoryPage.tsx`) |
+| **Text Preprocessing & NLP Backbone** | DONE | DistilBERT tokenizer + embedding projection to 256-dim space (`ml/models/text_encoder.py`) |
+| **Vision Preprocessing & Image Backbone** | DONE | ResNet18 convolutional stem feature map extraction + projection (`ml/models/vision_encoder.py`) |
+| **Video Feature-Level Temporal Pooling (Phase 2)** | DONE | 8 frames $\rightarrow$ batch ResNet18 $\rightarrow$ 8 feature vectors $\rightarrow$ temporal mean pooling $[8, 256] \rightarrow [1, 256]$ (`ml/models/vision_encoder.py`, `ml/models/multimodal_model.py`) |
+| **Audio Modality Branch & Fusion (Phase 3)** | DONE | 128-D STFT/spectral features $\rightarrow$ trainable `audio_projection` $[B, 128] \rightarrow [B, 256]$ $\rightarrow$ multimodal cross-attention & tri-modal fusion $\rightarrow$ `audio_classifier` (`ml/preprocessing/audio.py`, `ml/models/multimodal_model.py`) |
+| **Multimodal Fusion (Concat & Cross-Attention)** | DONE | Feature-level concatenation and bidirectional cross-attention (Text $\leftrightarrow$ Vision, Text $\leftrightarrow$ Audio) with residual LayerNorm |
+| **Decision & Uncertainty Policy** | DONE | Calibrated softmax confidence with operational `UNCERTAINTY_THRESHOLD = 0.65` (`ml/models/classifier.py`) |
+| **Explainability Engine (CAM, Saliency, Audio)** | DONE | Token-level gradient saliency, ResNet18 Layer4 Grad-CAM overlays, and acoustic spectral anomaly metrics (`ml/explainability/`) |
+| **FastAPI Backend Endpoints** | DONE | `/health`, `/verify/text`, `/verify/image`, `/verify/video`, `/verify/audio`, `/verify/multimodal`, `/verifications`, `/model/info`, `/dataset/stats`, `/evaluation/*` |
+| **React + Vite + TypeScript Frontend** | DONE | Interactive Verification, SQLite History, Professor Demo, Evaluation Hub (`/evaluation`), Architecture diagrams, Dataset stats |
+| **Experimental Evaluation & Ablation (Phase 4)** | DONE | Reproducible evaluation framework (`experiments/`), dataset leakage audit, fusion comparison, modality ablation, 15 difficult cases error analysis, ROC/PR curves & confusion matrix |
+| **Real-World Generalization & Mismatch (Phase 5)** | DONE | Ingestion of 180 external benchmark samples, Fakeddit multimodal evaluation, Deepfake Audio v4, Generative Video Sora, 4-condition Semantic Mismatch study, 89 mined failure cases |
+| **Model Improvement & Calibration (Phase 6)** | DONE | Domain adaptation (+23.34% Fakeddit acc), InfoNCE contrastive cross-modal alignment ($\lambda=0.05$), temperature scaling ($T^*=1.4628$), 6-config ablation study ($N=276$), 7 publication figures |
+| **Final Model Selection & Alias (Phase 7)** | DONE | Multi-criteria empirical audit across Configs A–F; selected Config A (Baseline Multimodal Cross-Attention, score 8.32/10); created production alias `models/production/selected_model.pt` |
+| **Evaluation Hub Dashboard (Phase 7)** | DONE | 7-tab interactive frontend dashboard (`EvaluationHubPage.tsx`) powered by 7 `/api/evaluation/*` backend endpoints |
+| **End-to-End Demo Hardening (Phase 7)** | DONE | 9 curated benchmark cases with 1-click sample loading, independent visual & audio slots supporting simultaneous tri-modal verification, step-by-step progress indicator, sanitized errors |
+| **Automated Test Suite** | DONE | **96/96 automated tests passing** across unit, pipeline, database, API, Phase 4 evaluation, Phase 5 generalization, Phase 6 calibration/contrastive, and Phase 7 selection/demo flow |
+| **Frontend Production Build** | DONE | `npm --prefix frontend run build` compiles with **0 TypeScript and JSX errors** |
 
 ---
 
-## 2. In Progress
+## 2. Phase-by-Phase Completion Summary
 
-- **Cross-Modal Semantic Inconsistency Fine-Tuning**: Training on larger subsets of Fakeddit and FaceForensics++ to capture nuanced caption-vs-image contradictions.
-- **Audio Modality Branch**: Architecture currently prepared for feature concatenation and attention expansion once audio encoders (e.g., Wav2Vec2 / Whisper) are integrated.
-
----
-
-## 3. Planned for Future Milestones
-
-- **Milestone 2: Audio Integration (TEXT + IMAGE/VIDEO + AUDIO)**:
-  - Extract synthetic voice frequency anomalies and lip-sync inconsistency metrics.
-- **Milestone 3: Contrastive Self-Supervised Learning**:
-  - Pre-training with symmetric InfoNCE contrastive loss across authentic paired streams.
-- **Milestone 4: Large-scale Benchmark Evaluation**:
-  - Full-scale cross-dataset evaluation across FaceForensics++, DFDC, and FakeAVCeleb with published ROC curves and ablation figures.
+- **Phase 1**: SQLite persistence, Verification History page, and Professor Demo multimodal bugfix ($27/27$ tests).
+- **Phase 2**: Video raw-pixel averaging defect fixed; replaced with deep feature-level temporal mean pooling across 8 uniform frames ($35/35$ tests).
+- **Phase 3**: Audio modality branch integrated, trainable linear projection, STFT acoustic extraction, and gradient verification ($44/44$ tests).
+- **Phase 4**: In-domain experimental evaluation, baselines, concatenation vs cross-attention comparison, ablation study, and 15 difficult multimodal cases ($53/53$ tests).
+- **Phase 5**: Real-world external benchmark generalization on Fakeddit, Deepfake Audio v4, Generative Video Sora, 4-condition Semantic Mismatch evaluation, and 89 failure cases mined ($62/62$ tests).
+- **Phase 6**: Domain-adaptive text improvement, InfoNCE contrastive cross-modal alignment, probability calibration ($T^* = 1.4628$), and 6-configuration ablation study ($79/79$ tests).
+- **Phase 7**: Final product integration, empirical model selection audit (Config A selected), Evaluation Hub dashboard, 9 curated demo cases, simultaneous tri-modal verification, demo hardening, and full regression ($96/96$ tests).
 
 ---
 
-## 4. Transparency & Academic Integrity Statement
+## 3. Academic Integrity & Scientific Governance Statement
 
-- **No Fabricated Accuracies**: All numbers shown on the dashboard and in reports come directly from actual forward passes or evaluation scripts.
-- **No Hardcoded Predictions**: The system executes actual PyTorch forward passes on CPU or Apple Silicon MPS.
-- **Explicit Uncertainty**: Ambiguous content is classified as `UNCERTAIN` based on confidence policy rather than forcing synthetic certainty.
+- **Zero Fabricated Metrics**: Every metric reported in the application and documentation originates from reproducible automated evaluations against authentic stored artifacts.
+- **Explicit Uncertainty Handling**: Samples failing the $65\%$ confidence threshold route to `UNCERTAIN` rather than forcing high-consequence false classifications.
+- **FakeAVCeleb Dataset Disclosure**: KAIST FakeAVCeleb is clearly marked as a restricted gated dataset; surrogate benchmarking is conducted using authentic generative audio and video suites.
+- **Preserved History**: All checkpoints from Phase 1 through Phase 6 are preserved intact; the production model is safely referenced via `models/production/selected_model.pt`.

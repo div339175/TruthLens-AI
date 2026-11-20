@@ -39,6 +39,9 @@ class Settings(BaseModel):
     # In binary REAL/FAKE, if max(real_prob, fake_prob) < UNCERTAINTY_THRESHOLD, class is UNCERTAIN
     UNCERTAINTY_THRESHOLD: float = float(os.getenv("UNCERTAINTY_THRESHOLD", "0.65"))
 
+    # Post-processing Temperature Scaling for probability calibration (Phase 6/7)
+    CALIBRATION_TEMPERATURE: float = float(os.getenv("CALIBRATION_TEMPERATURE", "1.0"))
+
     # Video uniform sampling
     VIDEO_SAMPLE_FRAMES: int = int(os.getenv("VIDEO_SAMPLE_FRAMES", "8"))
 
@@ -46,6 +49,7 @@ class Settings(BaseModel):
     DATA_DIR: Path = BASE_DIR / "ml" / "data"
     METADATA_PATH: Path = BASE_DIR / "ml" / "data" / "metadata" / "dataset.csv"
     MODELS_DIR: Path = BASE_DIR / "models"
+    PRODUCTION_MODEL_PATH: Path = BASE_DIR / "models" / "production" / "selected_model.pt"
     UPLOAD_TEMP_DIR: Path = BASE_DIR / "backend" / "app" / "uploads"
     MEDIA_STORAGE_DIR: Path = BASE_DIR / "backend" / "app" / "storage" / "media"
     DATABASE_PATH: Path = BASE_DIR / "backend" / "app" / "truthlens.db"

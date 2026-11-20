@@ -56,17 +56,37 @@ class TruthLensPredictor:
             pretrained_vision=True,
         ).to(self.device)
 
-        # Check if saved checkpoint exists
-        checkpoint_path = settings.MODELS_DIR / "multimodal_baseline.pt"
+        # Check if saved checkpoint exists (prefer production selected model, then cross_attention, then baseline)
+        candidates = [
+            settings.PRODUCTION_MODEL_PATH,
+            settings.MODELS_DIR / "multimodal_cross_attention.pt",
+            settings.MODELS_DIR / "multimodal_baseline.pt",
+        ]
         self.is_checkpoint_loaded = False
-        if checkpoint_path.exists():
+        self.loaded_checkpoint_path = None
+        for ckpt in candidates:
+            if ckpt.exists():
+                try:
+                    state_dict = torch.load(ckpt, map_location=self.device)
+                    self.model.load_state_dict(state_dict, strict=False)
+                    self.is_checkpoint_loaded = True
+                    self.loaded_checkpoint_path = ckpt
+                    logger.info(f"Loaded trained checkpoint from {ckpt}")
+                    break
+                except Exception as e:
+                    logger.warning(f"Could not load checkpoint {ckpt}: {e}")
+
+        # Post-processing calibration temperature (default 1.0 or from production_config.json)
+        self.temperature = settings.CALIBRATION_TEMPERATURE
+        prod_config_file = settings.MODELS_DIR / "production" / "production_config.json"
+        if prod_config_file.exists():
             try:
-                state_dict = torch.load(checkpoint_path, map_location=self.device)
-                self.model.load_state_dict(state_dict, strict=False)
-                self.is_checkpoint_loaded = True
-                logger.info(f"Loaded trained checkpoint from {checkpoint_path}")
-            except Exception as e:
-                logger.warning(f"Could not load checkpoint: {e}")
+                import json
+                with open(prod_config_file) as f:
+                    p_data = json.load(f)
+                    self.temperature = float(p_data.get("temperature", settings.CALIBRATION_TEMPERATURE))
+            except Exception:
+                pass
 
         self.model.eval()
 
@@ -165,8 +185,9 @@ class TruthLensPredictor:
             video_meta["frame_feature_dim"] = out["frame_features"].shape[-1]
             video_meta["pooled_feature_dim"] = out["vision_features"].shape[-1] if out.get("vision_features") is not None else 256
 
-        decision = self.decision_policy.evaluate(logits)
-        logger.info(f"Raw prediction: {decision['prediction']} (confidence: {decision['confidence']})")
+        scaled_logits = logits / max(self.temperature, 0.01)
+        decision = self.decision_policy.evaluate(scaled_logits)
+        logger.info(f"Prediction (T={self.temperature:.2f}): {decision['prediction']} (confidence: {decision['confidence']})")
 
         # Saliency text explanation
         text_tokens = None

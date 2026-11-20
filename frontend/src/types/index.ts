@@ -4,7 +4,7 @@ export interface TokenImportance {
 }
 
 export interface ModalityEvidence {
-  modality: 'text' | 'visual' | 'video' | 'cross-modal';
+  modality: 'text' | 'visual' | 'video' | 'audio' | 'cross-modal';
   type: 'model-derived' | 'heuristic';
   description: string;
   details?: Record<string, any>;
@@ -90,4 +90,42 @@ export interface HealthInfo {
   execution_mode: string;
   torch_version: string;
   models_loaded: boolean;
+}
+
+export interface EvaluationOverviewMetrics {
+  in_domain_accuracy: number;
+  in_domain_f1: number;
+  in_domain_source: string;
+  fakeddit_multimodal_accuracy: number;
+  fakeddit_text_adapted_accuracy: number;
+  fakeddit_source: string;
+  semantic_mismatch_accuracy: number;
+  semantic_mismatch_c2_accuracy: number;
+  semantic_mismatch_source: string;
+  audio_roc_auc: number;
+  audio_source: string;
+  video_roc_auc: number;
+  video_source: string;
+  calibrated_ece: number;
+  calibrated_ece_source: string;
+  total_automated_tests: number;
+}
+
+export interface EvaluationOverview {
+  status: string;
+  selected_model: string;
+  selected_model_name: string;
+  checkpoint: string;
+  temperature: number;
+  uncertainty_threshold: number;
+  metrics: EvaluationOverviewMetrics;
+}
+
+export interface AllEvaluationData {
+  overview: EvaluationOverview;
+  in_domain: any;
+  generalization: any;
+  semantic_mismatch: any;
+  calibration: any;
+  ablation: any;
 }

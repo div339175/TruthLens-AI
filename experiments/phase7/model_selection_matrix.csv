@@ -1,0 +1,7 @@
+code,name,checkpoint,temperature,in_domain_acc,in_domain_ece,fakeddit_acc,fakeddit_f1,semantic_mismatch_acc,fakeavceleb_roc,mean_acc,mean_ece,composite_score,selected
+Config A,"Baseline Multimodal Cross-Attention (Phase 5, T=1.0)",models/multimodal_cross_attention.pt,1.0,100.0,0.0723,46.67,0.619,55.00000000000001,0.82,70.33,0.1324,8.32,YES
+Config D,Calibration Only (Phase 5 + Temp Scaling T=1.46),models/multimodal_cross_attention.pt,1.46,100.0,0.1484,46.67,0.619,55.00000000000001,0.82,70.33,0.1338,8.31,NO
+Config C,Contrastive Cross-Modal Alignment Only (T=1.0),models/phase6/multimodal_contrastive.pt,1.0,100.0,0.0342,46.67,0.6279,60.0,0.83,71.33,0.1571,8.26,NO
+Config B,Domain-Adapted Text Only (T=1.0),models/phase6/text_domain_adapted.pt,1.0,100.0,0.4273,46.67,0.6279,73.33,0.82,74.0,0.2453,7.8,NO
+Config F,Full Proposed Pipeline (DA + Cont + Cal T=1.46),models/phase6/multimodal_adapted_contrastive.pt,1.46,100.0,0.1093,41.67,0.4928,43.33,0.77,67.0,0.1555,7.42,NO
+Config E,Domain Adaptation + Contrastive (T=1.0),models/phase6/multimodal_adapted_contrastive.pt,1.0,100.0,0.0444,41.67,0.4928,43.33,0.77,67.0,0.1673,7.3,NO

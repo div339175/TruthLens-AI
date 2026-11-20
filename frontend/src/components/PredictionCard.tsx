@@ -9,6 +9,7 @@ interface PredictionCardProps {
 export const PredictionCard: React.FC<PredictionCardProps> = ({ report }) => {
   const isReal = report.prediction === 'REAL';
   const isFake = report.prediction === 'FAKE';
+  const isUncertain = report.prediction === 'UNCERTAIN' || report.uncertain;
 
   const badgeColor = isReal
     ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30'
@@ -41,21 +42,36 @@ export const PredictionCard: React.FC<PredictionCardProps> = ({ report }) => {
                 {report.execution_mode.toUpperCase()}
               </span>
             </div>
-            <h2 className="text-3xl font-extrabold text-white tracking-tight">{report.prediction}</h2>
+            <h2 className={`text-3xl font-extrabold tracking-tight ${isReal ? 'text-emerald-400' : isFake ? 'text-rose-400' : 'text-amber-400'}`}>
+              {report.prediction}
+            </h2>
           </div>
         </div>
 
         {/* Confidence Gauge */}
         <div className="text-right">
           <span className="text-xs text-slate-400 font-medium">Model Confidence</span>
-          <div className="text-3xl font-extrabold text-sky-400">
+          <div className={`text-3xl font-extrabold ${isReal ? 'text-emerald-400' : isFake ? 'text-rose-400' : 'text-amber-400'}`}>
             {(report.confidence * 100).toFixed(1)}%
           </div>
           <span className="text-[11px] text-slate-500">
-            {report.uncertain ? 'Threshold (65%) not met' : 'Calibrated Softmax'}
+            {isUncertain ? 'Below 65% threshold (routed to human review)' : 'Calibrated Softmax'}
           </span>
         </div>
       </div>
+
+      {/* Uncertainty Alert Banner */}
+      {isUncertain && (
+        <div className="mt-4 p-3.5 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs flex items-start space-x-2.5">
+          <HelpCircle className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
+          <div>
+            <span className="font-semibold block text-amber-200">Uncertainty Guardrail Triggered</span>
+            <span className="text-amber-300/90 leading-relaxed">
+              The highest class probability ({(report.confidence * 100).toFixed(1)}%) did not satisfy the operational 65.0% certainty threshold. To prevent high-consequence false accusations or missed deepfakes, this item requires manual human review.
+            </span>
+          </div>
+        </div>
+      )}
 
       {/* Probability Bars */}
       <div className="mt-6 space-y-3">
@@ -88,11 +104,11 @@ export const PredictionCard: React.FC<PredictionCardProps> = ({ report }) => {
           <span className="text-white font-medium">{report.manipulation_type}</span>
         </div>
         <div className="bg-slate-900/60 p-3 rounded-xl border border-slate-800">
-          <span className="text-slate-400 block mb-1">Modalities Analyzed</span>
+          <span className="text-slate-400 block mb-1">Modalities Analyzed ({report.modalities_used.length})</span>
           <div className="flex gap-1.5 flex-wrap">
             {report.modalities_used.map((mod) => (
-              <span key={mod} className="px-2 py-0.5 rounded bg-sky-500/10 text-sky-400 border border-sky-500/20 font-medium">
-                {mod.toUpperCase()}
+              <span key={mod} className="px-2 py-0.5 rounded bg-sky-500/10 text-sky-400 border border-sky-500/20 font-medium uppercase">
+                {mod === 'visual' ? 'IMAGE' : mod}
               </span>
             ))}
           </div>

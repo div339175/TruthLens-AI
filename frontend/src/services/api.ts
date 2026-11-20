@@ -125,3 +125,15 @@ export async function verifyMultimodal(
   }
   return res.json();
 }
+
+export async function getEvaluationOverview(): Promise<any> {
+  const res = await fetch(`${API_BASE}/evaluation/overview`);
+  if (!res.ok) throw new Error(`Failed to fetch evaluation overview: ${res.statusText}`);
+  return res.json();
+}
+
+export async function getEvaluationAll(): Promise<any> {
+  const res = await fetch(`${API_BASE}/evaluation/all`);
+  if (!res.ok) throw new Error(`Failed to fetch evaluation hub data: ${res.statusText}`);
+  return res.json();
+}

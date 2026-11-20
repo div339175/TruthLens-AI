@@ -74,7 +74,7 @@ class VerificationService:
         return report
 
     def get_model_info(self) -> ModelInfoResponse:
-        checkpoint_path = settings.MODELS_DIR / "multimodal_baseline.pt"
+        checkpoint_path = self.predictor.loaded_checkpoint_path or (settings.MODELS_DIR / "multimodal_baseline.pt")
         return ModelInfoResponse(
             project_name=settings.PROJECT_NAME,
             version=settings.VERSION,
@@ -91,6 +91,7 @@ class VerificationService:
                 "vision_embed_dim": settings.VISION_EMBED_DIM,
                 "projection_dim": settings.PROJECTION_DIM,
                 "video_sample_frames": settings.VIDEO_SAMPLE_FRAMES,
+                "calibration_temperature": getattr(self.predictor, "temperature", 1.0),
                 "num_classes": 2,
                 "decision_classes": ["REAL", "FAKE", "UNCERTAIN"],
             },

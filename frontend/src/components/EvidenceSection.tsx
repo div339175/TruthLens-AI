@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Layers, FileText, Image as ImageIcon, Video, GitMerge, Eye } from 'lucide-react';
+import { Layers, FileText, Image as ImageIcon, Video, Music, GitMerge, Eye } from 'lucide-react';
 import { ModalityEvidence } from '../types';
 
 interface EvidenceSectionProps {
@@ -28,6 +28,7 @@ export const EvidenceSection: React.FC<EvidenceSectionProps> = ({ evidence, orig
                 {ev.modality === 'text' && <FileText className="w-4 h-4 text-sky-400" />}
                 {ev.modality === 'visual' && <ImageIcon className="w-4 h-4 text-emerald-400" />}
                 {ev.modality === 'video' && <Video className="w-4 h-4 text-purple-400" />}
+                {ev.modality === 'audio' && <Music className="w-4 h-4 text-amber-400" />}
                 {ev.modality === 'cross-modal' && <GitMerge className="w-4 h-4 text-indigo-400" />}
                 <span className="font-semibold text-sm text-white capitalize">{ev.modality} Modality Evidence</span>
               </div>
@@ -112,6 +113,24 @@ export const EvidenceSection: React.FC<EvidenceSectionProps> = ({ evidence, orig
               <div className="mt-2 text-xs text-slate-400 bg-slate-950/70 p-3 rounded-lg border border-slate-800 flex items-center justify-between">
                 <span>Sampled Frames Count: <strong className="text-white">{ev.details.sampled_frames_count || 8}</strong></span>
                 <span>Temporal Sampling: <strong className="text-white">Uniform linspace</strong></span>
+              </div>
+            )}
+
+            {/* Modality: Audio metadata */}
+            {ev.modality === 'audio' && ev.details && (
+              <div className="mt-2 text-xs text-slate-400 bg-slate-950/70 p-3 rounded-lg border border-slate-800 grid grid-cols-1 sm:grid-cols-3 gap-2">
+                <div>
+                  <span className="block text-[11px] text-slate-500">Clip Duration:</span>
+                  <strong className="text-white">{Number(ev.details.duration_sec || 0).toFixed(2)}s</strong>
+                </div>
+                <div>
+                  <span className="block text-[11px] text-slate-500">Zero-Crossing Rate:</span>
+                  <strong className="text-amber-400 font-mono">{Number(ev.details.zero_crossing_rate || 0).toFixed(4)}</strong>
+                </div>
+                <div>
+                  <span className="block text-[11px] text-slate-500">High-Freq Ratio:</span>
+                  <strong className="text-amber-400 font-mono">{Number(ev.details.high_freq_ratio || 0).toFixed(4)}</strong>
+                </div>
               </div>
             )}
           </div>
