@@ -48,12 +48,6 @@ export const App: React.FC = () => {
             <span className="font-semibold text-slate-400">TruthLens AI</span>
             <span>— Multimodal Deepfake Verification System</span>
           </div>
-
-          <div className="flex items-center space-x-4">
-            <span className="px-2 py-0.5 rounded bg-slate-800 text-slate-400 border border-slate-700">
-              University NLP Project • Milestone 1
-            </span>
-          </div>
         </div>
       </footer>
     </div>
