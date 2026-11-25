@@ -1,10 +1,10 @@
 import React from 'react';
-import { ShieldCheck, Cpu, Database, Activity, Sparkles, History, BarChart3 } from 'lucide-react';
+import { ShieldCheck, Cpu, Database, Activity, History, BarChart3 } from 'lucide-react';
 import { HealthInfo } from '../types';
 
 interface NavbarProps {
-  activeTab: 'verify' | 'history' | 'demo' | 'evaluation' | 'architecture' | 'dataset';
-  setActiveTab: (tab: 'verify' | 'history' | 'demo' | 'evaluation' | 'architecture' | 'dataset') => void;
+  activeTab: 'verify' | 'history' | 'evaluation' | 'architecture' | 'dataset';
+  setActiveTab: (tab: 'verify' | 'history' | 'evaluation' | 'architecture' | 'dataset') => void;
   health: HealthInfo | null;
 }
 
@@ -51,17 +51,6 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, setActiveTab, health 
             >
               <History className="w-4 h-4" />
               <span>History</span>
-            </button>
-            <button
-              onClick={() => setActiveTab('demo')}
-              className={`px-3 py-2 rounded-lg text-sm font-medium transition-colors flex items-center space-x-1.5 ${
-                activeTab === 'demo'
-                  ? 'bg-indigo-500/15 text-indigo-400 border border-indigo-500/30'
-                  : 'text-slate-300 hover:text-white hover:bg-slate-800/60'
-              }`}
-            >
-              <Sparkles className="w-4 h-4" />
-              <span>Professor Demo</span>
             </button>
             <button
               onClick={() => setActiveTab('evaluation')}

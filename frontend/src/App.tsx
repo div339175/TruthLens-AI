@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Navbar } from './components/Navbar';
 import { VerificationPage } from './pages/VerificationPage';
 import { HistoryPage } from './pages/HistoryPage';
-import { ProfessorDemoPage } from './pages/ProfessorDemoPage';
 import { EvaluationHubPage } from './pages/EvaluationHubPage';
 import { ArchitecturePage } from './pages/ArchitecturePage';
 import { DatasetPage } from './pages/DatasetPage';
@@ -11,7 +10,7 @@ import { HealthInfo } from './types';
 import { ShieldCheck } from 'lucide-react';
 
 export const App: React.FC = () => {
-  const [activeTab, setActiveTab] = useState<'verify' | 'history' | 'demo' | 'evaluation' | 'architecture' | 'dataset'>('verify');
+  const [activeTab, setActiveTab] = useState<'verify' | 'history' | 'evaluation' | 'architecture' | 'dataset'>('verify');
   const [health, setHealth] = useState<HealthInfo | null>(null);
 
   useEffect(() => {
@@ -36,7 +35,6 @@ export const App: React.FC = () => {
       <main className="flex-1 pb-16">
         {activeTab === 'verify' && <VerificationPage />}
         {activeTab === 'history' && <HistoryPage />}
-        {activeTab === 'demo' && <ProfessorDemoPage />}
         {activeTab === 'evaluation' && <EvaluationHubPage />}
         {activeTab === 'architecture' && <ArchitecturePage />}
         {activeTab === 'dataset' && <DatasetPage />}
