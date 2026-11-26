@@ -129,3 +129,61 @@ export interface AllEvaluationData {
   calibration: any;
   ablation: any;
 }
+
+export interface FakedditBenchmarkResults {
+  status: string;
+  dataset: string;
+  evaluation_samples: number;
+  training_source: string;
+  training_samples: number;
+  fakeddit_used_for_training: boolean;
+  fakeddit_used_for_external_evaluation: boolean;
+  class_distribution: { real: number; fake: number };
+  accuracy: number;
+  resolved_accuracy: number;
+  precision: number;
+  recall: number;
+  f1_score: number;
+  counts: {
+    correct: number;
+    incorrect: number;
+    uncertain: number;
+  };
+  rates: {
+    uncertain_rate: number;
+    accuracy_percentage: number;
+  };
+  confusion_matrix: {
+    true_negatives: number;
+    false_positives: number;
+    false_negatives: number;
+    true_positives: number;
+  };
+}
+
+export interface FakedditSample {
+  sample_id: string;
+  text: string;
+  ground_truth: 'REAL' | 'FAKE';
+  prediction: 'REAL' | 'FAKE' | 'UNCERTAIN';
+  confidence: number;
+  real_probability: number;
+  fake_probability: number;
+  correct: boolean;
+  status: 'CORRECT' | 'INCORRECT' | 'UNCERTAIN';
+  manipulation_type: string;
+  image_url: string;
+  explanation?: string;
+  evidence_descriptions?: string[];
+  token_saliency?: { token: string; score: number }[];
+  has_heatmap?: boolean;
+  heatmap_base64?: string;
+}
+
+export interface FakedditSamplesResponse {
+  status: string;
+  total_available: number;
+  filter_applied: string;
+  count: number;
+  samples: FakedditSample[];
+}

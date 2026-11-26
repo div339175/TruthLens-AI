@@ -4,6 +4,9 @@ import {
   DatasetStats,
   HealthInfo,
   VerificationListResponse,
+  FakedditBenchmarkResults,
+  FakedditSample,
+  FakedditSamplesResponse,
 } from '../types';
 
 const API_BASE = '/api';
@@ -135,5 +138,29 @@ export async function getEvaluationOverview(): Promise<any> {
 export async function getEvaluationAll(): Promise<any> {
   const res = await fetch(`${API_BASE}/evaluation/all`);
   if (!res.ok) throw new Error(`Failed to fetch evaluation hub data: ${res.statusText}`);
+  return res.json();
+}
+
+export async function getFakedditBenchmarkResults(): Promise<FakedditBenchmarkResults> {
+  const res = await fetch(`${API_BASE}/benchmark/fakeddit/results`);
+  if (!res.ok) throw new Error(`Failed to fetch benchmark results: ${res.statusText}`);
+  return res.json();
+}
+
+export async function runFakedditBenchmark(): Promise<any> {
+  const res = await fetch(`${API_BASE}/benchmark/fakeddit/run`, { method: 'POST' });
+  if (!res.ok) throw new Error(`Failed to run benchmark: ${res.statusText}`);
+  return res.json();
+}
+
+export async function getFakedditSamples(status = 'all'): Promise<FakedditSamplesResponse> {
+  const res = await fetch(`${API_BASE}/benchmark/fakeddit/samples?status=${status}`);
+  if (!res.ok) throw new Error(`Failed to fetch benchmark samples: ${res.statusText}`);
+  return res.json();
+}
+
+export async function getFakedditSampleDetail(sampleId: string): Promise<{ status: string; sample: FakedditSample }> {
+  const res = await fetch(`${API_BASE}/benchmark/fakeddit/sample/${sampleId}`);
+  if (!res.ok) throw new Error(`Failed to fetch sample detail: ${res.statusText}`);
   return res.json();
 }

@@ -1,0 +1,25 @@
+{
+  "dataset_name": "Fakeddit",
+  "total_processed_samples": 60,
+  "target_resolution": [
+    224,
+    224
+  ],
+  "color_space": "RGB",
+  "resampling_filter": "BILINEAR",
+  "jpeg_quality": 95,
+  "normalization": {
+    "mean": [
+      0.485,
+      0.456,
+      0.406
+    ],
+    "std": [
+      0.229,
+      0.224,
+      0.225
+    ]
+  },
+  "source_manifest": "experiments/external_dataset/external_dataset_manifest.csv",
+  "master_manifest": "data/metadata/fakeddit_manifest.csv"
+}

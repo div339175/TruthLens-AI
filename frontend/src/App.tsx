@@ -5,12 +5,13 @@ import { HistoryPage } from './pages/HistoryPage';
 import { EvaluationHubPage } from './pages/EvaluationHubPage';
 import { ArchitecturePage } from './pages/ArchitecturePage';
 import { DatasetPage } from './pages/DatasetPage';
+import { FakedditBenchmarkPage } from './pages/FakedditBenchmarkPage';
 import { checkHealth } from './services/api';
 import { HealthInfo } from './types';
 import { ShieldCheck } from 'lucide-react';
 
 export const App: React.FC = () => {
-  const [activeTab, setActiveTab] = useState<'verify' | 'history' | 'evaluation' | 'architecture' | 'dataset'>('verify');
+  const [activeTab, setActiveTab] = useState<'verify' | 'history' | 'benchmark' | 'evaluation' | 'architecture' | 'dataset'>('verify');
   const [health, setHealth] = useState<HealthInfo | null>(null);
 
   useEffect(() => {
@@ -33,8 +34,9 @@ export const App: React.FC = () => {
 
       {/* Main Tab Content */}
       <main className="flex-1 pb-16">
-        {activeTab === 'verify' && <VerificationPage />}
+        {activeTab === 'verify' && <VerificationPage onNavigateToBenchmark={() => setActiveTab('benchmark')} />}
         {activeTab === 'history' && <HistoryPage />}
+        {activeTab === 'benchmark' && <FakedditBenchmarkPage />}
         {activeTab === 'evaluation' && <EvaluationHubPage />}
         {activeTab === 'architecture' && <ArchitecturePage />}
         {activeTab === 'dataset' && <DatasetPage />}

@@ -41,6 +41,27 @@ ml/data/raw/*
 ml/data/processed/*
 !ml/data/processed/.gitkeep
 
+# Public Datasets hierarchy (data/)
+data/raw/*
+!data/raw/README.md
+data/interim/*
+!data/interim/.gitkeep
+data/processed/*
+!data/processed/.gitkeep
+data/raw/**/*.jpg
+data/raw/**/*.jpeg
+data/raw/**/*.png
+data/raw/**/*.mp4
+data/raw/**/*.wav
+data/raw/**/*.avi
+data/processed/**/*.jpg
+data/processed/**/*.jpeg
+data/processed/**/*.png
+data/processed/**/*.pt
+!data/splits/*.csv
+!data/metadata/*.json
+!data/metadata/*.csv
+
 # Environment variables
 .env
 .env.local

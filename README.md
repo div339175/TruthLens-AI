@@ -209,9 +209,66 @@ Open your browser to: `http://localhost:5173`
 
 ---
 
-## 7. Running the Automated Test Suite
+## 7. Public Dataset Pipeline & Reproducibility Guide
 
-TruthLens AI includes 96 comprehensive automated tests covering unit components, neural forward passes, gradient backpropagation, video temporal pooling, audio STFT projection, database persistence, API endpoints, and Phase 4–7 evaluations:
+TruthLens AI integrates the peer-reviewed **r/Fakeddit Benchmark (LREC 2020)** for real-world multimodal misinformation evaluation. Follow these exact steps to reproduce the dataset verification, preprocessing, splitting, training, and evaluation pipeline from scratch:
+
+### Step 1: Download the Dataset from the Official Source
+The benchmark is curated from the official UCSB NLP Lab Fakeddit release. Download or fetch the metadata and verified media links:
+- Official Portal: [https://fakeddit.netlify.app/](https://fakeddit.netlify.app/)
+- Official Repository: [https://github.com/entitize/Fakeddit](https://github.com/entitize/Fakeddit)
+
+### Step 2: Place Raw Media in `data/raw/`
+Place the downloaded raw images and metadata in:
+```bash
+data/raw/fakeddit/
+```
+*(In accordance with licensing and Git safety guidelines, raw image binaries are excluded from Git via `.gitignore` while keeping `data/raw/README.md`).*
+
+### Step 3: Run Dataset Verification
+Audit raw image integrity, header decodability, and MD5 cryptographic checksums:
+```bash
+python scripts/verify_dataset.py
+```
+
+### Step 4: Run Preprocessing
+Standardize raw visual inputs into non-destructive 224x224 RGB tensors in `data/processed/` and normalize text claims:
+```bash
+python scripts/preprocess_dataset.py
+```
+
+### Step 5: Create Train / Validation / Test Splits
+Generate deterministic, stratified 70/15/15 partitions with fixed random seed `42`:
+```bash
+python scripts/split_dataset.py
+```
+Outputs: `data/splits/train.csv`, `data/splits/validation.csv`, `data/splits/test.csv`.
+
+### Step 6: Train the Model on the Public Benchmark
+Fine-tune the Bidirectional Cross-Attention fusion layer using DistilBERT and ResNet-18:
+```bash
+python scripts/train_and_eval_public.py
+```
+Checkpoint saved to: `models/fakeddit_finetuned.pt`.
+
+### Step 7: Evaluate the Model & Audit for Leakage
+Run the automated class balance analysis and strict zero-leakage auditor:
+```bash
+python scripts/check_data_leakage.py
+python scripts/analyze_dataset.py
+```
+Reports and figures generated in `reports/`:
+- `reports/dataset_report.md`
+- `reports/evaluation_report.md`
+- `reports/confusion_matrix.png`
+- `reports/roc_curve.png`
+- `reports/metrics.json`
+
+---
+
+## 8. Running the Automated Test Suite
+
+TruthLens AI includes **104 comprehensive automated tests** covering unit components, neural forward passes, gradient backpropagation, video temporal pooling, audio STFT projection, database persistence, API endpoints, and the public dataset pipeline:
 
 ```bash
 .venv/bin/pytest tests/ -v
@@ -219,7 +276,7 @@ TruthLens AI includes 96 comprehensive automated tests covering unit components,
 
 **Result**:
 ```text
-============================= 96 passed in 16.55s ==============================
+============================= 104 passed in 16.07s =============================
 ```
 
 To verify the frontend TypeScript and build:
@@ -234,8 +291,23 @@ npm --prefix frontend run build
 
 ---
 
-## 8. Academic Integrity & Dataset Transparency
+## 9. Academic Citations & Dataset Transparency
 
-- **Zero Fabricated Results**: Every displayed accuracy, F1 score, ROC-AUC, ECE, and confusion matrix derives strictly from reproducible experimental evaluations.
+### Official Dataset Citation (r/Fakeddit)
+```bibtex
+@inproceedings{nakamura2020fakeddit,
+  title     = {r/{F}akeddit: A New Multimodal Benchmark Dataset for Fine-Grained Fake News Detection},
+  author    = {Nakamura, Kai and Levy, Sharon and Wang, William Yang},
+  booktitle = {Proceedings of the 12th Language Resources and Evaluation Conference},
+  month     = may,
+  year      = {2020},
+  address   = {Marseille, France},
+  publisher = {European Language Resources Association},
+  pages     = {6149--6157},
+  url       = {https://aclanthology.org/2020.lrec-1.755}
+}
+```
+
+- **Zero Fabricated Results**: Every displayed accuracy, F1 score, ROC-AUC, ECE, and confusion matrix derives strictly from reproducible experimental evaluations on authentic stored artifacts.
 - **FakeAVCeleb Dataset Disclosure**: The KAIST FakeAVCeleb dataset is explicitly identified across the UI and documentation as **"Not Available / Restricted Gated Dataset"**, requiring formal institutional approval. Surrogate evaluations are conducted using verified synthetic acoustic and video benchmarks.
 - **Uncertainty Policy**: The system prioritizes human editorial review over unconfident algorithmic predictions, enforcing an operational 65% certainty threshold.

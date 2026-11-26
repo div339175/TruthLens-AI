@@ -1,0 +1,3130 @@
+{
+  "dataset": "Fakeddit",
+  "evaluation_samples": 60,
+  "training_source": "TruthLens course dataset",
+  "training_samples": 320,
+  "fakeddit_used_for_training": false,
+  "fakeddit_used_for_external_evaluation": true,
+  "class_distribution": {
+    "real": 30,
+    "fake": 30
+  },
+  "accuracy": 0.2333,
+  "resolved_accuracy": 0.4667,
+  "precision": 0.4815,
+  "recall": 0.8667,
+  "f1_score": 0.619,
+  "counts": {
+    "correct": 14,
+    "incorrect": 19,
+    "uncertain": 27
+  },
+  "rates": {
+    "uncertain_rate": 0.45,
+    "accuracy_percentage": 23.33
+  },
+  "confusion_matrix": {
+    "true_negatives": 2,
+    "false_positives": 28,
+    "false_negatives": 4,
+    "true_positives": 26
+  },
+  "samples": [
+    {
+      "sample_id": "fakeddit_fake_001",
+      "ground_truth": "FAKE",
+      "prediction": "UNCERTAIN",
+      "confidence": 0.6344,
+      "real_probability": 0.6344,
+      "fake_probability": 0.3656,
+      "correct": false,
+      "status": "UNCERTAIN",
+      "text": "this one episode of game of thrones just won emmys",
+      "image_path": "data/raw/fakeddit/fakeddit_fake_001.jpg",
+      "manipulation_type": "imposter_content",
+      "explanation": "The system classified this content as UNCERTAIN because the peak confidence score (63.4%) fell below the operational threshold (65%). This occurs when textual and visual signals provide conflicting evidence or subtle manipulation cues.",
+      "evidence_descriptions": [
+        "Textual evidence examined for synthetic stylometric markers. Top influential tokens: 'emmy' (1.00), 'throne' (0.89), 'episode' (0.67), 'this' (0.57).",
+        "Visual backbone extracted 512-dim spatial representation. No focal manipulation hotspot isolated.",
+        "Bidirectional cross-attention computed text-to-vision alignment scores, capturing cross-modal correspondence between textual description and visual patches."
+      ],
+      "token_saliency": [
+        {
+          "token": "emmy",
+          "score": 1.0
+        },
+        {
+          "token": "throne",
+          "score": 0.8899
+        },
+        {
+          "token": "episode",
+          "score": 0.6653
+        },
+        {
+          "token": "this",
+          "score": 0.5678
+        },
+        {
+          "token": "just",
+          "score": 0.5649
+        },
+        {
+          "token": "won",
+          "score": 0.5401
+        },
+        {
+          "token": "one",
+          "score": 0.465
+        },
+        {
+          "token": "game",
+          "score": 0.4615
+        }
+      ],
+      "has_heatmap": false,
+      "heatmap_base64": null
+    },
+    {
+      "sample_id": "fakeddit_real_001",
+      "ground_truth": "REAL",
+      "prediction": "FAKE",
+      "confidence": 0.8286,
+      "real_probability": 0.1714,
+      "fake_probability": 0.8286,
+      "correct": false,
+      "status": "INCORRECT",
+      "text": "israeli nurse breastfeeds palestinian baby after mom is critically injured",
+      "image_path": "data/raw/fakeddit/fakeddit_real_001.jpg",
+      "manipulation_type": "authentic",
+      "explanation": "The content was classified as FAKE with 82.9% model confidence. Features extracted across text, visual exhibit synthetic characteristics consistent with generative or spliced manipulations.",
+      "evidence_descriptions": [
+        "Model-derived gradient saliency identified key tokens influencing the classification: 'israeli' (1.00), 'palestinian' (0.96), 'nurse' (0.83), 'mom' (0.77).",
+        "Visual backbone extracted 512-dim spatial representation. No focal manipulation hotspot isolated.",
+        "Bidirectional cross-attention computed text-to-vision alignment scores, capturing cross-modal correspondence between textual description and visual patches."
+      ],
+      "token_saliency": [
+        {
+          "token": "israeli",
+          "score": 1.0
+        },
+        {
+          "token": "palestinian",
+          "score": 0.9598
+        },
+        {
+          "token": "nurse",
+          "score": 0.8252
+        },
+        {
+          "token": "mom",
+          "score": 0.7706
+        },
+        {
+          "token": "baby",
+          "score": 0.6952
+        },
+        {
+          "token": "breast",
+          "score": 0.683
+        },
+        {
+          "token": "injured",
+          "score": 0.6795
+        },
+        {
+          "token": "after",
+          "score": 0.538
+        }
+      ],
+      "has_heatmap": false,
+      "heatmap_base64": null
+    },
+    {
+      "sample_id": "fakeddit_fake_002",
+      "ground_truth": "FAKE",
+      "prediction": "UNCERTAIN",
+      "confidence": 0.6011,
+      "real_probability": 0.3989,
+      "fake_probability": 0.6011,
+      "correct": false,
+      "status": "UNCERTAIN",
+      "text": "hentai message board features surprisingly closeknit supportive community",
+      "image_path": "data/raw/fakeddit/fakeddit_fake_002.jpg",
+      "manipulation_type": "satire_parody",
+      "explanation": "The system classified this content as UNCERTAIN because the peak confidence score (60.1%) fell below the operational threshold (65%). This occurs when textual and visual signals provide conflicting evidence or subtle manipulation cues.",
+      "evidence_descriptions": [
+        "Textual evidence examined for synthetic stylometric markers. Top influential tokens: 'features' (1.00), 'message' (0.89), '##tai' (0.74), 'hen' (0.73).",
+        "Visual backbone extracted 512-dim spatial representation. No focal manipulation hotspot isolated.",
+        "Bidirectional cross-attention computed text-to-vision alignment scores, capturing cross-modal correspondence between textual description and visual patches."
+      ],
+      "token_saliency": [
+        {
+          "token": "features",
+          "score": 1.0
+        },
+        {
+          "token": "message",
+          "score": 0.8902
+        },
+        {
+          "token": "##tai",
+          "score": 0.7392
+        },
+        {
+          "token": "hen",
+          "score": 0.7284
+        },
+        {
+          "token": "surprisingly",
+          "score": 0.7076
+        },
+        {
+          "token": "community",
+          "score": 0.6578
+        },
+        {
+          "token": "board",
+          "score": 0.6545
+        },
+        {
+          "token": "supportive",
+          "score": 0.563
+        }
+      ],
+      "has_heatmap": false,
+      "heatmap_base64": null
+    },
+    {
+      "sample_id": "fakeddit_real_002",
+      "ground_truth": "REAL",
+      "prediction": "FAKE",
+      "confidence": 0.7375,
+      "real_probability": 0.2625,
+      "fake_probability": 0.7375,
+      "correct": false,
+      "status": "INCORRECT",
+      "text": "this pink sign i just saw",
+      "image_path": "data/raw/fakeddit/fakeddit_real_002.jpg",
+      "manipulation_type": "authentic",
+      "explanation": "The content was classified as FAKE with 73.8% model confidence. Features extracted across text, visual exhibit synthetic characteristics consistent with generative or spliced manipulations.",
+      "evidence_descriptions": [
+        "Model-derived gradient saliency identified key tokens influencing the classification: 'sign' (1.00), 'pink' (0.88), 'saw' (0.76), 'i' (0.74).",
+        "Visual backbone extracted 512-dim spatial representation. No focal manipulation hotspot isolated.",
+        "Bidirectional cross-attention computed text-to-vision alignment scores, capturing cross-modal correspondence between textual description and visual patches."
+      ],
+      "token_saliency": [
+        {
+          "token": "sign",
+          "score": 1.0
+        },
+        {
+          "token": "pink",
+          "score": 0.8795
+        },
+        {
+          "token": "saw",
+          "score": 0.7632
+        },
+        {
+          "token": "i",
+          "score": 0.7436
+        },
+        {
+          "token": "this",
+          "score": 0.6672
+        },
+        {
+          "token": "just",
+          "score": 0.6296
+        }
+      ],
+      "has_heatmap": false,
+      "heatmap_base64": null
+    },
+    {
+      "sample_id": "fakeddit_fake_003",
+      "ground_truth": "FAKE",
+      "prediction": "UNCERTAIN",
+      "confidence": 0.5561,
+      "real_probability": 0.4439,
+      "fake_probability": 0.5561,
+      "correct": false,
+      "status": "UNCERTAIN",
+      "text": "rand paul beaten by other neighbor",
+      "image_path": "data/raw/fakeddit/fakeddit_fake_003.jpg",
+      "manipulation_type": "satire_parody",
+      "explanation": "The system classified this content as UNCERTAIN because the peak confidence score (55.6%) fell below the operational threshold (65%). This occurs when textual and visual signals provide conflicting evidence or subtle manipulation cues.",
+      "evidence_descriptions": [
+        "Textual evidence examined for synthetic stylometric markers. Top influential tokens: 'rand' (1.00), 'paul' (0.97), 'beaten' (0.82), 'neighbor' (0.53).",
+        "Visual backbone extracted 512-dim spatial representation. No focal manipulation hotspot isolated.",
+        "Bidirectional cross-attention computed text-to-vision alignment scores, capturing cross-modal correspondence between textual description and visual patches."
+      ],
+      "token_saliency": [
+        {
+          "token": "rand",
+          "score": 1.0
+        },
+        {
+          "token": "paul",
+          "score": 0.9739
+        },
+        {
+          "token": "beaten",
+          "score": 0.8188
+        },
+        {
+          "token": "neighbor",
+          "score": 0.5272
+        },
+        {
+          "token": "other",
+          "score": 0.4705
+        },
+        {
+          "token": "by",
+          "score": 0.3881
+        }
+      ],
+      "has_heatmap": false,
+      "heatmap_base64": null
+    },
+    {
+      "sample_id": "fakeddit_fake_004",
+      "ground_truth": "FAKE",
+      "prediction": "UNCERTAIN",
+      "confidence": 0.5065,
+      "real_probability": 0.4935,
+      "fake_probability": 0.5065,
+      "correct": false,
+      "status": "UNCERTAIN",
+      "text": "lincoln delivers the gettysburg address circa",
+      "image_path": "data/raw/fakeddit/fakeddit_fake_004.jpg",
+      "manipulation_type": "misleading_content",
+      "explanation": "The system classified this content as UNCERTAIN because the peak confidence score (50.6%) fell below the operational threshold (65%). This occurs when textual and visual signals provide conflicting evidence or subtle manipulation cues.",
+      "evidence_descriptions": [
+        "Textual evidence examined for synthetic stylometric markers. Top influential tokens: 'gettysburg' (1.00), 'lincoln' (0.93), 'circa' (0.84), 'delivers' (0.67).",
+        "Visual backbone extracted 512-dim spatial representation. No focal manipulation hotspot isolated.",
+        "Bidirectional cross-attention computed text-to-vision alignment scores, capturing cross-modal correspondence between textual description and visual patches."
+      ],
+      "token_saliency": [
+        {
+          "token": "gettysburg",
+          "score": 1.0
+        },
+        {
+          "token": "lincoln",
+          "score": 0.9307
+        },
+        {
+          "token": "circa",
+          "score": 0.8359
+        },
+        {
+          "token": "delivers",
+          "score": 0.6724
+        },
+        {
+          "token": "address",
+          "score": 0.5899
+        },
+        {
+          "token": "the",
+          "score": 0.3639
+        }
+      ],
+      "has_heatmap": false,
+      "heatmap_base64": null
+    },
+    {
+      "sample_id": "fakeddit_fake_005",
+      "ground_truth": "FAKE",
+      "prediction": "FAKE",
+      "confidence": 0.713,
+      "real_probability": 0.287,
+      "fake_probability": 0.713,
+      "correct": true,
+      "status": "CORRECT",
+      "text": "immigration activists storm offices to protest blockchain migration",
+      "image_path": "data/raw/fakeddit/fakeddit_fake_005.jpg",
+      "manipulation_type": "satire_parody",
+      "explanation": "The content was classified as FAKE with 71.3% model confidence. Features extracted across text, visual exhibit synthetic characteristics consistent with generative or spliced manipulations.",
+      "evidence_descriptions": [
+        "Model-derived gradient saliency identified key tokens influencing the classification: 'storm' (1.00), 'activists' (0.75), 'immigration' (0.73), 'offices' (0.73).",
+        "Visual backbone extracted 512-dim spatial representation. No focal manipulation hotspot isolated.",
+        "Bidirectional cross-attention computed text-to-vision alignment scores, capturing cross-modal correspondence between textual description and visual patches."
+      ],
+      "token_saliency": [
+        {
+          "token": "storm",
+          "score": 1.0
+        },
+        {
+          "token": "activists",
+          "score": 0.7504
+        },
+        {
+          "token": "immigration",
+          "score": 0.7261
+        },
+        {
+          "token": "offices",
+          "score": 0.7257
+        },
+        {
+          "token": "migration",
+          "score": 0.5865
+        },
+        {
+          "token": "protest",
+          "score": 0.459
+        },
+        {
+          "token": "to",
+          "score": 0.3666
+        },
+        {
+          "token": "block",
+          "score": 0.2762
+        }
+      ],
+      "has_heatmap": false,
+      "heatmap_base64": null
+    },
+    {
+      "sample_id": "fakeddit_fake_006",
+      "ground_truth": "FAKE",
+      "prediction": "UNCERTAIN",
+      "confidence": 0.6393,
+      "real_probability": 0.3607,
+      "fake_probability": 0.6393,
+      "correct": false,
+      "status": "UNCERTAIN",
+      "text": "caught this guy spying on me this morning",
+      "image_path": "data/raw/fakeddit/fakeddit_fake_006.jpg",
+      "manipulation_type": "misleading_content",
+      "explanation": "The system classified this content as UNCERTAIN because the peak confidence score (63.9%) fell below the operational threshold (65%). This occurs when textual and visual signals provide conflicting evidence or subtle manipulation cues.",
+      "evidence_descriptions": [
+        "Textual evidence examined for synthetic stylometric markers. Top influential tokens: 'caught' (1.00), 'spying' (0.82), 'this' (0.81), 'morning' (0.78).",
+        "Visual backbone extracted 512-dim spatial representation. No focal manipulation hotspot isolated.",
+        "Bidirectional cross-attention computed text-to-vision alignment scores, capturing cross-modal correspondence between textual description and visual patches."
+      ],
+      "token_saliency": [
+        {
+          "token": "caught",
+          "score": 1.0
+        },
+        {
+          "token": "spying",
+          "score": 0.8227
+        },
+        {
+          "token": "this",
+          "score": 0.8085
+        },
+        {
+          "token": "morning",
+          "score": 0.7784
+        },
+        {
+          "token": "guy",
+          "score": 0.7565
+        },
+        {
+          "token": "me",
+          "score": 0.7253
+        },
+        {
+          "token": "this",
+          "score": 0.6575
+        },
+        {
+          "token": "on",
+          "score": 0.5085
+        }
+      ],
+      "has_heatmap": false,
+      "heatmap_base64": null
+    },
+    {
+      "sample_id": "fakeddit_real_003",
+      "ground_truth": "REAL",
+      "prediction": "UNCERTAIN",
+      "confidence": 0.565,
+      "real_probability": 0.435,
+      "fake_probability": 0.565,
+      "correct": false,
+      "status": "UNCERTAIN",
+      "text": "starting her own business at latika chakravarty is proof that there is no expiry date for realizing your dreams",
+      "image_path": "data/raw/fakeddit/fakeddit_real_003.jpg",
+      "manipulation_type": "authentic",
+      "explanation": "The system classified this content as UNCERTAIN because the peak confidence score (56.5%) fell below the operational threshold (65%). This occurs when textual and visual signals provide conflicting evidence or subtle manipulation cues.",
+      "evidence_descriptions": [
+        "Textual evidence examined for synthetic stylometric markers. Top influential tokens: 'proof' (1.00), 'dreams' (0.92), 'starting' (0.87), 'your' (0.77).",
+        "Visual backbone extracted 512-dim spatial representation. No focal manipulation hotspot isolated.",
+        "Bidirectional cross-attention computed text-to-vision alignment scores, capturing cross-modal correspondence between textual description and visual patches."
+      ],
+      "token_saliency": [
+        {
+          "token": "proof",
+          "score": 1.0
+        },
+        {
+          "token": "dreams",
+          "score": 0.9233
+        },
+        {
+          "token": "starting",
+          "score": 0.874
+        },
+        {
+          "token": "your",
+          "score": 0.7672
+        },
+        {
+          "token": "business",
+          "score": 0.7186
+        },
+        {
+          "token": "her",
+          "score": 0.6584
+        },
+        {
+          "token": "is",
+          "score": 0.6365
+        },
+        {
+          "token": "date",
+          "score": 0.6189
+        }
+      ],
+      "has_heatmap": false,
+      "heatmap_base64": null
+    },
+    {
+      "sample_id": "fakeddit_real_004",
+      "ground_truth": "REAL",
+      "prediction": "FAKE",
+      "confidence": 0.7641,
+      "real_probability": 0.2359,
+      "fake_probability": 0.7641,
+      "correct": false,
+      "status": "INCORRECT",
+      "text": "while reading during my cold i coughed and some spit landed in my book on the perfect word",
+      "image_path": "data/raw/fakeddit/fakeddit_real_004.jpg",
+      "manipulation_type": "authentic",
+      "explanation": "The content was classified as FAKE with 76.4% model confidence. Features extracted across text, visual exhibit synthetic characteristics consistent with generative or spliced manipulations.",
+      "evidence_descriptions": [
+        "Model-derived gradient saliency identified key tokens influencing the classification: 'cold' (1.00), 'spit' (0.55), 'book' (0.51), 'coughed' (0.51).",
+        "Visual backbone extracted 512-dim spatial representation. No focal manipulation hotspot isolated.",
+        "Bidirectional cross-attention computed text-to-vision alignment scores, capturing cross-modal correspondence between textual description and visual patches."
+      ],
+      "token_saliency": [
+        {
+          "token": "cold",
+          "score": 1.0
+        },
+        {
+          "token": "spit",
+          "score": 0.5521
+        },
+        {
+          "token": "book",
+          "score": 0.5147
+        },
+        {
+          "token": "coughed",
+          "score": 0.5072
+        },
+        {
+          "token": "word",
+          "score": 0.4898
+        },
+        {
+          "token": "i",
+          "score": 0.4786
+        },
+        {
+          "token": "perfect",
+          "score": 0.4582
+        },
+        {
+          "token": "my",
+          "score": 0.4251
+        }
+      ],
+      "has_heatmap": false,
+      "heatmap_base64": null
+    },
+    {
+      "sample_id": "fakeddit_fake_007",
+      "ground_truth": "FAKE",
+      "prediction": "FAKE",
+      "confidence": 0.7621,
+      "real_probability": 0.2379,
+      "fake_probability": 0.7621,
+      "correct": true,
+      "status": "CORRECT",
+      "text": "anticispa advertisement on reddit sidebar modern",
+      "image_path": "data/raw/fakeddit/fakeddit_fake_007.jpg",
+      "manipulation_type": "imposter_content",
+      "explanation": "The content was classified as FAKE with 76.2% model confidence. Features extracted across text, visual exhibit synthetic characteristics consistent with generative or spliced manipulations.",
+      "evidence_descriptions": [
+        "Model-derived gradient saliency identified key tokens influencing the classification: '##dit' (1.00), 'advertisement' (0.90), '##bar' (0.68), 'modern' (0.67).",
+        "Visual backbone extracted 512-dim spatial representation. No focal manipulation hotspot isolated.",
+        "Bidirectional cross-attention computed text-to-vision alignment scores, capturing cross-modal correspondence between textual description and visual patches."
+      ],
+      "token_saliency": [
+        {
+          "token": "##dit",
+          "score": 1.0
+        },
+        {
+          "token": "advertisement",
+          "score": 0.8957
+        },
+        {
+          "token": "##bar",
+          "score": 0.6826
+        },
+        {
+          "token": "modern",
+          "score": 0.6709
+        },
+        {
+          "token": "red",
+          "score": 0.6517
+        },
+        {
+          "token": "on",
+          "score": 0.5692
+        },
+        {
+          "token": "side",
+          "score": 0.5431
+        },
+        {
+          "token": "anti",
+          "score": 0.4831
+        }
+      ],
+      "has_heatmap": false,
+      "heatmap_base64": null
+    },
+    {
+      "sample_id": "fakeddit_fake_008",
+      "ground_truth": "FAKE",
+      "prediction": "FAKE",
+      "confidence": 0.666,
+      "real_probability": 0.334,
+      "fake_probability": 0.666,
+      "correct": true,
+      "status": "CORRECT",
+      "text": "astar atitle",
+      "image_path": "data/raw/fakeddit/fakeddit_fake_008.jpg",
+      "manipulation_type": "satire_parody",
+      "explanation": "The content was classified as FAKE with 66.6% model confidence. Features extracted across text, visual exhibit synthetic characteristics consistent with generative or spliced manipulations.",
+      "evidence_descriptions": [
+        "Model-derived gradient saliency identified key tokens influencing the classification: '##tar' (1.00), 'as' (0.63), '##le' (0.51), 'at' (0.50).",
+        "Visual backbone extracted 512-dim spatial representation. No focal manipulation hotspot isolated.",
+        "Bidirectional cross-attention computed text-to-vision alignment scores, capturing cross-modal correspondence between textual description and visual patches."
+      ],
+      "token_saliency": [
+        {
+          "token": "##tar",
+          "score": 1.0
+        },
+        {
+          "token": "as",
+          "score": 0.6284
+        },
+        {
+          "token": "##le",
+          "score": 0.5066
+        },
+        {
+          "token": "at",
+          "score": 0.5032
+        },
+        {
+          "token": "##it",
+          "score": 0.4666
+        }
+      ],
+      "has_heatmap": false,
+      "heatmap_base64": null
+    },
+    {
+      "sample_id": "fakeddit_fake_009",
+      "ground_truth": "FAKE",
+      "prediction": "UNCERTAIN",
+      "confidence": 0.6451,
+      "real_probability": 0.3549,
+      "fake_probability": 0.6451,
+      "correct": false,
+      "status": "UNCERTAIN",
+      "text": "burgh runner",
+      "image_path": "data/raw/fakeddit/fakeddit_fake_009.jpg",
+      "manipulation_type": "satire_parody",
+      "explanation": "The system classified this content as UNCERTAIN because the peak confidence score (64.5%) fell below the operational threshold (65%). This occurs when textual and visual signals provide conflicting evidence or subtle manipulation cues.",
+      "evidence_descriptions": [
+        "Textual evidence examined for synthetic stylometric markers. Top influential tokens: 'runner' (1.00), '##rgh' (0.81), 'bu' (0.58).",
+        "Visual backbone extracted 512-dim spatial representation. No focal manipulation hotspot isolated.",
+        "Bidirectional cross-attention computed text-to-vision alignment scores, capturing cross-modal correspondence between textual description and visual patches."
+      ],
+      "token_saliency": [
+        {
+          "token": "runner",
+          "score": 1.0
+        },
+        {
+          "token": "##rgh",
+          "score": 0.8061
+        },
+        {
+          "token": "bu",
+          "score": 0.5813
+        }
+      ],
+      "has_heatmap": false,
+      "heatmap_base64": null
+    },
+    {
+      "sample_id": "fakeddit_fake_010",
+      "ground_truth": "FAKE",
+      "prediction": "FAKE",
+      "confidence": 0.7309,
+      "real_probability": 0.2691,
+      "fake_probability": 0.7309,
+      "correct": true,
+      "status": "CORRECT",
+      "text": "four letters fuck love",
+      "image_path": "data/raw/fakeddit/fakeddit_fake_010.jpg",
+      "manipulation_type": "satire_parody",
+      "explanation": "The content was classified as FAKE with 73.1% model confidence. Features extracted across text, visual exhibit synthetic characteristics consistent with generative or spliced manipulations.",
+      "evidence_descriptions": [
+        "Model-derived gradient saliency identified key tokens influencing the classification: 'fuck' (1.00), 'love' (0.72), 'letters' (0.58), 'four' (0.47).",
+        "Visual backbone extracted 512-dim spatial representation. No focal manipulation hotspot isolated.",
+        "Bidirectional cross-attention computed text-to-vision alignment scores, capturing cross-modal correspondence between textual description and visual patches."
+      ],
+      "token_saliency": [
+        {
+          "token": "fuck",
+          "score": 1.0
+        },
+        {
+          "token": "love",
+          "score": 0.721
+        },
+        {
+          "token": "letters",
+          "score": 0.5755
+        },
+        {
+          "token": "four",
+          "score": 0.4681
+        }
+      ],
+      "has_heatmap": false,
+      "heatmap_base64": null
+    },
+    {
+      "sample_id": "fakeddit_fake_011",
+      "ground_truth": "FAKE",
+      "prediction": "FAKE",
+      "confidence": 0.7236,
+      "real_probability": 0.2764,
+      "fake_probability": 0.7236,
+      "correct": true,
+      "status": "CORRECT",
+      "text": "he didnt choose the grocery store without this furr ball demanding cuddles",
+      "image_path": "data/raw/fakeddit/fakeddit_fake_011.jpg",
+      "manipulation_type": "manipulated_content",
+      "explanation": "The content was classified as FAKE with 72.4% model confidence. Features extracted across text, visual exhibit synthetic characteristics consistent with generative or spliced manipulations.",
+      "evidence_descriptions": [
+        "Model-derived gradient saliency identified key tokens influencing the classification: 'didn' (1.00), 'grocery' (0.97), '##t' (0.89), '##ddle' (0.83).",
+        "Visual backbone extracted 512-dim spatial representation. No focal manipulation hotspot isolated.",
+        "Bidirectional cross-attention computed text-to-vision alignment scores, capturing cross-modal correspondence between textual description and visual patches."
+      ],
+      "token_saliency": [
+        {
+          "token": "didn",
+          "score": 1.0
+        },
+        {
+          "token": "grocery",
+          "score": 0.966
+        },
+        {
+          "token": "##t",
+          "score": 0.891
+        },
+        {
+          "token": "##ddle",
+          "score": 0.835
+        },
+        {
+          "token": "ball",
+          "score": 0.8344
+        },
+        {
+          "token": "choose",
+          "score": 0.809
+        },
+        {
+          "token": "fur",
+          "score": 0.7744
+        },
+        {
+          "token": "demanding",
+          "score": 0.7342
+        }
+      ],
+      "has_heatmap": false,
+      "heatmap_base64": null
+    },
+    {
+      "sample_id": "fakeddit_fake_012",
+      "ground_truth": "FAKE",
+      "prediction": "UNCERTAIN",
+      "confidence": 0.5509,
+      "real_probability": 0.4491,
+      "fake_probability": 0.5509,
+      "correct": false,
+      "status": "UNCERTAIN",
+      "text": "the new rock landscaping next to my house",
+      "image_path": "data/raw/fakeddit/fakeddit_fake_012.jpg",
+      "manipulation_type": "misleading_content",
+      "explanation": "The system classified this content as UNCERTAIN because the peak confidence score (55.1%) fell below the operational threshold (65%). This occurs when textual and visual signals provide conflicting evidence or subtle manipulation cues.",
+      "evidence_descriptions": [
+        "Textual evidence examined for synthetic stylometric markers. Top influential tokens: 'landscaping' (1.00), 'rock' (0.68), 'new' (0.58), 'my' (0.48).",
+        "Visual backbone extracted 512-dim spatial representation. No focal manipulation hotspot isolated.",
+        "Bidirectional cross-attention computed text-to-vision alignment scores, capturing cross-modal correspondence between textual description and visual patches."
+      ],
+      "token_saliency": [
+        {
+          "token": "landscaping",
+          "score": 1.0
+        },
+        {
+          "token": "rock",
+          "score": 0.6809
+        },
+        {
+          "token": "new",
+          "score": 0.5813
+        },
+        {
+          "token": "my",
+          "score": 0.4822
+        },
+        {
+          "token": "the",
+          "score": 0.4728
+        },
+        {
+          "token": "house",
+          "score": 0.4556
+        },
+        {
+          "token": "next",
+          "score": 0.3566
+        },
+        {
+          "token": "to",
+          "score": 0.2573
+        }
+      ],
+      "has_heatmap": false,
+      "heatmap_base64": null
+    },
+    {
+      "sample_id": "fakeddit_real_005",
+      "ground_truth": "REAL",
+      "prediction": "UNCERTAIN",
+      "confidence": 0.5662,
+      "real_probability": 0.4338,
+      "fake_probability": 0.5662,
+      "correct": false,
+      "status": "UNCERTAIN",
+      "text": "this rainbow coming out of our dumpster",
+      "image_path": "data/raw/fakeddit/fakeddit_real_005.jpg",
+      "manipulation_type": "authentic",
+      "explanation": "The system classified this content as UNCERTAIN because the peak confidence score (56.6%) fell below the operational threshold (65%). This occurs when textual and visual signals provide conflicting evidence or subtle manipulation cues.",
+      "evidence_descriptions": [
+        "Textual evidence examined for synthetic stylometric markers. Top influential tokens: 'rainbow' (1.00), 'coming' (0.71), 'dump' (0.61), 'our' (0.61).",
+        "Visual backbone extracted 512-dim spatial representation. No focal manipulation hotspot isolated.",
+        "Bidirectional cross-attention computed text-to-vision alignment scores, capturing cross-modal correspondence between textual description and visual patches."
+      ],
+      "token_saliency": [
+        {
+          "token": "rainbow",
+          "score": 1.0
+        },
+        {
+          "token": "coming",
+          "score": 0.7112
+        },
+        {
+          "token": "dump",
+          "score": 0.6096
+        },
+        {
+          "token": "our",
+          "score": 0.6086
+        },
+        {
+          "token": "this",
+          "score": 0.597
+        },
+        {
+          "token": "##ster",
+          "score": 0.5243
+        },
+        {
+          "token": "out",
+          "score": 0.3811
+        },
+        {
+          "token": "of",
+          "score": 0.3502
+        }
+      ],
+      "has_heatmap": false,
+      "heatmap_base64": null
+    },
+    {
+      "sample_id": "fakeddit_fake_013",
+      "ground_truth": "FAKE",
+      "prediction": "FAKE",
+      "confidence": 0.7848,
+      "real_probability": 0.2152,
+      "fake_probability": 0.7848,
+      "correct": true,
+      "status": "CORRECT",
+      "text": "please dont gamble with your life be careful what you say or write note the snake eyes on the dice for crap out the model is margie stewart the official united states army poster girl during world war ii see comment",
+      "image_path": "data/raw/fakeddit/fakeddit_fake_013.jpg",
+      "manipulation_type": "imposter_content",
+      "explanation": "The content was classified as FAKE with 78.5% model confidence. Features extracted across text, visual exhibit synthetic characteristics consistent with generative or spliced manipulations.",
+      "evidence_descriptions": [
+        "Model-derived gradient saliency identified key tokens influencing the classification: 'model' (1.00), 'comment' (0.69), 'see' (0.53), 'crap' (0.52).",
+        "Visual backbone extracted 512-dim spatial representation. No focal manipulation hotspot isolated.",
+        "Bidirectional cross-attention computed text-to-vision alignment scores, capturing cross-modal correspondence between textual description and visual patches."
+      ],
+      "token_saliency": [
+        {
+          "token": "model",
+          "score": 1.0
+        },
+        {
+          "token": "comment",
+          "score": 0.6938
+        },
+        {
+          "token": "see",
+          "score": 0.5299
+        },
+        {
+          "token": "crap",
+          "score": 0.5213
+        },
+        {
+          "token": "the",
+          "score": 0.495
+        },
+        {
+          "token": "poster",
+          "score": 0.4939
+        },
+        {
+          "token": "is",
+          "score": 0.4356
+        },
+        {
+          "token": "please",
+          "score": 0.3979
+        }
+      ],
+      "has_heatmap": false,
+      "heatmap_base64": null
+    },
+    {
+      "sample_id": "fakeddit_fake_014",
+      "ground_truth": "FAKE",
+      "prediction": "UNCERTAIN",
+      "confidence": 0.5762,
+      "real_probability": 0.4238,
+      "fake_probability": 0.5762,
+      "correct": false,
+      "status": "UNCERTAIN",
+      "text": "extraction of gas from jupiter is successful",
+      "image_path": "data/raw/fakeddit/fakeddit_fake_014.jpg",
+      "manipulation_type": "misleading_content",
+      "explanation": "The system classified this content as UNCERTAIN because the peak confidence score (57.6%) fell below the operational threshold (65%). This occurs when textual and visual signals provide conflicting evidence or subtle manipulation cues.",
+      "evidence_descriptions": [
+        "Textual evidence examined for synthetic stylometric markers. Top influential tokens: 'jupiter' (1.00), 'successful' (0.76), 'extraction' (0.75), 'gas' (0.53).",
+        "Visual backbone extracted 512-dim spatial representation. No focal manipulation hotspot isolated.",
+        "Bidirectional cross-attention computed text-to-vision alignment scores, capturing cross-modal correspondence between textual description and visual patches."
+      ],
+      "token_saliency": [
+        {
+          "token": "jupiter",
+          "score": 1.0
+        },
+        {
+          "token": "successful",
+          "score": 0.7577
+        },
+        {
+          "token": "extraction",
+          "score": 0.7511
+        },
+        {
+          "token": "gas",
+          "score": 0.5267
+        },
+        {
+          "token": "is",
+          "score": 0.4629
+        },
+        {
+          "token": "from",
+          "score": 0.331
+        },
+        {
+          "token": "of",
+          "score": 0.2983
+        }
+      ],
+      "has_heatmap": false,
+      "heatmap_base64": null
+    },
+    {
+      "sample_id": "fakeddit_fake_015",
+      "ground_truth": "FAKE",
+      "prediction": "UNCERTAIN",
+      "confidence": 0.5458,
+      "real_probability": 0.4542,
+      "fake_probability": 0.5458,
+      "correct": false,
+      "status": "UNCERTAIN",
+      "text": "nature notes camelion",
+      "image_path": "data/raw/fakeddit/fakeddit_fake_015.jpg",
+      "manipulation_type": "imposter_content",
+      "explanation": "The system classified this content as UNCERTAIN because the peak confidence score (54.6%) fell below the operational threshold (65%). This occurs when textual and visual signals provide conflicting evidence or subtle manipulation cues.",
+      "evidence_descriptions": [
+        "Textual evidence examined for synthetic stylometric markers. Top influential tokens: 'nature' (1.00), 'notes' (0.96), 'camel' (0.65), '##ion' (0.57).",
+        "Visual backbone extracted 512-dim spatial representation. No focal manipulation hotspot isolated.",
+        "Bidirectional cross-attention computed text-to-vision alignment scores, capturing cross-modal correspondence between textual description and visual patches."
+      ],
+      "token_saliency": [
+        {
+          "token": "nature",
+          "score": 1.0
+        },
+        {
+          "token": "notes",
+          "score": 0.9622
+        },
+        {
+          "token": "camel",
+          "score": 0.6543
+        },
+        {
+          "token": "##ion",
+          "score": 0.5661
+        }
+      ],
+      "has_heatmap": false,
+      "heatmap_base64": null
+    },
+    {
+      "sample_id": "fakeddit_fake_016",
+      "ground_truth": "FAKE",
+      "prediction": "UNCERTAIN",
+      "confidence": 0.5085,
+      "real_probability": 0.4915,
+      "fake_probability": 0.5085,
+      "correct": false,
+      "status": "UNCERTAIN",
+      "text": "sir william wallace is executed rd",
+      "image_path": "data/raw/fakeddit/fakeddit_fake_016.jpg",
+      "manipulation_type": "misleading_content",
+      "explanation": "The system classified this content as UNCERTAIN because the peak confidence score (50.8%) fell below the operational threshold (65%). This occurs when textual and visual signals provide conflicting evidence or subtle manipulation cues.",
+      "evidence_descriptions": [
+        "Textual evidence examined for synthetic stylometric markers. Top influential tokens: 'executed' (1.00), 'rd' (0.76), 'sir' (0.56), 'wallace' (0.53).",
+        "Visual backbone extracted 512-dim spatial representation. No focal manipulation hotspot isolated.",
+        "Bidirectional cross-attention computed text-to-vision alignment scores, capturing cross-modal correspondence between textual description and visual patches."
+      ],
+      "token_saliency": [
+        {
+          "token": "executed",
+          "score": 1.0
+        },
+        {
+          "token": "rd",
+          "score": 0.756
+        },
+        {
+          "token": "sir",
+          "score": 0.5607
+        },
+        {
+          "token": "wallace",
+          "score": 0.5261
+        },
+        {
+          "token": "is",
+          "score": 0.4764
+        },
+        {
+          "token": "william",
+          "score": 0.4216
+        }
+      ],
+      "has_heatmap": false,
+      "heatmap_base64": null
+    },
+    {
+      "sample_id": "fakeddit_fake_017",
+      "ground_truth": "FAKE",
+      "prediction": "UNCERTAIN",
+      "confidence": 0.5576,
+      "real_probability": 0.5576,
+      "fake_probability": 0.4424,
+      "correct": false,
+      "status": "UNCERTAIN",
+      "text": "reddit ceo visits china",
+      "image_path": "data/raw/fakeddit/fakeddit_fake_017.jpg",
+      "manipulation_type": "misleading_content",
+      "explanation": "The system classified this content as UNCERTAIN because the peak confidence score (55.8%) fell below the operational threshold (65%). This occurs when textual and visual signals provide conflicting evidence or subtle manipulation cues.",
+      "evidence_descriptions": [
+        "Textual evidence examined for synthetic stylometric markers. Top influential tokens: 'visits' (1.00), 'ceo' (0.79), '##dit' (0.72), 'china' (0.62).",
+        "Visual backbone extracted 512-dim spatial representation. No focal manipulation hotspot isolated.",
+        "Bidirectional cross-attention computed text-to-vision alignment scores, capturing cross-modal correspondence between textual description and visual patches."
+      ],
+      "token_saliency": [
+        {
+          "token": "visits",
+          "score": 1.0
+        },
+        {
+          "token": "ceo",
+          "score": 0.7866
+        },
+        {
+          "token": "##dit",
+          "score": 0.7211
+        },
+        {
+          "token": "china",
+          "score": 0.6228
+        },
+        {
+          "token": "red",
+          "score": 0.6015
+        }
+      ],
+      "has_heatmap": false,
+      "heatmap_base64": null
+    },
+    {
+      "sample_id": "fakeddit_fake_018",
+      "ground_truth": "FAKE",
+      "prediction": "FAKE",
+      "confidence": 0.6506,
+      "real_probability": 0.3494,
+      "fake_probability": 0.6506,
+      "correct": true,
+      "status": "CORRECT",
+      "text": "remember the amritsar incident indiajapanuk",
+      "image_path": "data/raw/fakeddit/fakeddit_fake_018.jpg",
+      "manipulation_type": "imposter_content",
+      "explanation": "The content was classified as FAKE with 65.1% model confidence. Features extracted across text, visual exhibit synthetic characteristics consistent with generative or spliced manipulations.",
+      "evidence_descriptions": [
+        "Model-derived gradient saliency identified key tokens influencing the classification: 'remember' (1.00), 'incident' (0.61), '##uk' (0.46), 'the' (0.45).",
+        "Visual backbone extracted 512-dim spatial representation. No focal manipulation hotspot isolated.",
+        "Bidirectional cross-attention computed text-to-vision alignment scores, capturing cross-modal correspondence between textual description and visual patches."
+      ],
+      "token_saliency": [
+        {
+          "token": "remember",
+          "score": 1.0
+        },
+        {
+          "token": "incident",
+          "score": 0.6052
+        },
+        {
+          "token": "##uk",
+          "score": 0.4571
+        },
+        {
+          "token": "the",
+          "score": 0.4465
+        },
+        {
+          "token": "india",
+          "score": 0.4439
+        },
+        {
+          "token": "##rit",
+          "score": 0.3145
+        },
+        {
+          "token": "##pan",
+          "score": 0.3037
+        },
+        {
+          "token": "##sar",
+          "score": 0.3008
+        }
+      ],
+      "has_heatmap": false,
+      "heatmap_base64": null
+    },
+    {
+      "sample_id": "fakeddit_fake_019",
+      "ground_truth": "FAKE",
+      "prediction": "FAKE",
+      "confidence": 0.7938,
+      "real_probability": 0.2062,
+      "fake_probability": 0.7938,
+      "correct": true,
+      "status": "CORRECT",
+      "text": "baby has sinking feeling he left home without oversize multicolor plastic keys",
+      "image_path": "data/raw/fakeddit/fakeddit_fake_019.jpg",
+      "manipulation_type": "satire_parody",
+      "explanation": "The content was classified as FAKE with 79.4% model confidence. Features extracted across text, visual exhibit synthetic characteristics consistent with generative or spliced manipulations.",
+      "evidence_descriptions": [
+        "Model-derived gradient saliency identified key tokens influencing the classification: 'baby' (1.00), 'feeling' (0.78), 'has' (0.67), 'sinking' (0.58).",
+        "Visual backbone extracted 512-dim spatial representation. No focal manipulation hotspot isolated.",
+        "Bidirectional cross-attention computed text-to-vision alignment scores, capturing cross-modal correspondence between textual description and visual patches."
+      ],
+      "token_saliency": [
+        {
+          "token": "baby",
+          "score": 1.0
+        },
+        {
+          "token": "feeling",
+          "score": 0.7769
+        },
+        {
+          "token": "has",
+          "score": 0.6684
+        },
+        {
+          "token": "sinking",
+          "score": 0.581
+        },
+        {
+          "token": "keys",
+          "score": 0.5486
+        },
+        {
+          "token": "##color",
+          "score": 0.4965
+        },
+        {
+          "token": "he",
+          "score": 0.4909
+        },
+        {
+          "token": "plastic",
+          "score": 0.4489
+        }
+      ],
+      "has_heatmap": false,
+      "heatmap_base64": null
+    },
+    {
+      "sample_id": "fakeddit_fake_020",
+      "ground_truth": "FAKE",
+      "prediction": "FAKE",
+      "confidence": 0.7889,
+      "real_probability": 0.2111,
+      "fake_probability": 0.7889,
+      "correct": true,
+      "status": "CORRECT",
+      "text": "once a german always a german poster from the farright antiimmigrant group the british empire union",
+      "image_path": "data/raw/fakeddit/fakeddit_fake_020.jpg",
+      "manipulation_type": "imposter_content",
+      "explanation": "The content was classified as FAKE with 78.9% model confidence. Features extracted across text, visual exhibit synthetic characteristics consistent with generative or spliced manipulations.",
+      "evidence_descriptions": [
+        "Model-derived gradient saliency identified key tokens influencing the classification: 'poster' (1.00), 'always' (0.64), 'once' (0.56), 'german' (0.45).",
+        "Visual backbone extracted 512-dim spatial representation. No focal manipulation hotspot isolated.",
+        "Bidirectional cross-attention computed text-to-vision alignment scores, capturing cross-modal correspondence between textual description and visual patches."
+      ],
+      "token_saliency": [
+        {
+          "token": "poster",
+          "score": 1.0
+        },
+        {
+          "token": "always",
+          "score": 0.6437
+        },
+        {
+          "token": "once",
+          "score": 0.5552
+        },
+        {
+          "token": "german",
+          "score": 0.4513
+        },
+        {
+          "token": "a",
+          "score": 0.4207
+        },
+        {
+          "token": "##right",
+          "score": 0.406
+        },
+        {
+          "token": "german",
+          "score": 0.4055
+        },
+        {
+          "token": "far",
+          "score": 0.3754
+        }
+      ],
+      "has_heatmap": false,
+      "heatmap_base64": null
+    },
+    {
+      "sample_id": "fakeddit_fake_021",
+      "ground_truth": "FAKE",
+      "prediction": "UNCERTAIN",
+      "confidence": 0.6059,
+      "real_probability": 0.3941,
+      "fake_probability": 0.6059,
+      "correct": false,
+      "status": "UNCERTAIN",
+      "text": "sayin hey to my cookie monster on my way to work suuuuuuuuuup",
+      "image_path": "data/raw/fakeddit/fakeddit_fake_021.jpg",
+      "manipulation_type": "misleading_content",
+      "explanation": "The system classified this content as UNCERTAIN because the peak confidence score (60.6%) fell below the operational threshold (65%). This occurs when textual and visual signals provide conflicting evidence or subtle manipulation cues.",
+      "evidence_descriptions": [
+        "Textual evidence examined for synthetic stylometric markers. Top influential tokens: '##in' (0.94), 'hey' (0.94), 'say' (0.88), 'monster' (0.85).",
+        "Visual backbone extracted 512-dim spatial representation. No focal manipulation hotspot isolated.",
+        "Bidirectional cross-attention computed text-to-vision alignment scores, capturing cross-modal correspondence between textual description and visual patches."
+      ],
+      "token_saliency": [
+        {
+          "token": "##in",
+          "score": 0.9415
+        },
+        {
+          "token": "hey",
+          "score": 0.9406
+        },
+        {
+          "token": "say",
+          "score": 0.88
+        },
+        {
+          "token": "monster",
+          "score": 0.8494
+        },
+        {
+          "token": "cookie",
+          "score": 0.7005
+        },
+        {
+          "token": "##up",
+          "score": 0.6659
+        },
+        {
+          "token": "work",
+          "score": 0.654
+        },
+        {
+          "token": "my",
+          "score": 0.5968
+        }
+      ],
+      "has_heatmap": false,
+      "heatmap_base64": null
+    },
+    {
+      "sample_id": "fakeddit_fake_022",
+      "ground_truth": "FAKE",
+      "prediction": "UNCERTAIN",
+      "confidence": 0.6008,
+      "real_probability": 0.6008,
+      "fake_probability": 0.3992,
+      "correct": false,
+      "status": "UNCERTAIN",
+      "text": "quiz has it been an honor to serve with me",
+      "image_path": "data/raw/fakeddit/fakeddit_fake_022.jpg",
+      "manipulation_type": "satire_parody",
+      "explanation": "The system classified this content as UNCERTAIN because the peak confidence score (60.1%) fell below the operational threshold (65%). This occurs when textual and visual signals provide conflicting evidence or subtle manipulation cues.",
+      "evidence_descriptions": [
+        "Textual evidence examined for synthetic stylometric markers. Top influential tokens: 'quiz' (1.00), 'honor' (0.79), 'me' (0.71), 'has' (0.63).",
+        "Visual backbone extracted 512-dim spatial representation. No focal manipulation hotspot isolated.",
+        "Bidirectional cross-attention computed text-to-vision alignment scores, capturing cross-modal correspondence between textual description and visual patches."
+      ],
+      "token_saliency": [
+        {
+          "token": "quiz",
+          "score": 1.0
+        },
+        {
+          "token": "honor",
+          "score": 0.7884
+        },
+        {
+          "token": "me",
+          "score": 0.715
+        },
+        {
+          "token": "has",
+          "score": 0.6282
+        },
+        {
+          "token": "serve",
+          "score": 0.6213
+        },
+        {
+          "token": "it",
+          "score": 0.4322
+        },
+        {
+          "token": "been",
+          "score": 0.4311
+        },
+        {
+          "token": "an",
+          "score": 0.3548
+        }
+      ],
+      "has_heatmap": false,
+      "heatmap_base64": null
+    },
+    {
+      "sample_id": "fakeddit_real_006",
+      "ground_truth": "REAL",
+      "prediction": "UNCERTAIN",
+      "confidence": 0.5364,
+      "real_probability": 0.4636,
+      "fake_probability": 0.5364,
+      "correct": false,
+      "status": "UNCERTAIN",
+      "text": "us election donald trump splits the republican party",
+      "image_path": "data/raw/fakeddit/fakeddit_real_006.jpg",
+      "manipulation_type": "authentic",
+      "explanation": "The system classified this content as UNCERTAIN because the peak confidence score (53.6%) fell below the operational threshold (65%). This occurs when textual and visual signals provide conflicting evidence or subtle manipulation cues.",
+      "evidence_descriptions": [
+        "Textual evidence examined for synthetic stylometric markers. Top influential tokens: 'splits' (1.00), 'trump' (0.77), 'republican' (0.72), 'election' (0.70).",
+        "Visual backbone extracted 512-dim spatial representation. No focal manipulation hotspot isolated.",
+        "Bidirectional cross-attention computed text-to-vision alignment scores, capturing cross-modal correspondence between textual description and visual patches."
+      ],
+      "token_saliency": [
+        {
+          "token": "splits",
+          "score": 1.0
+        },
+        {
+          "token": "trump",
+          "score": 0.7707
+        },
+        {
+          "token": "republican",
+          "score": 0.7156
+        },
+        {
+          "token": "election",
+          "score": 0.7027
+        },
+        {
+          "token": "the",
+          "score": 0.6915
+        },
+        {
+          "token": "us",
+          "score": 0.6587
+        },
+        {
+          "token": "donald",
+          "score": 0.6514
+        },
+        {
+          "token": "party",
+          "score": 0.5669
+        }
+      ],
+      "has_heatmap": false,
+      "heatmap_base64": null
+    },
+    {
+      "sample_id": "fakeddit_fake_023",
+      "ground_truth": "FAKE",
+      "prediction": "UNCERTAIN",
+      "confidence": 0.6473,
+      "real_probability": 0.3527,
+      "fake_probability": 0.6473,
+      "correct": false,
+      "status": "UNCERTAIN",
+      "text": "a step to abyss antiwar ussr circa",
+      "image_path": "data/raw/fakeddit/fakeddit_fake_023.jpg",
+      "manipulation_type": "imposter_content",
+      "explanation": "The system classified this content as UNCERTAIN because the peak confidence score (64.7%) fell below the operational threshold (65%). This occurs when textual and visual signals provide conflicting evidence or subtle manipulation cues.",
+      "evidence_descriptions": [
+        "Textual evidence examined for synthetic stylometric markers. Top influential tokens: 'step' (1.00), 'circa' (0.89), 'ussr' (0.85), 'abyss' (0.82).",
+        "Visual backbone extracted 512-dim spatial representation. No focal manipulation hotspot isolated.",
+        "Bidirectional cross-attention computed text-to-vision alignment scores, capturing cross-modal correspondence between textual description and visual patches."
+      ],
+      "token_saliency": [
+        {
+          "token": "step",
+          "score": 1.0
+        },
+        {
+          "token": "circa",
+          "score": 0.8866
+        },
+        {
+          "token": "ussr",
+          "score": 0.8505
+        },
+        {
+          "token": "abyss",
+          "score": 0.824
+        },
+        {
+          "token": "a",
+          "score": 0.627
+        },
+        {
+          "token": "to",
+          "score": 0.5458
+        },
+        {
+          "token": "##war",
+          "score": 0.5408
+        },
+        {
+          "token": "anti",
+          "score": 0.5026
+        }
+      ],
+      "has_heatmap": false,
+      "heatmap_base64": null
+    },
+    {
+      "sample_id": "fakeddit_real_007",
+      "ground_truth": "REAL",
+      "prediction": "FAKE",
+      "confidence": 0.7725,
+      "real_probability": 0.2275,
+      "fake_probability": 0.7725,
+      "correct": false,
+      "status": "INCORRECT",
+      "text": "moss growing with artificial lights on roman ruins from the st century feet below the surface",
+      "image_path": "data/raw/fakeddit/fakeddit_real_007.jpg",
+      "manipulation_type": "authentic",
+      "explanation": "The content was classified as FAKE with 77.2% model confidence. Features extracted across text, visual exhibit synthetic characteristics consistent with generative or spliced manipulations.",
+      "evidence_descriptions": [
+        "Model-derived gradient saliency identified key tokens influencing the classification: 'moss' (1.00), 'growing' (0.72), 'ruins' (0.60), 'artificial' (0.54).",
+        "Visual backbone extracted 512-dim spatial representation. No focal manipulation hotspot isolated.",
+        "Bidirectional cross-attention computed text-to-vision alignment scores, capturing cross-modal correspondence between textual description and visual patches."
+      ],
+      "token_saliency": [
+        {
+          "token": "moss",
+          "score": 1.0
+        },
+        {
+          "token": "growing",
+          "score": 0.7238
+        },
+        {
+          "token": "ruins",
+          "score": 0.5966
+        },
+        {
+          "token": "artificial",
+          "score": 0.5381
+        },
+        {
+          "token": "lights",
+          "score": 0.4853
+        },
+        {
+          "token": "surface",
+          "score": 0.4828
+        },
+        {
+          "token": "with",
+          "score": 0.4552
+        },
+        {
+          "token": "roman",
+          "score": 0.4482
+        }
+      ],
+      "has_heatmap": false,
+      "heatmap_base64": null
+    },
+    {
+      "sample_id": "fakeddit_fake_024",
+      "ground_truth": "FAKE",
+      "prediction": "FAKE",
+      "confidence": 0.6659,
+      "real_probability": 0.3341,
+      "fake_probability": 0.6659,
+      "correct": true,
+      "status": "CORRECT",
+      "text": "oklahoma mandates antiabortion signs in public restrooms",
+      "image_path": "data/raw/fakeddit/fakeddit_fake_024.jpg",
+      "manipulation_type": "imposter_content",
+      "explanation": "The content was classified as FAKE with 66.6% model confidence. Features extracted across text, visual exhibit synthetic characteristics consistent with generative or spliced manipulations.",
+      "evidence_descriptions": [
+        "Model-derived gradient saliency identified key tokens influencing the classification: 'mandates' (1.00), 'oklahoma' (0.91), 'restroom' (0.50), 'anti' (0.40).",
+        "Visual backbone extracted 512-dim spatial representation. No focal manipulation hotspot isolated.",
+        "Bidirectional cross-attention computed text-to-vision alignment scores, capturing cross-modal correspondence between textual description and visual patches."
+      ],
+      "token_saliency": [
+        {
+          "token": "mandates",
+          "score": 1.0
+        },
+        {
+          "token": "oklahoma",
+          "score": 0.9092
+        },
+        {
+          "token": "restroom",
+          "score": 0.5042
+        },
+        {
+          "token": "anti",
+          "score": 0.4013
+        },
+        {
+          "token": "signs",
+          "score": 0.3752
+        },
+        {
+          "token": "##ort",
+          "score": 0.3172
+        },
+        {
+          "token": "##s",
+          "score": 0.2811
+        },
+        {
+          "token": "public",
+          "score": 0.2798
+        }
+      ],
+      "has_heatmap": false,
+      "heatmap_base64": null
+    },
+    {
+      "sample_id": "fakeddit_fake_025",
+      "ground_truth": "FAKE",
+      "prediction": "FAKE",
+      "confidence": 0.6921,
+      "real_probability": 0.3079,
+      "fake_probability": 0.6921,
+      "correct": true,
+      "status": "CORRECT",
+      "text": "breaking un official set to testify against hillary clinton violated both the federal records act and the article focused on if he was shot and killed",
+      "image_path": "data/raw/fakeddit/fakeddit_fake_025.jpg",
+      "manipulation_type": "manipulated_content",
+      "explanation": "The content was classified as FAKE with 69.2% model confidence. Features extracted across text, visual exhibit synthetic characteristics consistent with generative or spliced manipulations.",
+      "evidence_descriptions": [
+        "Model-derived gradient saliency identified key tokens influencing the classification: 'un' (1.00), 'official' (0.68), 'article' (0.56), 'breaking' (0.47).",
+        "Visual backbone extracted 512-dim spatial representation. No focal manipulation hotspot isolated.",
+        "Bidirectional cross-attention computed text-to-vision alignment scores, capturing cross-modal correspondence between textual description and visual patches."
+      ],
+      "token_saliency": [
+        {
+          "token": "un",
+          "score": 1.0
+        },
+        {
+          "token": "official",
+          "score": 0.6768
+        },
+        {
+          "token": "article",
+          "score": 0.5553
+        },
+        {
+          "token": "breaking",
+          "score": 0.4702
+        },
+        {
+          "token": "violated",
+          "score": 0.4659
+        },
+        {
+          "token": "focused",
+          "score": 0.4422
+        },
+        {
+          "token": "records",
+          "score": 0.4417
+        },
+        {
+          "token": "testify",
+          "score": 0.3968
+        }
+      ],
+      "has_heatmap": false,
+      "heatmap_base64": null
+    },
+    {
+      "sample_id": "fakeddit_fake_026",
+      "ground_truth": "FAKE",
+      "prediction": "FAKE",
+      "confidence": 0.7817,
+      "real_probability": 0.2183,
+      "fake_probability": 0.7817,
+      "correct": true,
+      "status": "CORRECT",
+      "text": "last night i dont do the pancakes in a restaurantpigs in a pan with grated cheese and string cheese quesadilla",
+      "image_path": "data/raw/fakeddit/fakeddit_fake_026.jpg",
+      "manipulation_type": "manipulated_content",
+      "explanation": "The content was classified as FAKE with 78.2% model confidence. Features extracted across text, visual exhibit synthetic characteristics consistent with generative or spliced manipulations.",
+      "evidence_descriptions": [
+        "Model-derived gradient saliency identified key tokens influencing the classification: 'i' (1.00), 'pancakes' (0.87), '##t' (0.77), 'don' (0.76).",
+        "Visual backbone extracted 512-dim spatial representation. No focal manipulation hotspot isolated.",
+        "Bidirectional cross-attention computed text-to-vision alignment scores, capturing cross-modal correspondence between textual description and visual patches."
+      ],
+      "token_saliency": [
+        {
+          "token": "i",
+          "score": 1.0
+        },
+        {
+          "token": "pancakes",
+          "score": 0.8728
+        },
+        {
+          "token": "##t",
+          "score": 0.7714
+        },
+        {
+          "token": "don",
+          "score": 0.7643
+        },
+        {
+          "token": "restaurant",
+          "score": 0.7554
+        },
+        {
+          "token": "and",
+          "score": 0.741
+        },
+        {
+          "token": "##lla",
+          "score": 0.6415
+        },
+        {
+          "token": "que",
+          "score": 0.6259
+        }
+      ],
+      "has_heatmap": false,
+      "heatmap_base64": null
+    },
+    {
+      "sample_id": "fakeddit_fake_027",
+      "ground_truth": "FAKE",
+      "prediction": "FAKE",
+      "confidence": 0.7139,
+      "real_probability": 0.2861,
+      "fake_probability": 0.7139,
+      "correct": true,
+      "status": "CORRECT",
+      "text": "this needs to try to warn us he was paid to run nuclear program",
+      "image_path": "data/raw/fakeddit/fakeddit_fake_027.jpg",
+      "manipulation_type": "manipulated_content",
+      "explanation": "The content was classified as FAKE with 71.4% model confidence. Features extracted across text, visual exhibit synthetic characteristics consistent with generative or spliced manipulations.",
+      "evidence_descriptions": [
+        "Model-derived gradient saliency identified key tokens influencing the classification: 'us' (1.00), 'nuclear' (0.67), 'needs' (0.67), 'warn' (0.62).",
+        "Visual backbone extracted 512-dim spatial representation. No focal manipulation hotspot isolated.",
+        "Bidirectional cross-attention computed text-to-vision alignment scores, capturing cross-modal correspondence between textual description and visual patches."
+      ],
+      "token_saliency": [
+        {
+          "token": "us",
+          "score": 1.0
+        },
+        {
+          "token": "nuclear",
+          "score": 0.6736
+        },
+        {
+          "token": "needs",
+          "score": 0.6682
+        },
+        {
+          "token": "warn",
+          "score": 0.6171
+        },
+        {
+          "token": "he",
+          "score": 0.547
+        },
+        {
+          "token": "this",
+          "score": 0.4987
+        },
+        {
+          "token": "program",
+          "score": 0.4835
+        },
+        {
+          "token": "paid",
+          "score": 0.4372
+        }
+      ],
+      "has_heatmap": false,
+      "heatmap_base64": null
+    },
+    {
+      "sample_id": "fakeddit_fake_028",
+      "ground_truth": "FAKE",
+      "prediction": "UNCERTAIN",
+      "confidence": 0.5414,
+      "real_probability": 0.4586,
+      "fake_probability": 0.5414,
+      "correct": false,
+      "status": "UNCERTAIN",
+      "text": "smokestacks high as a kite",
+      "image_path": "data/raw/fakeddit/fakeddit_fake_028.jpg",
+      "manipulation_type": "satire_parody",
+      "explanation": "The system classified this content as UNCERTAIN because the peak confidence score (54.1%) fell below the operational threshold (65%). This occurs when textual and visual signals provide conflicting evidence or subtle manipulation cues.",
+      "evidence_descriptions": [
+        "Textual evidence examined for synthetic stylometric markers. Top influential tokens: 'kite' (1.00), 'high' (0.76), 'smoke' (0.74), 'as' (0.68).",
+        "Visual backbone extracted 512-dim spatial representation. No focal manipulation hotspot isolated.",
+        "Bidirectional cross-attention computed text-to-vision alignment scores, capturing cross-modal correspondence between textual description and visual patches."
+      ],
+      "token_saliency": [
+        {
+          "token": "kite",
+          "score": 1.0
+        },
+        {
+          "token": "high",
+          "score": 0.7637
+        },
+        {
+          "token": "smoke",
+          "score": 0.7412
+        },
+        {
+          "token": "as",
+          "score": 0.6815
+        },
+        {
+          "token": "##cks",
+          "score": 0.5481
+        },
+        {
+          "token": "a",
+          "score": 0.4504
+        },
+        {
+          "token": "##sta",
+          "score": 0.36
+        }
+      ],
+      "has_heatmap": false,
+      "heatmap_base64": null
+    },
+    {
+      "sample_id": "fakeddit_fake_029",
+      "ground_truth": "FAKE",
+      "prediction": "FAKE",
+      "confidence": 0.7095,
+      "real_probability": 0.2905,
+      "fake_probability": 0.7095,
+      "correct": true,
+      "status": "CORRECT",
+      "text": "silence the giant motel",
+      "image_path": "data/raw/fakeddit/fakeddit_fake_029.jpg",
+      "manipulation_type": "satire_parody",
+      "explanation": "The content was classified as FAKE with 71.0% model confidence. Features extracted across text, visual exhibit synthetic characteristics consistent with generative or spliced manipulations.",
+      "evidence_descriptions": [
+        "Model-derived gradient saliency identified key tokens influencing the classification: 'silence' (1.00), 'motel' (0.83), 'giant' (0.57), 'the' (0.56).",
+        "Visual backbone extracted 512-dim spatial representation. No focal manipulation hotspot isolated.",
+        "Bidirectional cross-attention computed text-to-vision alignment scores, capturing cross-modal correspondence between textual description and visual patches."
+      ],
+      "token_saliency": [
+        {
+          "token": "silence",
+          "score": 1.0
+        },
+        {
+          "token": "motel",
+          "score": 0.8295
+        },
+        {
+          "token": "giant",
+          "score": 0.5737
+        },
+        {
+          "token": "the",
+          "score": 0.5629
+        }
+      ],
+      "has_heatmap": false,
+      "heatmap_base64": null
+    },
+    {
+      "sample_id": "fakeddit_fake_030",
+      "ground_truth": "FAKE",
+      "prediction": "UNCERTAIN",
+      "confidence": 0.5013,
+      "real_probability": 0.5013,
+      "fake_probability": 0.4987,
+      "correct": false,
+      "status": "UNCERTAIN",
+      "text": "usa puts trade sanctions on north korea after kim refuses communication with the un",
+      "image_path": "data/raw/fakeddit/fakeddit_fake_030.jpg",
+      "manipulation_type": "misleading_content",
+      "explanation": "The system classified this content as UNCERTAIN because the peak confidence score (50.1%) fell below the operational threshold (65%). This occurs when textual and visual signals provide conflicting evidence or subtle manipulation cues.",
+      "evidence_descriptions": [
+        "Textual evidence examined for synthetic stylometric markers. Top influential tokens: 'usa' (1.00), 'kim' (0.73), 'puts' (0.69), 'sanctions' (0.62).",
+        "Visual backbone extracted 512-dim spatial representation. No focal manipulation hotspot isolated.",
+        "Bidirectional cross-attention computed text-to-vision alignment scores, capturing cross-modal correspondence between textual description and visual patches."
+      ],
+      "token_saliency": [
+        {
+          "token": "usa",
+          "score": 1.0
+        },
+        {
+          "token": "kim",
+          "score": 0.7319
+        },
+        {
+          "token": "puts",
+          "score": 0.6901
+        },
+        {
+          "token": "sanctions",
+          "score": 0.6241
+        },
+        {
+          "token": "korea",
+          "score": 0.6125
+        },
+        {
+          "token": "refuses",
+          "score": 0.5921
+        },
+        {
+          "token": "un",
+          "score": 0.5265
+        },
+        {
+          "token": "communication",
+          "score": 0.4604
+        }
+      ],
+      "has_heatmap": false,
+      "heatmap_base64": null
+    },
+    {
+      "sample_id": "fakeddit_real_008",
+      "ground_truth": "REAL",
+      "prediction": "UNCERTAIN",
+      "confidence": 0.6377,
+      "real_probability": 0.3623,
+      "fake_probability": 0.6377,
+      "correct": false,
+      "status": "UNCERTAIN",
+      "text": "a fox sitting down credit goes to ureaditonreddit",
+      "image_path": "data/raw/fakeddit/fakeddit_real_008.jpg",
+      "manipulation_type": "authentic",
+      "explanation": "The system classified this content as UNCERTAIN because the peak confidence score (63.8%) fell below the operational threshold (65%). This occurs when textual and visual signals provide conflicting evidence or subtle manipulation cues.",
+      "evidence_descriptions": [
+        "Textual evidence examined for synthetic stylometric markers. Top influential tokens: 'credit' (1.00), '##edd' (0.85), 'fox' (0.85), 'goes' (0.70).",
+        "Visual backbone extracted 512-dim spatial representation. No focal manipulation hotspot isolated.",
+        "Bidirectional cross-attention computed text-to-vision alignment scores, capturing cross-modal correspondence between textual description and visual patches."
+      ],
+      "token_saliency": [
+        {
+          "token": "credit",
+          "score": 1.0
+        },
+        {
+          "token": "##edd",
+          "score": 0.8544
+        },
+        {
+          "token": "fox",
+          "score": 0.8518
+        },
+        {
+          "token": "goes",
+          "score": 0.7041
+        },
+        {
+          "token": "sitting",
+          "score": 0.6585
+        },
+        {
+          "token": "##it",
+          "score": 0.5888
+        },
+        {
+          "token": "##ead",
+          "score": 0.581
+        },
+        {
+          "token": "ur",
+          "score": 0.5471
+        }
+      ],
+      "has_heatmap": false,
+      "heatmap_base64": null
+    },
+    {
+      "sample_id": "fakeddit_real_009",
+      "ground_truth": "REAL",
+      "prediction": "FAKE",
+      "confidence": 0.6923,
+      "real_probability": 0.3077,
+      "fake_probability": 0.6923,
+      "correct": false,
+      "status": "INCORRECT",
+      "text": "pumamountain lion caught in mid jump",
+      "image_path": "data/raw/fakeddit/fakeddit_real_009.jpg",
+      "manipulation_type": "authentic",
+      "explanation": "The content was classified as FAKE with 69.2% model confidence. Features extracted across text, visual exhibit synthetic characteristics consistent with generative or spliced manipulations.",
+      "evidence_descriptions": [
+        "Model-derived gradient saliency identified key tokens influencing the classification: 'caught' (1.00), 'jump' (0.97), 'lion' (0.83), 'mid' (0.49).",
+        "Visual backbone extracted 512-dim spatial representation. No focal manipulation hotspot isolated.",
+        "Bidirectional cross-attention computed text-to-vision alignment scores, capturing cross-modal correspondence between textual description and visual patches."
+      ],
+      "token_saliency": [
+        {
+          "token": "caught",
+          "score": 1.0
+        },
+        {
+          "token": "jump",
+          "score": 0.9706
+        },
+        {
+          "token": "lion",
+          "score": 0.8286
+        },
+        {
+          "token": "mid",
+          "score": 0.4948
+        },
+        {
+          "token": "in",
+          "score": 0.4167
+        },
+        {
+          "token": "##ain",
+          "score": 0.3936
+        },
+        {
+          "token": "##mount",
+          "score": 0.3544
+        },
+        {
+          "token": "pu",
+          "score": 0.3212
+        }
+      ],
+      "has_heatmap": false,
+      "heatmap_base64": null
+    },
+    {
+      "sample_id": "fakeddit_real_010",
+      "ground_truth": "REAL",
+      "prediction": "UNCERTAIN",
+      "confidence": 0.6077,
+      "real_probability": 0.6077,
+      "fake_probability": 0.3923,
+      "correct": false,
+      "status": "UNCERTAIN",
+      "text": "missouri to hold session to consider impeaching governor",
+      "image_path": "data/raw/fakeddit/fakeddit_real_010.jpg",
+      "manipulation_type": "authentic",
+      "explanation": "The system classified this content as UNCERTAIN because the peak confidence score (60.8%) fell below the operational threshold (65%). This occurs when textual and visual signals provide conflicting evidence or subtle manipulation cues.",
+      "evidence_descriptions": [
+        "Textual evidence examined for synthetic stylometric markers. Top influential tokens: 'missouri' (1.00), 'governor' (0.54), 'session' (0.52), 'to' (0.40).",
+        "Visual backbone extracted 512-dim spatial representation. No focal manipulation hotspot isolated.",
+        "Bidirectional cross-attention computed text-to-vision alignment scores, capturing cross-modal correspondence between textual description and visual patches."
+      ],
+      "token_saliency": [
+        {
+          "token": "missouri",
+          "score": 1.0
+        },
+        {
+          "token": "governor",
+          "score": 0.5388
+        },
+        {
+          "token": "session",
+          "score": 0.5223
+        },
+        {
+          "token": "to",
+          "score": 0.4028
+        },
+        {
+          "token": "consider",
+          "score": 0.3745
+        },
+        {
+          "token": "hold",
+          "score": 0.3141
+        },
+        {
+          "token": "##ea",
+          "score": 0.295
+        },
+        {
+          "token": "##ching",
+          "score": 0.2433
+        }
+      ],
+      "has_heatmap": false,
+      "heatmap_base64": null
+    },
+    {
+      "sample_id": "fakeddit_real_011",
+      "ground_truth": "REAL",
+      "prediction": "FAKE",
+      "confidence": 0.7532,
+      "real_probability": 0.2468,
+      "fake_probability": 0.7532,
+      "correct": false,
+      "status": "INCORRECT",
+      "text": "a hanoi policemans glare",
+      "image_path": "data/raw/fakeddit/fakeddit_real_011.jpg",
+      "manipulation_type": "authentic",
+      "explanation": "The content was classified as FAKE with 75.3% model confidence. Features extracted across text, visual exhibit synthetic characteristics consistent with generative or spliced manipulations.",
+      "evidence_descriptions": [
+        "Model-derived gradient saliency identified key tokens influencing the classification: 'hanoi' (1.00), 'policeman' (0.96), 'glare' (0.95), 'a' (0.71).",
+        "Visual backbone extracted 512-dim spatial representation. No focal manipulation hotspot isolated.",
+        "Bidirectional cross-attention computed text-to-vision alignment scores, capturing cross-modal correspondence between textual description and visual patches."
+      ],
+      "token_saliency": [
+        {
+          "token": "hanoi",
+          "score": 1.0
+        },
+        {
+          "token": "policeman",
+          "score": 0.965
+        },
+        {
+          "token": "glare",
+          "score": 0.9526
+        },
+        {
+          "token": "a",
+          "score": 0.7106
+        },
+        {
+          "token": "##s",
+          "score": 0.5819
+        }
+      ],
+      "has_heatmap": false,
+      "heatmap_base64": null
+    },
+    {
+      "sample_id": "fakeddit_real_012",
+      "ground_truth": "REAL",
+      "prediction": "UNCERTAIN",
+      "confidence": 0.6287,
+      "real_probability": 0.3713,
+      "fake_probability": 0.6287,
+      "correct": false,
+      "status": "UNCERTAIN",
+      "text": "years after parachuting into normandy wwii vet plans to jump again",
+      "image_path": "data/raw/fakeddit/fakeddit_real_012.jpg",
+      "manipulation_type": "authentic",
+      "explanation": "The system classified this content as UNCERTAIN because the peak confidence score (62.9%) fell below the operational threshold (65%). This occurs when textual and visual signals provide conflicting evidence or subtle manipulation cues.",
+      "evidence_descriptions": [
+        "Textual evidence examined for synthetic stylometric markers. Top influential tokens: 'vet' (1.00), 'wwii' (0.68), 'plans' (0.56), 'normandy' (0.53).",
+        "Visual backbone extracted 512-dim spatial representation. No focal manipulation hotspot isolated.",
+        "Bidirectional cross-attention computed text-to-vision alignment scores, capturing cross-modal correspondence between textual description and visual patches."
+      ],
+      "token_saliency": [
+        {
+          "token": "vet",
+          "score": 1.0
+        },
+        {
+          "token": "wwii",
+          "score": 0.6807
+        },
+        {
+          "token": "plans",
+          "score": 0.5589
+        },
+        {
+          "token": "normandy",
+          "score": 0.5294
+        },
+        {
+          "token": "jump",
+          "score": 0.4706
+        },
+        {
+          "token": "years",
+          "score": 0.4001
+        },
+        {
+          "token": "##chu",
+          "score": 0.3799
+        },
+        {
+          "token": "para",
+          "score": 0.3626
+        }
+      ],
+      "has_heatmap": false,
+      "heatmap_base64": null
+    },
+    {
+      "sample_id": "fakeddit_real_013",
+      "ground_truth": "REAL",
+      "prediction": "UNCERTAIN",
+      "confidence": 0.6017,
+      "real_probability": 0.3983,
+      "fake_probability": 0.6017,
+      "correct": false,
+      "status": "UNCERTAIN",
+      "text": "lowell police urge shovelwielding residents not to challenge snowplows",
+      "image_path": "data/raw/fakeddit/fakeddit_real_013.jpg",
+      "manipulation_type": "authentic",
+      "explanation": "The system classified this content as UNCERTAIN because the peak confidence score (60.2%) fell below the operational threshold (65%). This occurs when textual and visual signals provide conflicting evidence or subtle manipulation cues.",
+      "evidence_descriptions": [
+        "Textual evidence examined for synthetic stylometric markers. Top influential tokens: 'lowell' (1.00), 'urge' (0.77), 'police' (0.66), 'residents' (0.54).",
+        "Visual backbone extracted 512-dim spatial representation. No focal manipulation hotspot isolated.",
+        "Bidirectional cross-attention computed text-to-vision alignment scores, capturing cross-modal correspondence between textual description and visual patches."
+      ],
+      "token_saliency": [
+        {
+          "token": "lowell",
+          "score": 1.0
+        },
+        {
+          "token": "urge",
+          "score": 0.7658
+        },
+        {
+          "token": "police",
+          "score": 0.6588
+        },
+        {
+          "token": "residents",
+          "score": 0.5365
+        },
+        {
+          "token": "snow",
+          "score": 0.5117
+        },
+        {
+          "token": "challenge",
+          "score": 0.4475
+        },
+        {
+          "token": "shovel",
+          "score": 0.419
+        },
+        {
+          "token": "not",
+          "score": 0.3401
+        }
+      ],
+      "has_heatmap": false,
+      "heatmap_base64": null
+    },
+    {
+      "sample_id": "fakeddit_real_014",
+      "ground_truth": "REAL",
+      "prediction": "FAKE",
+      "confidence": 0.7461,
+      "real_probability": 0.2539,
+      "fake_probability": 0.7461,
+      "correct": false,
+      "status": "INCORRECT",
+      "text": "this manhole cover looks happy",
+      "image_path": "data/raw/fakeddit/fakeddit_real_014.jpg",
+      "manipulation_type": "authentic",
+      "explanation": "The content was classified as FAKE with 74.6% model confidence. Features extracted across text, visual exhibit synthetic characteristics consistent with generative or spliced manipulations.",
+      "evidence_descriptions": [
+        "Model-derived gradient saliency identified key tokens influencing the classification: '##hole' (1.00), 'cover' (1.00), 'happy' (0.83), 'looks' (0.79).",
+        "Visual backbone extracted 512-dim spatial representation. No focal manipulation hotspot isolated.",
+        "Bidirectional cross-attention computed text-to-vision alignment scores, capturing cross-modal correspondence between textual description and visual patches."
+      ],
+      "token_saliency": [
+        {
+          "token": "##hole",
+          "score": 1.0
+        },
+        {
+          "token": "cover",
+          "score": 0.9983
+        },
+        {
+          "token": "happy",
+          "score": 0.8292
+        },
+        {
+          "token": "looks",
+          "score": 0.7907
+        },
+        {
+          "token": "this",
+          "score": 0.7407
+        },
+        {
+          "token": "man",
+          "score": 0.6843
+        }
+      ],
+      "has_heatmap": false,
+      "heatmap_base64": null
+    },
+    {
+      "sample_id": "fakeddit_real_015",
+      "ground_truth": "REAL",
+      "prediction": "FAKE",
+      "confidence": 0.7928,
+      "real_probability": 0.2072,
+      "fake_probability": 0.7928,
+      "correct": false,
+      "status": "INCORRECT",
+      "text": "japanese police arrest yearold ninja thief suspect",
+      "image_path": "data/raw/fakeddit/fakeddit_real_015.jpg",
+      "manipulation_type": "authentic",
+      "explanation": "The content was classified as FAKE with 79.3% model confidence. Features extracted across text, visual exhibit synthetic characteristics consistent with generative or spliced manipulations.",
+      "evidence_descriptions": [
+        "Model-derived gradient saliency identified key tokens influencing the classification: 'suspect' (1.00), 'ninja' (0.84), 'japanese' (0.78), 'year' (0.73).",
+        "Visual backbone extracted 512-dim spatial representation. No focal manipulation hotspot isolated.",
+        "Bidirectional cross-attention computed text-to-vision alignment scores, capturing cross-modal correspondence between textual description and visual patches."
+      ],
+      "token_saliency": [
+        {
+          "token": "suspect",
+          "score": 1.0
+        },
+        {
+          "token": "ninja",
+          "score": 0.8379
+        },
+        {
+          "token": "japanese",
+          "score": 0.7763
+        },
+        {
+          "token": "year",
+          "score": 0.7342
+        },
+        {
+          "token": "thief",
+          "score": 0.6972
+        },
+        {
+          "token": "police",
+          "score": 0.6662
+        },
+        {
+          "token": "arrest",
+          "score": 0.6413
+        },
+        {
+          "token": "##old",
+          "score": 0.5768
+        }
+      ],
+      "has_heatmap": false,
+      "heatmap_base64": null
+    },
+    {
+      "sample_id": "fakeddit_real_016",
+      "ground_truth": "REAL",
+      "prediction": "UNCERTAIN",
+      "confidence": 0.5353,
+      "real_probability": 0.4647,
+      "fake_probability": 0.5353,
+      "correct": false,
+      "status": "UNCERTAIN",
+      "text": "onion inception",
+      "image_path": "data/raw/fakeddit/fakeddit_real_016.jpg",
+      "manipulation_type": "authentic",
+      "explanation": "The system classified this content as UNCERTAIN because the peak confidence score (53.5%) fell below the operational threshold (65%). This occurs when textual and visual signals provide conflicting evidence or subtle manipulation cues.",
+      "evidence_descriptions": [
+        "Textual evidence examined for synthetic stylometric markers. Top influential tokens: 'inception' (1.00), 'onion' (0.94).",
+        "Visual backbone extracted 512-dim spatial representation. No focal manipulation hotspot isolated.",
+        "Bidirectional cross-attention computed text-to-vision alignment scores, capturing cross-modal correspondence between textual description and visual patches."
+      ],
+      "token_saliency": [
+        {
+          "token": "inception",
+          "score": 1.0
+        },
+        {
+          "token": "onion",
+          "score": 0.9356
+        }
+      ],
+      "has_heatmap": false,
+      "heatmap_base64": null
+    },
+    {
+      "sample_id": "fakeddit_real_017",
+      "ground_truth": "REAL",
+      "prediction": "FAKE",
+      "confidence": 0.6785,
+      "real_probability": 0.3215,
+      "fake_probability": 0.6785,
+      "correct": false,
+      "status": "INCORRECT",
+      "text": "breast cancer drug that can extend lives approved for the nhs",
+      "image_path": "data/raw/fakeddit/fakeddit_real_017.jpg",
+      "manipulation_type": "authentic",
+      "explanation": "The content was classified as FAKE with 67.8% model confidence. Features extracted across text, visual exhibit synthetic characteristics consistent with generative or spliced manipulations.",
+      "evidence_descriptions": [
+        "Model-derived gradient saliency identified key tokens influencing the classification: 'drug' (1.00), 'nhs' (0.84), 'cancer' (0.80), 'that' (0.75).",
+        "Visual backbone extracted 512-dim spatial representation. No focal manipulation hotspot isolated.",
+        "Bidirectional cross-attention computed text-to-vision alignment scores, capturing cross-modal correspondence between textual description and visual patches."
+      ],
+      "token_saliency": [
+        {
+          "token": "drug",
+          "score": 1.0
+        },
+        {
+          "token": "nhs",
+          "score": 0.8356
+        },
+        {
+          "token": "cancer",
+          "score": 0.8034
+        },
+        {
+          "token": "that",
+          "score": 0.7484
+        },
+        {
+          "token": "extend",
+          "score": 0.7362
+        },
+        {
+          "token": "breast",
+          "score": 0.6994
+        },
+        {
+          "token": "approved",
+          "score": 0.6859
+        },
+        {
+          "token": "lives",
+          "score": 0.6547
+        }
+      ],
+      "has_heatmap": false,
+      "heatmap_base64": null
+    },
+    {
+      "sample_id": "fakeddit_real_018",
+      "ground_truth": "REAL",
+      "prediction": "FAKE",
+      "confidence": 0.7784,
+      "real_probability": 0.2216,
+      "fake_probability": 0.7784,
+      "correct": false,
+      "status": "INCORRECT",
+      "text": "the shadow of multifocal lenses",
+      "image_path": "data/raw/fakeddit/fakeddit_real_018.jpg",
+      "manipulation_type": "authentic",
+      "explanation": "The content was classified as FAKE with 77.8% model confidence. Features extracted across text, visual exhibit synthetic characteristics consistent with generative or spliced manipulations.",
+      "evidence_descriptions": [
+        "Model-derived gradient saliency identified key tokens influencing the classification: 'lenses' (1.00), 'shadow' (0.77), 'the' (0.44), 'of' (0.39).",
+        "Visual backbone extracted 512-dim spatial representation. No focal manipulation hotspot isolated.",
+        "Bidirectional cross-attention computed text-to-vision alignment scores, capturing cross-modal correspondence between textual description and visual patches."
+      ],
+      "token_saliency": [
+        {
+          "token": "lenses",
+          "score": 1.0
+        },
+        {
+          "token": "shadow",
+          "score": 0.77
+        },
+        {
+          "token": "the",
+          "score": 0.4357
+        },
+        {
+          "token": "of",
+          "score": 0.3873
+        },
+        {
+          "token": "multi",
+          "score": 0.3814
+        },
+        {
+          "token": "##cal",
+          "score": 0.3419
+        },
+        {
+          "token": "##fo",
+          "score": 0.2661
+        }
+      ],
+      "has_heatmap": false,
+      "heatmap_base64": null
+    },
+    {
+      "sample_id": "fakeddit_real_019",
+      "ground_truth": "REAL",
+      "prediction": "FAKE",
+      "confidence": 0.7265,
+      "real_probability": 0.2735,
+      "fake_probability": 0.7265,
+      "correct": false,
+      "status": "INCORRECT",
+      "text": "scientists say smelling farts prevents cancer",
+      "image_path": "data/raw/fakeddit/fakeddit_real_019.jpg",
+      "manipulation_type": "authentic",
+      "explanation": "The content was classified as FAKE with 72.7% model confidence. Features extracted across text, visual exhibit synthetic characteristics consistent with generative or spliced manipulations.",
+      "evidence_descriptions": [
+        "Model-derived gradient saliency identified key tokens influencing the classification: 'cancer' (0.80), 'scientists' (0.51), 'far' (0.48), 'smelling' (0.45).",
+        "Visual backbone extracted 512-dim spatial representation. No focal manipulation hotspot isolated.",
+        "Bidirectional cross-attention computed text-to-vision alignment scores, capturing cross-modal correspondence between textual description and visual patches."
+      ],
+      "token_saliency": [
+        {
+          "token": "cancer",
+          "score": 0.804
+        },
+        {
+          "token": "scientists",
+          "score": 0.5104
+        },
+        {
+          "token": "far",
+          "score": 0.4834
+        },
+        {
+          "token": "smelling",
+          "score": 0.4501
+        },
+        {
+          "token": "prevents",
+          "score": 0.4098
+        },
+        {
+          "token": "say",
+          "score": 0.4037
+        },
+        {
+          "token": "##ts",
+          "score": 0.4016
+        }
+      ],
+      "has_heatmap": false,
+      "heatmap_base64": null
+    },
+    {
+      "sample_id": "fakeddit_real_020",
+      "ground_truth": "REAL",
+      "prediction": "UNCERTAIN",
+      "confidence": 0.5125,
+      "real_probability": 0.5125,
+      "fake_probability": 0.4875,
+      "correct": false,
+      "status": "UNCERTAIN",
+      "text": "a yearold guy is walking across all seven continents with his dog",
+      "image_path": "data/raw/fakeddit/fakeddit_real_020.jpg",
+      "manipulation_type": "authentic",
+      "explanation": "The system classified this content as UNCERTAIN because the peak confidence score (51.2%) fell below the operational threshold (65%). This occurs when textual and visual signals provide conflicting evidence or subtle manipulation cues.",
+      "evidence_descriptions": [
+        "Textual evidence examined for synthetic stylometric markers. Top influential tokens: 'guy' (1.00), 'year' (0.81), 'a' (0.72), 'continents' (0.66).",
+        "Visual backbone extracted 512-dim spatial representation. No focal manipulation hotspot isolated.",
+        "Bidirectional cross-attention computed text-to-vision alignment scores, capturing cross-modal correspondence between textual description and visual patches."
+      ],
+      "token_saliency": [
+        {
+          "token": "guy",
+          "score": 1.0
+        },
+        {
+          "token": "year",
+          "score": 0.8101
+        },
+        {
+          "token": "a",
+          "score": 0.7151
+        },
+        {
+          "token": "continents",
+          "score": 0.6635
+        },
+        {
+          "token": "is",
+          "score": 0.6093
+        },
+        {
+          "token": "dog",
+          "score": 0.5984
+        },
+        {
+          "token": "walking",
+          "score": 0.5569
+        },
+        {
+          "token": "##old",
+          "score": 0.447
+        }
+      ],
+      "has_heatmap": false,
+      "heatmap_base64": null
+    },
+    {
+      "sample_id": "fakeddit_real_021",
+      "ground_truth": "REAL",
+      "prediction": "FAKE",
+      "confidence": 0.8813,
+      "real_probability": 0.1187,
+      "fake_probability": 0.8813,
+      "correct": false,
+      "status": "INCORRECT",
+      "text": "this alcoholic bottle has a magnifying glass so you can see the name",
+      "image_path": "data/raw/fakeddit/fakeddit_real_021.jpg",
+      "manipulation_type": "authentic",
+      "explanation": "The content was classified as FAKE with 88.1% model confidence. Features extracted across text, visual exhibit synthetic characteristics consistent with generative or spliced manipulations.",
+      "evidence_descriptions": [
+        "Model-derived gradient saliency identified key tokens influencing the classification: 'bottle' (1.00), 'alcoholic' (0.93), 'name' (0.89), 'you' (0.61).",
+        "Visual backbone extracted 512-dim spatial representation. No focal manipulation hotspot isolated.",
+        "Bidirectional cross-attention computed text-to-vision alignment scores, capturing cross-modal correspondence between textual description and visual patches."
+      ],
+      "token_saliency": [
+        {
+          "token": "bottle",
+          "score": 1.0
+        },
+        {
+          "token": "alcoholic",
+          "score": 0.9298
+        },
+        {
+          "token": "name",
+          "score": 0.8898
+        },
+        {
+          "token": "you",
+          "score": 0.6142
+        },
+        {
+          "token": "this",
+          "score": 0.5884
+        },
+        {
+          "token": "see",
+          "score": 0.5316
+        },
+        {
+          "token": "glass",
+          "score": 0.4957
+        },
+        {
+          "token": "can",
+          "score": 0.4797
+        }
+      ],
+      "has_heatmap": false,
+      "heatmap_base64": null
+    },
+    {
+      "sample_id": "fakeddit_real_022",
+      "ground_truth": "REAL",
+      "prediction": "FAKE",
+      "confidence": 0.6882,
+      "real_probability": 0.3118,
+      "fake_probability": 0.6882,
+      "correct": false,
+      "status": "INCORRECT",
+      "text": "creepy masochistic kid from rwtf",
+      "image_path": "data/raw/fakeddit/fakeddit_real_022.jpg",
+      "manipulation_type": "authentic",
+      "explanation": "The content was classified as FAKE with 68.8% model confidence. Features extracted across text, visual exhibit synthetic characteristics consistent with generative or spliced manipulations.",
+      "evidence_descriptions": [
+        "Model-derived gradient saliency identified key tokens influencing the classification: 'creepy' (1.00), '##wt' (0.65), 'kid' (0.63), 'from' (0.55).",
+        "Visual backbone extracted 512-dim spatial representation. No focal manipulation hotspot isolated.",
+        "Bidirectional cross-attention computed text-to-vision alignment scores, capturing cross-modal correspondence between textual description and visual patches."
+      ],
+      "token_saliency": [
+        {
+          "token": "creepy",
+          "score": 1.0
+        },
+        {
+          "token": "##wt",
+          "score": 0.6489
+        },
+        {
+          "token": "kid",
+          "score": 0.631
+        },
+        {
+          "token": "from",
+          "score": 0.5539
+        },
+        {
+          "token": "##och",
+          "score": 0.5338
+        },
+        {
+          "token": "##f",
+          "score": 0.5278
+        },
+        {
+          "token": "r",
+          "score": 0.5174
+        },
+        {
+          "token": "##istic",
+          "score": 0.4798
+        }
+      ],
+      "has_heatmap": false,
+      "heatmap_base64": null
+    },
+    {
+      "sample_id": "fakeddit_real_023",
+      "ground_truth": "REAL",
+      "prediction": "FAKE",
+      "confidence": 0.6703,
+      "real_probability": 0.3297,
+      "fake_probability": 0.6703,
+      "correct": false,
+      "status": "INCORRECT",
+      "text": "this tree that grew around a metal fence",
+      "image_path": "data/raw/fakeddit/fakeddit_real_023.jpg",
+      "manipulation_type": "authentic",
+      "explanation": "The content was classified as FAKE with 67.0% model confidence. Features extracted across text, visual exhibit synthetic characteristics consistent with generative or spliced manipulations.",
+      "evidence_descriptions": [
+        "Model-derived gradient saliency identified key tokens influencing the classification: 'fence' (1.00), 'tree' (0.98), 'this' (0.88), 'that' (0.81).",
+        "Visual backbone extracted 512-dim spatial representation. No focal manipulation hotspot isolated.",
+        "Bidirectional cross-attention computed text-to-vision alignment scores, capturing cross-modal correspondence between textual description and visual patches."
+      ],
+      "token_saliency": [
+        {
+          "token": "fence",
+          "score": 1.0
+        },
+        {
+          "token": "tree",
+          "score": 0.9833
+        },
+        {
+          "token": "this",
+          "score": 0.8775
+        },
+        {
+          "token": "that",
+          "score": 0.8142
+        },
+        {
+          "token": "grew",
+          "score": 0.8111
+        },
+        {
+          "token": "metal",
+          "score": 0.7279
+        },
+        {
+          "token": "a",
+          "score": 0.6164
+        },
+        {
+          "token": "around",
+          "score": 0.4906
+        }
+      ],
+      "has_heatmap": false,
+      "heatmap_base64": null
+    },
+    {
+      "sample_id": "fakeddit_real_024",
+      "ground_truth": "REAL",
+      "prediction": "FAKE",
+      "confidence": 0.791,
+      "real_probability": 0.209,
+      "fake_probability": 0.791,
+      "correct": false,
+      "status": "INCORRECT",
+      "text": "my so handwriting looks like a font",
+      "image_path": "data/raw/fakeddit/fakeddit_real_024.jpg",
+      "manipulation_type": "authentic",
+      "explanation": "The content was classified as FAKE with 79.1% model confidence. Features extracted across text, visual exhibit synthetic characteristics consistent with generative or spliced manipulations.",
+      "evidence_descriptions": [
+        "Model-derived gradient saliency identified key tokens influencing the classification: 'font' (1.00), 'my' (0.90), 'handwriting' (0.89), 'so' (0.76).",
+        "Visual backbone extracted 512-dim spatial representation. No focal manipulation hotspot isolated.",
+        "Bidirectional cross-attention computed text-to-vision alignment scores, capturing cross-modal correspondence between textual description and visual patches."
+      ],
+      "token_saliency": [
+        {
+          "token": "font",
+          "score": 1.0
+        },
+        {
+          "token": "my",
+          "score": 0.9014
+        },
+        {
+          "token": "handwriting",
+          "score": 0.886
+        },
+        {
+          "token": "so",
+          "score": 0.7634
+        },
+        {
+          "token": "looks",
+          "score": 0.7382
+        },
+        {
+          "token": "like",
+          "score": 0.5185
+        },
+        {
+          "token": "a",
+          "score": 0.4127
+        }
+      ],
+      "has_heatmap": false,
+      "heatmap_base64": null
+    },
+    {
+      "sample_id": "fakeddit_real_025",
+      "ground_truth": "REAL",
+      "prediction": "FAKE",
+      "confidence": 0.657,
+      "real_probability": 0.343,
+      "fake_probability": 0.657,
+      "correct": false,
+      "status": "INCORRECT",
+      "text": "the crouching hazmat walk",
+      "image_path": "data/raw/fakeddit/fakeddit_real_025.jpg",
+      "manipulation_type": "authentic",
+      "explanation": "The content was classified as FAKE with 65.7% model confidence. Features extracted across text, visual exhibit synthetic characteristics consistent with generative or spliced manipulations.",
+      "evidence_descriptions": [
+        "Model-derived gradient saliency identified key tokens influencing the classification: 'walk' (1.00), 'crouch' (0.78), '##z' (0.60), '##mat' (0.59).",
+        "Visual backbone extracted 512-dim spatial representation. No focal manipulation hotspot isolated.",
+        "Bidirectional cross-attention computed text-to-vision alignment scores, capturing cross-modal correspondence between textual description and visual patches."
+      ],
+      "token_saliency": [
+        {
+          "token": "walk",
+          "score": 1.0
+        },
+        {
+          "token": "crouch",
+          "score": 0.7763
+        },
+        {
+          "token": "##z",
+          "score": 0.599
+        },
+        {
+          "token": "##mat",
+          "score": 0.5856
+        },
+        {
+          "token": "the",
+          "score": 0.5816
+        },
+        {
+          "token": "ha",
+          "score": 0.4782
+        },
+        {
+          "token": "##ing",
+          "score": 0.4497
+        }
+      ],
+      "has_heatmap": false,
+      "heatmap_base64": null
+    },
+    {
+      "sample_id": "fakeddit_real_026",
+      "ground_truth": "REAL",
+      "prediction": "UNCERTAIN",
+      "confidence": 0.6371,
+      "real_probability": 0.3629,
+      "fake_probability": 0.6371,
+      "correct": false,
+      "status": "UNCERTAIN",
+      "text": "cow shot dead by police in newfield drive in carlisle",
+      "image_path": "data/raw/fakeddit/fakeddit_real_026.jpg",
+      "manipulation_type": "authentic",
+      "explanation": "The system classified this content as UNCERTAIN because the peak confidence score (63.7%) fell below the operational threshold (65%). This occurs when textual and visual signals provide conflicting evidence or subtle manipulation cues.",
+      "evidence_descriptions": [
+        "Textual evidence examined for synthetic stylometric markers. Top influential tokens: 'cow' (1.00), 'carlisle' (0.84), 'shot' (0.82), 'dead' (0.73).",
+        "Visual backbone extracted 512-dim spatial representation. No focal manipulation hotspot isolated.",
+        "Bidirectional cross-attention computed text-to-vision alignment scores, capturing cross-modal correspondence between textual description and visual patches."
+      ],
+      "token_saliency": [
+        {
+          "token": "cow",
+          "score": 1.0
+        },
+        {
+          "token": "carlisle",
+          "score": 0.8441
+        },
+        {
+          "token": "shot",
+          "score": 0.8182
+        },
+        {
+          "token": "dead",
+          "score": 0.7349
+        },
+        {
+          "token": "police",
+          "score": 0.7099
+        },
+        {
+          "token": "drive",
+          "score": 0.6872
+        },
+        {
+          "token": "by",
+          "score": 0.4383
+        },
+        {
+          "token": "in",
+          "score": 0.4277
+        }
+      ],
+      "has_heatmap": false,
+      "heatmap_base64": null
+    },
+    {
+      "sample_id": "fakeddit_real_027",
+      "ground_truth": "REAL",
+      "prediction": "UNCERTAIN",
+      "confidence": 0.5507,
+      "real_probability": 0.4493,
+      "fake_probability": 0.5507,
+      "correct": false,
+      "status": "UNCERTAIN",
+      "text": "former world chess champion vishy anand welcomed at the delhi airport",
+      "image_path": "data/raw/fakeddit/fakeddit_real_027.jpg",
+      "manipulation_type": "authentic",
+      "explanation": "The system classified this content as UNCERTAIN because the peak confidence score (55.1%) fell below the operational threshold (65%). This occurs when textual and visual signals provide conflicting evidence or subtle manipulation cues.",
+      "evidence_descriptions": [
+        "Textual evidence examined for synthetic stylometric markers. Top influential tokens: 'airport' (1.00), 'chess' (0.82), 'welcomed' (0.72), 'delhi' (0.69).",
+        "Visual backbone extracted 512-dim spatial representation. No focal manipulation hotspot isolated.",
+        "Bidirectional cross-attention computed text-to-vision alignment scores, capturing cross-modal correspondence between textual description and visual patches."
+      ],
+      "token_saliency": [
+        {
+          "token": "airport",
+          "score": 1.0
+        },
+        {
+          "token": "chess",
+          "score": 0.8216
+        },
+        {
+          "token": "welcomed",
+          "score": 0.723
+        },
+        {
+          "token": "delhi",
+          "score": 0.685
+        },
+        {
+          "token": "anand",
+          "score": 0.5577
+        },
+        {
+          "token": "at",
+          "score": 0.511
+        },
+        {
+          "token": "champion",
+          "score": 0.4803
+        },
+        {
+          "token": "the",
+          "score": 0.4308
+        }
+      ],
+      "has_heatmap": false,
+      "heatmap_base64": null
+    },
+    {
+      "sample_id": "fakeddit_real_028",
+      "ground_truth": "REAL",
+      "prediction": "FAKE",
+      "confidence": 0.7997,
+      "real_probability": 0.2003,
+      "fake_probability": 0.7997,
+      "correct": false,
+      "status": "INCORRECT",
+      "text": "my uber has vomit bags",
+      "image_path": "data/raw/fakeddit/fakeddit_real_028.jpg",
+      "manipulation_type": "authentic",
+      "explanation": "The content was classified as FAKE with 80.0% model confidence. Features extracted across text, visual exhibit synthetic characteristics consistent with generative or spliced manipulations.",
+      "evidence_descriptions": [
+        "Model-derived gradient saliency identified key tokens influencing the classification: 'uber' (1.00), 'vomit' (0.67), 'bags' (0.64), 'my' (0.60).",
+        "Visual backbone extracted 512-dim spatial representation. No focal manipulation hotspot isolated.",
+        "Bidirectional cross-attention computed text-to-vision alignment scores, capturing cross-modal correspondence between textual description and visual patches."
+      ],
+      "token_saliency": [
+        {
+          "token": "uber",
+          "score": 1.0
+        },
+        {
+          "token": "vomit",
+          "score": 0.6686
+        },
+        {
+          "token": "bags",
+          "score": 0.6425
+        },
+        {
+          "token": "my",
+          "score": 0.603
+        },
+        {
+          "token": "has",
+          "score": 0.573
+        }
+      ],
+      "has_heatmap": false,
+      "heatmap_base64": null
+    },
+    {
+      "sample_id": "fakeddit_real_029",
+      "ground_truth": "REAL",
+      "prediction": "FAKE",
+      "confidence": 0.6886,
+      "real_probability": 0.3114,
+      "fake_probability": 0.6886,
+      "correct": false,
+      "status": "INCORRECT",
+      "text": "a san francisco radio station has been playing nellys hot in herre for straight hours",
+      "image_path": "data/raw/fakeddit/fakeddit_real_029.jpg",
+      "manipulation_type": "authentic",
+      "explanation": "The content was classified as FAKE with 68.9% model confidence. Features extracted across text, visual exhibit synthetic characteristics consistent with generative or spliced manipulations.",
+      "evidence_descriptions": [
+        "Model-derived gradient saliency identified key tokens influencing the classification: 'nelly' (1.00), 'straight' (0.62), 'hours' (0.59), 'herr' (0.58).",
+        "Visual backbone extracted 512-dim spatial representation. No focal manipulation hotspot isolated.",
+        "Bidirectional cross-attention computed text-to-vision alignment scores, capturing cross-modal correspondence between textual description and visual patches."
+      ],
+      "token_saliency": [
+        {
+          "token": "nelly",
+          "score": 1.0
+        },
+        {
+          "token": "straight",
+          "score": 0.6194
+        },
+        {
+          "token": "hours",
+          "score": 0.5944
+        },
+        {
+          "token": "herr",
+          "score": 0.5833
+        },
+        {
+          "token": "a",
+          "score": 0.5616
+        },
+        {
+          "token": "playing",
+          "score": 0.5608
+        },
+        {
+          "token": "hot",
+          "score": 0.5405
+        },
+        {
+          "token": "radio",
+          "score": 0.4792
+        }
+      ],
+      "has_heatmap": false,
+      "heatmap_base64": null
+    },
+    {
+      "sample_id": "fakeddit_real_030",
+      "ground_truth": "REAL",
+      "prediction": "FAKE",
+      "confidence": 0.7652,
+      "real_probability": 0.2348,
+      "fake_probability": 0.7652,
+      "correct": false,
+      "status": "INCORRECT",
+      "text": "google rewarded over to the guy who bought googlecom for and he donated it all to charity",
+      "image_path": "data/raw/fakeddit/fakeddit_real_030.jpg",
+      "manipulation_type": "authentic",
+      "explanation": "The content was classified as FAKE with 76.5% model confidence. Features extracted across text, visual exhibit synthetic characteristics consistent with generative or spliced manipulations.",
+      "evidence_descriptions": [
+        "Model-derived gradient saliency identified key tokens influencing the classification: 'charity' (1.00), 'google' (0.61), 'donated' (0.58), 'guy' (0.58).",
+        "Visual backbone extracted 512-dim spatial representation. No focal manipulation hotspot isolated.",
+        "Bidirectional cross-attention computed text-to-vision alignment scores, capturing cross-modal correspondence between textual description and visual patches."
+      ],
+      "token_saliency": [
+        {
+          "token": "charity",
+          "score": 1.0
+        },
+        {
+          "token": "google",
+          "score": 0.6086
+        },
+        {
+          "token": "donated",
+          "score": 0.5801
+        },
+        {
+          "token": "guy",
+          "score": 0.5777
+        },
+        {
+          "token": "rewarded",
+          "score": 0.5629
+        },
+        {
+          "token": "google",
+          "score": 0.5032
+        },
+        {
+          "token": "over",
+          "score": 0.4213
+        },
+        {
+          "token": "and",
+          "score": 0.3951
+        }
+      ],
+      "has_heatmap": false,
+      "heatmap_base64": null
+    }
+  ]
+}

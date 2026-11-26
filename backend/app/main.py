@@ -11,6 +11,7 @@ from backend.app.database.session import init_db
 from backend.app.api.health import router as health_router
 from backend.app.api.routes import router as verification_router
 from backend.app.api.evaluation import router as evaluation_router
+from backend.app.api.benchmark import router as benchmark_router
 
 logger = logging.getLogger("truthlens.app")
 logging.basicConfig(level=logging.INFO, format="[%(levelname)s] %(message)s")
@@ -39,10 +40,12 @@ app.add_middleware(
 app.include_router(health_router)
 app.include_router(verification_router)
 app.include_router(evaluation_router)
+app.include_router(benchmark_router)
 
 app.include_router(health_router, prefix="/api")
 app.include_router(verification_router, prefix="/api")
 app.include_router(evaluation_router, prefix="/api")
+app.include_router(benchmark_router, prefix="/api")
 
 # Mount sample media files if available (both /api/samples and /samples)
 samples_dir = settings.DATA_DIR / "samples"
