@@ -101,3 +101,9 @@ htmlcov/
 *.fls
 *.fdb_latexmk
 
+# Presentation files (Keynote, PPTX, generated presentations)
+*.key
+TruthLens_AI_Presentation*
+generate_presentation.py
+
+
